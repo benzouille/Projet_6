@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!-- ===== Fonctionnement avec les annotations ===== -->
+
+    <!-- Prend en compte la configuration des injections (@Inject...) -->
+    <context:annotation-config/>
+
+    <!-- Scanne les packages pour trouver les beans qui se déclarent (@Named...) -->
+    <context:component-scan base-package="fr.banane.projet6.business"/>
+
+    <!-- ==== AbstractResource ===== -->
+
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="fr.banane.projet6.business.impl.manager.AbstractManager" />
+        <property name="targetMethod" value="setDaoFactory" />
+        <property name="arguments" ref="daoFactory" />
+    </bean>
+
+    <!-- ==== Transaction Spring TX ==== -->
+    <bean id="txManagerTicket" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSourceTicket"/>
+    </bean>
+    <bean id="txManagerVersion" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSourceTicket"/>
+    </bean>
+
+</beans>
