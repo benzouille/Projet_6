@@ -55,29 +55,29 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <dependencies>
             <!-- ===== Modules ===== -->
             <dependency>
-                <groupId>fr.banane.projet6</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>ocscalade-webapp</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>fr.banane.projet6</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>ocscalade-business</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>fr.banane.projet6</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>ocscalade-consumer</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>fr.banane.projet6</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>ocscalade-model</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>fr.banane.projet6</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>ocscalade-technical</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
 
             <!-- ===== Bibliothèques tierces ===== -->
@@ -116,6 +116,31 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                 <groupId>javax.inject</groupId>
                 <artifactId>javax.inject</artifactId>
                 <version>1</version>
+            </dependency>
+
+            <!-- Bibliothèques pour la gestion des logs-->
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>2.6.2</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-jcl</artifactId>
+                <version>2.6.2</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!-- Log web -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-web</artifactId>
+                <version>2.11.0</version>
             </dependency>
 
             <!-- Drivers JDBC PostgreSQL -->

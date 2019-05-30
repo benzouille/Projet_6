@@ -1,44 +1,42 @@
 package fr.banane.projet6.model.bean;
 
 /**
- * Objet metier représentant un Topo
+ * Objet metier représentant un Secteur
  *
  * @author Banane
  */
-public class Topo {
+public class Secteur {
+
     // ==================== Attributs ====================
     private int id;
-    private int id_user;
+    private int id_spot;
     private String nom;
     private String description;
-    private String date_creation;
 
     // ==================== Constructeurs ====================
 
     /**
      * Constructeur par défaut
      */
-    public Topo(){
+    public Secteur(){
     }
 
     /**
      * Constructeur
      * @param id -
-     * @param id_user -
+     * @param id_spot -
      * @param nom -
      * @param description -
-     * @param date_creation -
      */
-    public Topo(int id, int id_user,String nom, String description, String date_creation) {
+    public Secteur(int id, int id_spot, String nom, String description) {
         this.id = id;
-        this.id_user = id_user;
-        this.nom =nom;
+        this.id_spot = id_spot;
+        this.nom = nom;
         this.description = description;
-        this.date_creation = date_creation;
     }
 
-    // ==================== Getters/Setters ====================
 
+    // ==================== Getters/Setters ====================
     public int getId() {
         return id;
     }
@@ -47,12 +45,12 @@ public class Topo {
         this.id = id;
     }
 
-    public int getId_user() {
-        return id_user;
+    public int getId_spot() {
+        return id_spot;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setId_spot(int id_spot) {
+        this.id_spot = id_spot;
     }
 
     public String getNom() {
@@ -71,24 +69,15 @@ public class Topo {
         this.description = description;
     }
 
-    public String getDate_creation() {
-        return date_creation;
-    }
-
-    public void setDate_creation(String date_creation) {
-        this.date_creation = date_creation;
-    }
-
     // ==================== Methodes ====================
 
     @Override
     public String toString() {
-        return "Topo{" +
+        return "Secteur{" +
                 "id=" + id +
-                ", id_user=" + id_user +
+                ", id_spot=" + id_spot +
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
-                ", date_creation='" + date_creation + '\'' +
                 '}';
     }
 }
