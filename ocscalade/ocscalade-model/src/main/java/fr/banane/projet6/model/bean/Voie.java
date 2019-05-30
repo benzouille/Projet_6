@@ -1,4 +1,7 @@
 package fr.banane.projet6.model.bean;
+
+import java.util.ArrayList;
+
 /**
  * Objet metier représentant un Topo
  *
@@ -8,7 +11,8 @@ public class Voie {
     // ==================== Attributs ====================
     private int id;
     private int id_secteur;
-    private int id_difficulte;
+    private ArrayList<Longueur> longueurs;
+    private Difficulte difficulte;
     private String nom;
     private String description;
 
@@ -24,14 +28,16 @@ public class Voie {
      * Constructeur
      * @param id -
      * @param id_secteur -
-     * @param id_difficulte -
+     * @param longueurs -
+     * @param difficulte -
      * @param nom -
      * @param description -
      */
-    public Voie(int id, int id_secteur, int id_difficulte, String nom, String description) {
+    public Voie(int id, int id_secteur, ArrayList<Longueur> longueurs, Difficulte difficulte, String nom, String description) {
         this.id = id;
         this.id_secteur = id_secteur;
-        this.id_difficulte = id_difficulte;
+        this.longueurs = longueurs;
+        this.difficulte = difficulte;
         this.nom = nom;
         this.description = description;
     }
@@ -53,12 +59,20 @@ public class Voie {
         this.id_secteur = id_secteur;
     }
 
-    public int getId_difficulte() {
-        return id_difficulte;
+    public ArrayList<Longueur> getLongueurs() {
+        return longueurs;
     }
 
-    public void setId_difficulte(int id_difficulte) {
-        this.id_difficulte = id_difficulte;
+    public void setLongueurs(ArrayList<Longueur> longueurs) {
+        this.longueurs = longueurs;
+    }
+
+    public Difficulte getDifficulte() {
+        return difficulte;
+    }
+
+    public void setDifficulte(Difficulte difficulte) {
+        this.difficulte = difficulte;
     }
 
     public String getNom() {
@@ -84,7 +98,7 @@ public class Voie {
         return "Voie{" +
                 "id=" + id +
                 ", id_secteur=" + id_secteur +
-                ", id_difficulte=" + id_difficulte +
+                ", difficulte=" + difficulte +
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
                 '}';

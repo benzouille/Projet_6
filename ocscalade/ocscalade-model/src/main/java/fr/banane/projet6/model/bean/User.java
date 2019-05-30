@@ -9,8 +9,8 @@ public class User {
 
     // ==================== Attributs ====================
     private int id;
-    private int id_sexe;
-    private int id_privilege;
+    private Sexe sexe;
+    private Privilege privilege;
     private String pseudo;
     private String email;
     private String password;
@@ -26,18 +26,19 @@ public class User {
 
     /**
      * Constructeur
-     * @param id
-     * @param id_sexe
-     * @param id_privilege
-     * @param pseudoemail
-     * @param password
-     * @param departement
-     * @param date_naissance
+     * @param id -
+     * @param sexe -
+     * @param privilege -
+     * @param pseudo -
+     * @param email -
+     * @param password -
+     * @param departement -
+     * @param date_naissance -
      */
-    public User(int id, int id_sexe, int id_privilege, String pseudoemail, String password, int departement, String date_naissance){
+    public User(int id, Sexe sexe, Privilege privilege, String pseudo, String email, String password, int departement, String date_naissance){
         this.id = id;
-        this.id_sexe = id_sexe;
-        this.id_privilege = id_privilege;
+        this.sexe = sexe;
+        this.privilege = privilege;
         this.pseudo = pseudo;
         this.email = email;
         this.password = password;
@@ -55,20 +56,20 @@ public class User {
         this.id = id;
     }
 
-    public int getId_sexe() {
-        return id_sexe;
+    public Sexe getSexe() {
+        return sexe;
     }
 
-    public void setId_sexe(int id_sexe) {
-        this.id_sexe = id_sexe;
+    public void setSexe(Sexe sexe) {
+        this.sexe = sexe;
     }
 
-    public int getId_privilege() {
-        return id_privilege;
+    public Privilege getPrivilege() {
+        return privilege;
     }
 
-    public void setId_privilege(int id_privilege) {
-        this.id_privilege = id_privilege;
+    public void setPrivilege(Privilege privilege) {
+        this.privilege = privilege;
     }
 
     public String getPseudo() {
@@ -113,14 +114,17 @@ public class User {
 
     // ==================== Methodes ====================
 
-    public User(int id, int id_sexe, int id_privilege, String pseudo, String email, String password, int departement, String date_naissance) {
-        this.id = id;
-        this.id_sexe = id_sexe;
-        this.id_privilege = id_privilege;
-        this.pseudo = pseudo;
-        this.email = email;
-        this.password = password;
-        this.departement = departement;
-        this.date_naissance = date_naissance;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", sexe=" + sexe +
+                ", privilege=" + privilege +
+                ", pseudo='" + pseudo + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", departement=" + departement +
+                ", date_naissance='" + date_naissance + '\'' +
+                '}';
     }
 }

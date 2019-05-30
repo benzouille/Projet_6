@@ -1,5 +1,7 @@
 package fr.banane.projet6.model.bean;
 
+import java.util.ArrayList;
+
 /**
  * Objet metier représentant un Spot
  */
@@ -9,6 +11,7 @@ public class Spot {
 
     private int id;
     private int id_createur;
+    private ArrayList<Secteur> secteurs;
     private boolean officiel;
     private String nom;
     private int departement;
@@ -27,15 +30,17 @@ public class Spot {
      * Constructeur
      * @param id -
      * @param id_createur -
+     * @param secteurs -
      * @param officiel -
      * @param nom -
      * @param departement -
      * @param adresse -
      * @param description -
      */
-    public Spot(int id, int id_createur, boolean officiel,String nom, int departement, String adresse, String description) {
+    public Spot(int id, int id_createur, ArrayList<Secteur> secteurs, boolean officiel,String nom, int departement, String adresse, String description) {
         this.id = id;
         this.id_createur = id_createur;
+        this.secteurs = secteurs;
         this.officiel = officiel;
         this.nom = nom;
         this.departement = departement;
@@ -58,6 +63,14 @@ public class Spot {
 
     public void setId_createur(int id_createur) {
         this.id_createur = id_createur;
+    }
+
+    public ArrayList<Secteur> getSecteurs() {
+        return secteurs;
+    }
+
+    public void setSecteurs(ArrayList<Secteur> secteurs) {
+        this.secteurs = secteurs;
     }
 
     public boolean isOfficiel() {
@@ -107,6 +120,7 @@ public class Spot {
         return "Spot{" +
                 "id=" + id +
                 ", id_createur=" + id_createur +
+                ", secteurs=" + secteurs +
                 ", officiel=" + officiel +
                 ", nom='" + nom + '\'' +
                 ", departement=" + departement +

@@ -22,10 +22,10 @@ public class Longueur {
 
     /**
      * Constructeur
-     * @param id
-     * @param id_voie
-     * @param equipement
-     * @param nb_point
+     * @param id -
+     * @param id_voie -
+     * @param equipement -
+     * @param nb_point -
      */
     public Longueur (int id, int id_voie, boolean equipement, int nb_point){
         this.id = id;

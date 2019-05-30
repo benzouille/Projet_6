@@ -1,5 +1,7 @@
 package fr.banane.projet6.model.bean;
 
+import java.util.ArrayList;
+
 /**
  * Objet metier représentant un Topo
  *
@@ -8,10 +10,11 @@ package fr.banane.projet6.model.bean;
 public class Topo {
     // ==================== Attributs ====================
     private int id;
-    private int id_user;
+    private User user;
     private String nom;
     private String description;
     private String date_creation;
+    private ArrayList<Spot> spots;
 
     // ==================== Constructeurs ====================
 
@@ -24,17 +27,19 @@ public class Topo {
     /**
      * Constructeur
      * @param id -
-     * @param id_user -
+     * @param user -
      * @param nom -
      * @param description -
      * @param date_creation -
+     * @param spots -
      */
-    public Topo(int id, int id_user,String nom, String description, String date_creation) {
+    public Topo(int id, User user,String nom, String description, String date_creation, ArrayList<Spot> spots) {
         this.id = id;
-        this.id_user = id_user;
+        this.user = user;
         this.nom =nom;
         this.description = description;
         this.date_creation = date_creation;
+        this.spots = spots;
     }
 
     // ==================== Getters/Setters ====================
@@ -47,12 +52,12 @@ public class Topo {
         this.id = id;
     }
 
-    public int getId_user() {
-        return id_user;
+    public User getUser() {
+        return user;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setId_user(User user) {
+        this.user = user;
     }
 
     public String getNom() {
@@ -79,16 +84,25 @@ public class Topo {
         this.date_creation = date_creation;
     }
 
+    public ArrayList<Spot> getSpots() {
+        return spots;
+    }
+
+    public void setSpots(ArrayList<Spot> spots) {
+        this.spots = spots;
+    }
+
     // ==================== Methodes ====================
 
     @Override
     public String toString() {
         return "Topo{" +
                 "id=" + id +
-                ", id_user=" + id_user +
+                ", user=" + user +
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
                 ", date_creation='" + date_creation + '\'' +
+                ", spots=" + spots +
                 '}';
     }
 }
