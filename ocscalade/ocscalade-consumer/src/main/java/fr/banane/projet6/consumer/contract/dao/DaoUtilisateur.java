@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Banane
  */
-public interface DaoUser {
+public interface DaoUtilisateur {
     //-- CRUD : Les méthodes nécessaires
 
     /**

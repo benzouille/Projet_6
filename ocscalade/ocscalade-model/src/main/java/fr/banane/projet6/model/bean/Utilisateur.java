@@ -1,11 +1,11 @@
 package fr.banane.projet6.model.bean;
 
 /**
- * Objet metier représentant un User
+ * Objet metier représentant un Utilisateur
  *
  * @author Banane
  */
-public class User {
+public class Utilisateur {
 
     // ==================== Attributs ====================
     private int id;
@@ -21,7 +21,7 @@ public class User {
     /**
      * Constructeur par défaut
      */
-    public User(){
+    public Utilisateur(){
     }
 
     /**
@@ -35,7 +35,7 @@ public class User {
      * @param departement -
      * @param date_naissance -
      */
-    public User(int id, Sexe sexe, Privilege privilege, String pseudo, String email, String password, int departement, String date_naissance){
+    public Utilisateur(int id, Sexe sexe, Privilege privilege, String pseudo, String email, String password, int departement, String date_naissance){
         this.id = id;
         this.sexe = sexe;
         this.privilege = privilege;
@@ -116,7 +116,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Utilisateur{" +
                 "id=" + id +
                 ", sexe=" + sexe +
                 ", privilege=" + privilege +

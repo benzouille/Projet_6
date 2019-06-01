@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Topo {
     // ==================== Attributs ====================
     private int id;
-    private User user;
+    private Utilisateur utilisateur;
     private String nom;
     private String description;
     private String date_creation;
@@ -27,15 +27,15 @@ public class Topo {
     /**
      * Constructeur
      * @param id -
-     * @param user -
+     * @param utilisateur -
      * @param nom -
      * @param description -
      * @param date_creation -
      * @param spots -
      */
-    public Topo(int id, User user,String nom, String description, String date_creation, ArrayList<Spot> spots) {
+    public Topo(int id, Utilisateur utilisateur,String nom, String description, String date_creation, ArrayList<Spot> spots) {
         this.id = id;
-        this.user = user;
+        this.utilisateur = utilisateur;
         this.nom =nom;
         this.description = description;
         this.date_creation = date_creation;
@@ -52,12 +52,12 @@ public class Topo {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
     }
 
-    public void setId_user(User user) {
-        this.user = user;
+    public void setId_Utilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     public String getNom() {
@@ -98,7 +98,7 @@ public class Topo {
     public String toString() {
         return "Topo{" +
                 "id=" + id +
-                ", user=" + user +
+                ", Utilisateur=" + utilisateur +
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
                 ", date_creation='" + date_creation + '\'' +

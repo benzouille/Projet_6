@@ -1,6 +1,6 @@
 package fr.banane.projet6.consumer.impl.rowmapper;
 
-import fr.banane.projet6.consumer.contract.dao.DaoUser;
+import fr.banane.projet6.consumer.contract.dao.DaoUtilisateur;
 import fr.banane.projet6.model.bean.Commentaire;
 
 import org.springframework.jdbc.core.RowMapper;
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class CommentaireRM implements RowMapper<Commentaire> {
     //TODO à continuer
     @Inject
-    DaoUser daoUserImpl;
+    DaoUtilisateur daoUtilisateurImpl;
 
     @Override
     public Commentaire mapRow(ResultSet rs, int rowNum) throws SQLException {

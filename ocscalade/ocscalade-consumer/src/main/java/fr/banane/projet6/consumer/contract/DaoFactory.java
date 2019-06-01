@@ -25,8 +25,8 @@ public interface DaoFactory {
     void setDaoTopo(DaoTopo pDaoTopo);
 
     //------ USER ------
-    DaoUser getDaoUser();
-    void setDaoUser(DaoUser pDaoUser);
+    DaoUtilisateur getDaoUser();
+    void setDaoUser(DaoUtilisateur pDaoUtilisateur);
 
     //------ VOIE ------
     DaoVoie getDaoVoie();

@@ -3,6 +3,7 @@ package fr.banane.projet6.consumer.impl.dao;
 import fr.banane.projet6.consumer.contract.dao.DaoLongueur;
 import fr.banane.projet6.consumer.impl.rowmapper.LongueurRM;
 import fr.banane.projet6.model.bean.Longueur;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -21,13 +22,18 @@ public class DaoLongueurImpl extends AbstractDao implements DaoLongueur {
 
     @Override
     public boolean create(Longueur obj) {
-        String vSQL = "INSERT INTO longueur"
+        String vSQL = "INSERT INTO longueur () VALUES ()"
         return false;
     }
 
     @Override
     public Longueur read(int id) {
-        return null;
+        String vSQL = "SELECT * FROM longueur WHERE id="+id;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Longueur> vListLongueur = vJdbcTemplate.query(vSQL, longueurRM);
+        Longueur vLongueur = vListLongueur.get(0);
+
+        return vLongueur;
     }
 
     @Override
@@ -37,7 +43,11 @@ public class DaoLongueurImpl extends AbstractDao implements DaoLongueur {
 
     @Override
     public List<Longueur> readAll() {
-        return null;
+        String vSQL = "SELECT * FROM longueur";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Longueur> vListLongueur = vJdbcTemplate.query(vSQL, longueurRM);
+
+        return vListLongueur;
     }
 
     @Override
@@ -47,6 +57,9 @@ public class DaoLongueurImpl extends AbstractDao implements DaoLongueur {
 
     @Override
     public boolean update(Longueur obj) {
+
+
+        String vSQL = "UPDATE longueur SET WHERE id=" + obj.getId() + " () VALUES ()"
         return false;
     }
 

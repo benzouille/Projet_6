@@ -1,4 +1,4 @@
 package fr.banane.projet6.consumer.impl.rowmapper;
 
-public class UserRM {
+public class UtilisateurRM {
 }
