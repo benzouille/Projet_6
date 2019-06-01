@@ -6,7 +6,6 @@ import javax.sql.DataSource;
 
 public abstract class AbstractDao {
 
-
     @Inject
     @Named("dataSourceOCscalade")
     private DataSource dataSource;

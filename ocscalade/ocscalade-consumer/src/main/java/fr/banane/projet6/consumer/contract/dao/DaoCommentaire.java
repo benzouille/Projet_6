@@ -45,8 +45,8 @@ public interface DaoCommentaire {
     boolean delete(Commentaire obj);
 
     /**
-     * Retourne le nombre de ticket
-     * @return Le nombre de ticket
+     * Retourne le nombre de commentaire
+     * @return Le nombre de commentaire
      */
     int getCountCommentaire();
 }
