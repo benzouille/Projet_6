@@ -44,6 +44,13 @@ public interface DaoSecteur {
     boolean delete(Secteur obj);
 
     /**
+     * Méthode pour effacer
+     * @param id_spot
+     * @return boolean
+     */
+    boolean deleteAll(int id_spot);
+
+    /**
      * Retourne le nombre de secteur
      * @return Le nombre de secteur
      */

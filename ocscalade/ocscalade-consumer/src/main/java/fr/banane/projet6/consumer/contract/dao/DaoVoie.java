@@ -44,6 +44,13 @@ public interface DaoVoie {
     boolean delete(Voie obj);
 
     /**
+     * Méthode pour effacer
+     * @param id_secteur
+     * @return boolean
+     */
+    boolean deleteAll(int id_secteur);
+
+    /**
      * Retourne le nombre de voie
      * @return Le nombre de voie
      */

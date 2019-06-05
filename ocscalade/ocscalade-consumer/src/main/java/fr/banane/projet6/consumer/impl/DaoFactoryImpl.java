@@ -1,13 +1,168 @@
 package fr.banane.projet6.consumer.impl;
 
-import fr.banane.projet6.consumer.contract.dao.DaoCommentaire;
+import fr.banane.projet6.consumer.contract.DaoFactory;
+import fr.banane.projet6.consumer.contract.dao.*;
+import fr.banane.projet6.consumer.impl.dao.DaoCommentaireImpl;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named("daoFactory")
-public class DaoFactoryImpl {
+public class DaoFactoryImpl implements DaoFactory {
 
     @Inject
     DaoCommentaire daoCommentaireImpl;
+
+    @Inject
+    DaoDifficulte daoDifficulteImpl;
+
+    @Inject
+    DaoDuree daoDureeImpl;
+
+    @Inject
+    DaoLongueur daoLongueurImpl;
+
+    @Inject
+    DaoPrivilege daoPrivilegeImpl;
+
+    @Inject
+    DaoReservation daoReservationImpl;
+
+    @Inject
+    DaoSecteur daoSecteurImpl;
+
+    @Inject
+    DaoSexe daoSexeImpl;
+
+    @Inject
+    DaoSpot daoSpotImpl;
+
+    @Inject
+    DaoTopo daoTopoImpl;
+
+    @Inject
+    DaoUtilisateur daoUtilisateurImpl;
+
+    @Inject
+    DaoVoie daoVoieImpl;
+
+    @Override
+    public DaoCommentaire getDaoCommentaire() {
+        return daoCommentaireImpl;
+    }
+
+    @Override
+    public void setDaoCommentaire(DaoCommentaire pDaoCommentaire) {
+        this.daoCommentaireImpl = pDaoCommentaire;
+    }
+
+    @Override
+    public DaoDifficulte getDaoDifficulte() {
+        return daoDifficulteImpl;
+    }
+
+    @Override
+    public void setDaoDifficulte(DaoDifficulte pDaoDifficulte) {
+        this.daoDifficulteImpl = pDaoDifficulte
+    }
+
+    @Override
+    public DaoDuree getDaoDuree() {
+        return daoDureeImpl;
+    }
+
+    @Override
+    public void setDaoDuree(DaoDuree pDaoDuree) {
+        this.daoDureeImpl = pDaoDuree;
+    }
+
+    @Override
+    public DaoLongueur getDaoLongueur() {
+        return daoLongueurImpl;
+    }
+
+    @Override
+    public void setDaoLongueur(DaoLongueur pDaoLongueur) {
+        this.daoLongueurImpl = pDaoLongueur;
+    }
+
+    @Override
+    public DaoPrivilege getDaoPrivilege() {
+        return daoPrivilegeImpl;
+    }
+
+    @Override
+    public void setDaoPrivilege(DaoPrivilege pDaoPrivilege) {
+        this.daoPrivilegeImpl = pDaoPrivilege;
+    }
+
+    @Override
+    public DaoReservation getDaoReservation() {
+        return daoReservationImpl;
+    }
+
+    @Override
+    public void setDaoReservation(DaoReservation pDaoReservation) {
+        this.daoReservationImpl = pDaoReservation;
+    }
+
+    @Override
+    public DaoSecteur getDaoSecteur() {
+        return daoSecteurImpl;
+    }
+
+    @Override
+    public void setDaoSecteur(DaoSecteur pDaoSecteur) {
+        this.daoSecteurImpl = pDaoSecteur;
+    }
+
+    @Override
+    public DaoSexe getDaoSexe() {
+        return daoSexeImpl;
+    }
+
+    @Override
+    public void setDaoSexe(DaoSexe pDaoSexe) {
+        this.daoSexeImpl = pDaoSexe;
+    }
+
+    @Override
+    public DaoSpot getDaoSpot() {
+        return daoSpotImpl;
+    }
+
+    @Override
+    public void setDaoSpot(DaoSpot pDaoSpot) {
+        this.daoSpotImpl = pDaoSpot;
+    }
+
+    @Override
+    public DaoTopo getDaoTopo() {
+        return daoTopoImpl;
+    }
+
+    @Override
+    public void setDaoTopo(DaoTopo pDaoTopo) {
+        this.daoTopoImpl = pDaoTopo
+    }
+
+    @Override
+    public DaoUtilisateur getDaoUtilisateur() {
+        return daoUtilisateurImpl;
+    }
+
+    @Override
+    public void setDaoUtilisateur(DaoUtilisateur pDaoUtilisateur) {
+        this.daoUtilisateurImpl = pDaoUtilisateur;
+    }
+
+    @Override
+    public DaoVoie getDaoVoie() {
+        return daoVoieImpl;
+    }
+
+    @Override
+    public void setDaoVoie(DaoVoie pDaoVoie) {
+        this.daoVoieImpl = pDaoVoie;
+    }
 }

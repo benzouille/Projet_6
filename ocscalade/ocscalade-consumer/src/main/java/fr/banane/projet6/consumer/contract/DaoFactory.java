@@ -8,13 +8,33 @@ public interface DaoFactory {
     DaoCommentaire getDaoCommentaire();
     void setDaoCommentaire(DaoCommentaire pDaoCommentaire);
 
+    //------ DIFFICULTE ------
+    DaoDifficulte getDaoDifficulte();
+    void setDaoDifficulte(DaoDifficulte pDaoDifficulte);
+
+    //------ DUREE ------
+    DaoDuree getDaoDuree();
+    void setDaoDuree(DaoDuree pDaoDuree);
+
     //------ LONGUEUR ------
     DaoLongueur getDaoLongueur();
     void setDaoLongueur(DaoLongueur pDaoLongueur);
 
+    //------ PRIVILEGE ------
+    DaoPrivilege getDaoPrivilege();
+    void setDaoPrivilege(DaoPrivilege pDaoPrivilege);
+
+    //------ RESERVATION ------
+    DaoReservation getDaoReservation();
+    void setDaoReservation(DaoReservation pDaoReservation);
+
     //------ SECTEUR ------
     DaoSecteur getDaoSecteur();
     void setDaoSecteur(DaoSecteur pDaoSecteur);
+
+    //------ SEXE ------
+    DaoSexe getDaoSexe();
+    void setDaoSexe(DaoSexe pDaoSexe);
 
     //------ SPOT ------
     DaoSpot getDaoSpot();
@@ -24,9 +44,9 @@ public interface DaoFactory {
     DaoTopo getDaoTopo();
     void setDaoTopo(DaoTopo pDaoTopo);
 
-    //------ USER ------
-    DaoUtilisateur getDaoUser();
-    void setDaoUser(DaoUtilisateur pDaoUtilisateur);
+    //------ UTILISATEUR------
+    DaoUtilisateur getDaoUtilisateur();
+    void setDaoUtilisateur(DaoUtilisateur pDaoUtilisateur);
 
     //------ VOIE ------
     DaoVoie getDaoVoie();

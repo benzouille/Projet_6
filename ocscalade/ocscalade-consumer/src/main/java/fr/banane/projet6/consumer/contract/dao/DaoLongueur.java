@@ -44,6 +44,13 @@ public interface DaoLongueur {
     boolean delete(Longueur obj);
 
     /**
+     * Méthode pour effacer
+     * @param id_voie
+     * @return boolean
+     */
+    boolean deleteAll(int id_voie);
+
+    /**
      * Retourne le nombre de Longueur
      * @return Le nombre de Longueur
      */

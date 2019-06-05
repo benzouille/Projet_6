@@ -1,11 +1,11 @@
 package fr.banane.projet6.consumer.contract.dao;
 
-import fr.banane.projet6.model.bean.User;
+import fr.banane.projet6.model.bean.Utilisateur;
 
 import java.util.List;
 
 /**
- * Les méthodes CRUD nécessaires pour manipuler le bean "User" / La table "user"
+ * Les méthodes CRUD nécessaires pour manipuler le bean "Utilisateur" / La table "utilisateur"
  *
  * @author Banane
  */
@@ -17,35 +17,35 @@ public interface DaoUtilisateur {
      * @param obj
      * @return boolean
      */
-    boolean create(User obj);
+    boolean create(Utilisateur obj);
 
     /**
      * Méthode de recherche des informations
      * @param id
      * @return T
      */
-    User read(int id);
-    User read(String code);
-    List<User> readAll();
-    List<User> readAll(int id);
+    Utilisateur read(int id);
+    Utilisateur read(String code);
+    List<Utilisateur> readAll();
+    List<Utilisateur> readAll(int id);
 
     /**
      * Méthode de mise à jour
      * @param obj
      * @return boolean
      */
-    boolean update(User obj);
+    boolean update(Utilisateur obj);
 
     /**
      * Méthode pour effacer
      * @param obj
      * @return boolean
      */
-    boolean delete(User obj);
+    boolean delete(Utilisateur obj);
 
     /**
-     * Retourne le nombre de user
-     * @return Le nombre de user
+     * Retourne le nombre de utilisateur
+     * @return Le nombre de utilisateur
      */
-    int getCountUser();
+    int getCountUtilisateur();
 }

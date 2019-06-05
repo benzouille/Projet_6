@@ -32,15 +32,21 @@ CREATE TABLE public.sexe (
 
 ALTER SEQUENCE public.sexe_id_seq OWNED BY public.sexe.id;
 
+CREATE SEQUENCE public.privilege_id_seq;
+
 CREATE TABLE public.privilege (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.privilege_id_seq'),
                 privilege VARCHAR NOT NULL,
                 CONSTRAINT privilege_pk PRIMARY KEY (id)
 );
 
 
+ALTER SEQUENCE public.privilege_id_seq OWNED BY public.privilege.id;
+
+CREATE SEQUENCE public.utilisateur_id_seq;
+
 CREATE TABLE public.utilisateur (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.utilisateur_id_seq'),
                 id_sexe INTEGER NOT NULL,
                 pseudo VARCHAR(25) NOT NULL,
                 email VARCHAR(25) NOT NULL,
@@ -52,8 +58,12 @@ CREATE TABLE public.utilisateur (
 );
 
 
+ALTER SEQUENCE public.utilisateur_id_seq OWNED BY public.utilisateur.id;
+
+CREATE SEQUENCE public.topo_id_seq;
+
 CREATE TABLE public.topo (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.topo_id_seq'),
                 id_utilisateur INTEGER NOT NULL,
                 description VARCHAR(1000) NOT NULL,
                 date_creation VARCHAR(10) NOT NULL,
@@ -61,8 +71,12 @@ CREATE TABLE public.topo (
 );
 
 
+ALTER SEQUENCE public.topo_id_seq OWNED BY public.topo.id;
+
+CREATE SEQUENCE public.reservation_id_seq;
+
 CREATE TABLE public.reservation (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.reservation_id_seq'),
                 id_topo INTEGER NOT NULL,
                 id_utilisateur_locataire INTEGER NOT NULL,
                 date DATE NOT NULL,
@@ -71,8 +85,12 @@ CREATE TABLE public.reservation (
 );
 
 
+ALTER SEQUENCE public.reservation_id_seq OWNED BY public.reservation.id;
+
+CREATE SEQUENCE public.spot_id_seq;
+
 CREATE TABLE public.spot (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.spot_id_seq'),
                 id_createur INTEGER NOT NULL,
                 officiel BOOLEAN DEFAULT false NOT NULL,
                 departement VARCHAR NOT NULL,
@@ -83,8 +101,12 @@ CREATE TABLE public.spot (
 );
 
 
+ALTER SEQUENCE public.spot_id_seq OWNED BY public.spot.id;
+
+CREATE SEQUENCE public.secteur_id_seq;
+
 CREATE TABLE public.secteur (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.secteur_id_seq'),
                 id_spot INTEGER NOT NULL,
                 nom VARCHAR(25) NOT NULL,
                 description VARCHAR(1000) NOT NULL,
@@ -92,8 +114,12 @@ CREATE TABLE public.secteur (
 );
 
 
+ALTER SEQUENCE public.secteur_id_seq OWNED BY public.secteur.id;
+
+CREATE SEQUENCE public.voie_id_seq;
+
 CREATE TABLE public.voie (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.voie_id_seq'),
                 nom VARCHAR(25) NOT NULL,
                 id_secteur INTEGER NOT NULL,
                 id_difficulte INTEGER NOT NULL,
@@ -102,14 +128,20 @@ CREATE TABLE public.voie (
 );
 
 
+ALTER SEQUENCE public.voie_id_seq OWNED BY public.voie.id;
+
+CREATE SEQUENCE public.longueur_id_seq;
+
 CREATE TABLE public.longueur (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.longueur_id_seq'),
                 id_voie INTEGER NOT NULL,
                 equipement BOOLEAN NOT NULL,
                 nb_point INTEGER,
                 CONSTRAINT longueur_pk PRIMARY KEY (id)
 );
 
+
+ALTER SEQUENCE public.longueur_id_seq OWNED BY public.longueur.id;
 
 CREATE TABLE public.topo_spot (
                 id_spot INTEGER NOT NULL,
@@ -118,14 +150,18 @@ CREATE TABLE public.topo_spot (
 );
 
 
+CREATE SEQUENCE public.commentaire_id_seq;
+
 CREATE TABLE public.commentaire (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.commentaire_id_seq'),
                 id_user INTEGER NOT NULL,
                 id_spot INTEGER NOT NULL,
                 commentaire VARCHAR(1000) NOT NULL,
                 CONSTRAINT commentaire_pk PRIMARY KEY (id, id_user, id_spot)
 );
 
+
+ALTER SEQUENCE public.commentaire_id_seq OWNED BY public.commentaire.id;
 
 ALTER TABLE public.voie ADD CONSTRAINT difficulte_voie_fk
 FOREIGN KEY (id_difficulte)
