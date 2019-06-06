@@ -16,6 +16,10 @@ public interface DaoFactory {
     DaoDuree getDaoDuree();
     void setDaoDuree(DaoDuree pDaoDuree);
 
+    //------ IMAGE ------
+    DaoImage getDaoImage();
+    void setDaoImage(DaoImage pDaoImage);
+
     //------ LONGUEUR ------
     DaoLongueur getDaoLongueur();
     void setDaoLongueur(DaoLongueur pDaoLongueur);

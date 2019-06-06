@@ -1,5 +1,6 @@
 package fr.banane.projet6.consumer.impl.dao;
 
+import fr.banane.projet6.consumer.contract.dao.DaoImage;
 import fr.banane.projet6.consumer.contract.dao.DaoSecteur;
 import fr.banane.projet6.consumer.contract.dao.DaoSpot;
 import fr.banane.projet6.consumer.impl.rowmapper.SpotRM;
@@ -26,6 +27,8 @@ public class DaoSpotImpl extends AbstractDao implements DaoSpot {
     SpotRM spotRM;
     @Inject
     DaoSecteur daoSecteurImpl;
+    @Inject
+    DaoImage daoImageImpl;
 
     @Override
     public boolean create(Spot obj) {
@@ -98,8 +101,11 @@ public class DaoSpotImpl extends AbstractDao implements DaoSpot {
 
     @Override
     public boolean delete(Spot obj) {
-        //supression des secteurs liées à l'id du spot
+        //suppression des secteurs liées à l'id du spot
         daoSecteurImpl.deleteAll(obj.getId());
+
+        //suppression des images liées à l'id du spot
+        daoImageImpl.deleteAll(obj.getId());
 
         String vSQL = "DELETE FROM spot WHERE id = :id";
 

@@ -20,6 +20,9 @@ public class DaoFactoryImpl implements DaoFactory {
     DaoDuree daoDureeImpl;
 
     @Inject
+    DaoImage daoImageImpl;
+
+    @Inject
     DaoLongueur daoLongueurImpl;
 
     @Inject
@@ -74,6 +77,16 @@ public class DaoFactoryImpl implements DaoFactory {
     @Override
     public void setDaoDuree(DaoDuree pDaoDuree) {
         this.daoDureeImpl = pDaoDuree;
+    }
+
+    @Override
+    public DaoImage getDaoImage() {
+        return daoImageImpl;
+    }
+
+    @Override
+    public void setDaoImage(DaoImage pDaoImage) {
+        this.daoImageImpl = pDaoImage;
     }
 
     @Override

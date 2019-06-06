@@ -12,6 +12,7 @@ public class Spot {
     private int id;
     private Utilisateur createur;
     private ArrayList<Secteur> secteurs;
+    private ArrayList<Image> images;
     private boolean officiel;
     private String nom;
     private int departement;
@@ -31,16 +32,18 @@ public class Spot {
      * @param id -
      * @param createur -
      * @param secteurs -
+     * @param images -
      * @param officiel -
      * @param nom -
      * @param departement -
      * @param adresse -
      * @param description -
      */
-    public Spot(int id, Utilisateur createur, ArrayList<Secteur> secteurs, boolean officiel,String nom, int departement, String adresse, String description) {
+    public Spot(int id, Utilisateur createur, ArrayList<Secteur> secteurs, ArrayList<Image> images, boolean officiel,String nom, int departement, String adresse, String description) {
         this.id = id;
         this.createur = createur;
         this.secteurs = secteurs;
+        this.images=images;
         this.officiel = officiel;
         this.nom = nom;
         this.departement = departement;
@@ -71,6 +74,14 @@ public class Spot {
 
     public void setSecteurs(ArrayList<Secteur> secteurs) {
         this.secteurs = secteurs;
+    }
+
+    public ArrayList<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<Image> images) {
+        this.images = images;
     }
 
     public boolean isOfficiel() {
@@ -121,6 +132,7 @@ public class Spot {
                 "id=" + id +
                 ", createur=" + createur +
                 ", secteurs=" + secteurs +
+                ", images=" + images +
                 ", officiel=" + officiel +
                 ", nom='" + nom + '\'' +
                 ", departement=" + departement +
