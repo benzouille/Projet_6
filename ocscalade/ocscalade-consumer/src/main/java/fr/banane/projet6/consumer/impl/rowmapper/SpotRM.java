@@ -1,9 +1,11 @@
 package fr.banane.projet6.consumer.impl.rowmapper;
 
 import fr.banane.projet6.consumer.contract.dao.DaoSecteur;
+import fr.banane.projet6.consumer.contract.dao.DaoUtilisateur;
 import fr.banane.projet6.consumer.contract.dao.DaoVoie;
 import fr.banane.projet6.model.bean.Secteur;
 import fr.banane.projet6.model.bean.Spot;
+import fr.banane.projet6.model.bean.Utilisateur;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
@@ -22,17 +24,23 @@ public class SpotRM implements RowMapper<Spot> {
 
     @Inject
     DaoSecteur daoSecteurImpl;
+    @Inject
+    DaoUtilisateur daoUtilisateurImpl;
     
     @Override
     public Spot mapRow(ResultSet rs, int rowNum) throws SQLException {
-//id id_createur officiel departement adresse description
-        //TODO à terminer apres UtilisateurRS
+
+        //Liste de secteur
         ArrayList<Secteur> secteurs = (ArrayList<Secteur>) daoSecteurImpl.readAll(rs.getInt("id"));
+        //Le créateur
+        Utilisateur createur =daoUtilisateurImpl.read(rs.getInt("id_createur"));
 
         Spot vSpot = new Spot();
         vSpot.setId(rs.getInt("id"));
-        vSpot.setId_createur(rs.getInt("id_createur"));
+        vSpot.setCreateur(createur);
+        vSpot.setOfficiel(rs.getBoolean("officiel"));
         vSpot.setNom(rs.getString("nom"));
+        vSpot.setAdresse(rs.getNString("adresse"));
         vSpot.setDescription(rs.getString("description"));
         vSpot.setSecteurs(secteurs);
         return vSpot;

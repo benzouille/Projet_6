@@ -10,7 +10,7 @@ public class Spot {
     // ==================== Attributs ====================
 
     private int id;
-    private int id_createur;
+    private Utilisateur createur;
     private ArrayList<Secteur> secteurs;
     private boolean officiel;
     private String nom;
@@ -29,7 +29,7 @@ public class Spot {
     /**
      * Constructeur
      * @param id -
-     * @param id_createur -
+     * @param createur -
      * @param secteurs -
      * @param officiel -
      * @param nom -
@@ -37,9 +37,9 @@ public class Spot {
      * @param adresse -
      * @param description -
      */
-    public Spot(int id, int id_createur, ArrayList<Secteur> secteurs, boolean officiel,String nom, int departement, String adresse, String description) {
+    public Spot(int id, Utilisateur createur, ArrayList<Secteur> secteurs, boolean officiel,String nom, int departement, String adresse, String description) {
         this.id = id;
-        this.id_createur = id_createur;
+        this.createur = createur;
         this.secteurs = secteurs;
         this.officiel = officiel;
         this.nom = nom;
@@ -57,12 +57,12 @@ public class Spot {
         this.id = id;
     }
 
-    public int getId_createur() {
-        return id_createur;
+    public Utilisateur getCreateur() {
+        return createur;
     }
 
-    public void setId_createur(int id_createur) {
-        this.id_createur = id_createur;
+    public void setCreateur(Utilisateur createur) {
+        this.createur = createur;
     }
 
     public ArrayList<Secteur> getSecteurs() {
@@ -119,7 +119,7 @@ public class Spot {
     public String toString() {
         return "Spot{" +
                 "id=" + id +
-                ", id_createur=" + id_createur +
+                ", createur=" + createur +
                 ", secteurs=" + secteurs +
                 ", officiel=" + officiel +
                 ", nom='" + nom + '\'' +

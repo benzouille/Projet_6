@@ -82,6 +82,7 @@ public class DaoUtilisateurImpl extends AbstractDao implements DaoUtilisateur {
         String vSQL = "UPDATE utilisateur SET id_sexe=:id_sexe, pseudo=:pseudo, email=:email, password=:password, departement=:departement, date_naissance=:date_naissance, id_privilege=:id_privilege WHERE id = :id";
 
         MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("id", obj.getId(), Types.INTEGER);
         vParams.addValue("id_sexe", obj.getSexe().getId(), Types.INTEGER);
         vParams.addValue("pseudo", obj.getPseudo(), Types.VARCHAR);
         vParams.addValue("email", obj.getEmail(), Types.VARCHAR);

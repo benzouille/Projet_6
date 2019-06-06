@@ -28,7 +28,8 @@ public interface DaoCommentaire {
     Commentaire read(int id);
     Commentaire read(String code);
     List<Commentaire> readAll();
-    List<Commentaire> readAll(int id);
+    List<Commentaire> readAllByUser(int id_utilisateur);
+    List<Commentaire> readAllBySpot(int id_spot);
 
     /**
      * Méthode de mise à jour
@@ -43,6 +44,8 @@ public interface DaoCommentaire {
      * @return boolean
      */
     boolean delete(Commentaire obj);
+    boolean deleteAllByUser(int id_utilisateur);
+    boolean deleteAllBySpot(int id_spot);
 
     /**
      * Retourne le nombre de commentaire

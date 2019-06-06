@@ -79,6 +79,7 @@ public class DaoVoieImpl extends AbstractDao implements DaoVoie {
         String vSQL = "UPDATE voie SET nom = :nom, id_secteur = :id_secteur, id_difficulte = :id_difficulte, description = :descrption WHERE id = :id";
 
         MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("id", obj.getId(), Types.INTEGER);
         vParams.addValue("nom", obj.getNom(), Types.VARCHAR);
         vParams.addValue("id_secteur", obj.getId_secteur(), Types.INTEGER);
         vParams.addValue("id_difficulte", obj.getDifficulte().getId(), Types.INTEGER);

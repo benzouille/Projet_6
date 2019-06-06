@@ -78,6 +78,7 @@ public class DaoSecteurImpl extends AbstractDao implements DaoSecteur {
         String vSQL = "UPDATE secteur SET nom = :nom, id_spot = :id_spot, description = :descrption WHERE id = :id";
 
         MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("id", obj.getId(), Types.INTEGER);
         vParams.addValue("nom", obj.getNom(), Types.VARCHAR);
         vParams.addValue("id_spot", obj.getId_spot(), Types.INTEGER);
         vParams.addValue("description", obj.getDescription(), Types.VARCHAR);
@@ -90,8 +91,7 @@ public class DaoSecteurImpl extends AbstractDao implements DaoSecteur {
 
     @Override
     public boolean delete(Secteur obj) {
-
-        //supression des longueurs liées à l'id de la voie
+        //supression des voies liées à l'id du secteur
         daoVoieImpl.deleteAll(obj.getId());
 
         String vSQL = "DELETE FROM secteur WHERE id = :id";

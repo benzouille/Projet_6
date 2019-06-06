@@ -56,7 +56,7 @@ public class Topo {
         return utilisateur;
     }
 
-    public void setId_Utilisateur(Utilisateur utilisateur) {
+    public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
 

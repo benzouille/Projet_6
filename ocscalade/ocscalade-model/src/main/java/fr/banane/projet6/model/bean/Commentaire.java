@@ -9,8 +9,8 @@ public class Commentaire {
 
     // ==================== Attributs ====================
     private int id;
-    private int id_user;
-    private  int id_spot;
+    private Utilisateur utilisateur;
+    private  Spot spot;
     private String commentaire;
 
     // ==================== Constructeurs ====================
@@ -24,14 +24,14 @@ public class Commentaire {
     /**
      * Constructeur
      * @param id
-     * @param id_user
-     * @param id_spot
+     * @param utilisateur
+     * @param spot
      * @param commentaire
      */
-    public Commentaire(int id, int id_user, int id_spot, String commentaire){
+    public Commentaire(int id, Utilisateur utilisateur, Spot spot, String commentaire){
         this.id = id;
-        this.id_user = id_user;
-        this.id_spot = id_spot;
+        this.utilisateur = utilisateur;
+        this.spot = spot;
         this.commentaire = commentaire;
     }
 
@@ -45,20 +45,20 @@ public class Commentaire {
         this.id = id;
     }
 
-    public int getId_user() {
-        return id_user;
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
-    public int getId_spot() {
-        return id_spot;
+    public Spot getSpot() {
+        return spot;
     }
 
-    public void setId_spot(int id_spot) {
-        this.id_spot = id_spot;
+    public void setSpot(Spot spot) {
+        this.spot = spot;
     }
 
     public String getCommentaire() {
@@ -76,8 +76,8 @@ public class Commentaire {
     public String toString() {
         return "Commentaire{" +
                 "id=" + id +
-                ", id_user=" + id_user +
-                ", id_spot=" + id_spot +
+                ", user=" + utilisateur +
+                ", spot=" + spot +
                 ", commentaire='" + commentaire + '\'' +
                 '}';
     }
