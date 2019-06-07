@@ -42,6 +42,7 @@ public interface DaoTopo {
      * @return boolean
      */
     boolean delete(Topo obj);
+    boolean deleteAll(int id_utilisateur);
 
     /**
      * Retourne le nombre de topo

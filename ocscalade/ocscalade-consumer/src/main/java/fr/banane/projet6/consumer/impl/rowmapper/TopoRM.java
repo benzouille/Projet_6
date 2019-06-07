@@ -11,8 +11,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * RowMapper de la classe "Commentaire"
@@ -29,18 +27,17 @@ public class TopoRM implements RowMapper<Topo> {
     
     @Override
     public Topo mapRow(ResultSet rs, int rowNum) throws SQLException {
-        //TODO voir liste de question
 
         //Le créateur
         Utilisateur utilisateur =daoUtilisateurImpl.read(rs.getInt("id_utilisateur"));
         
-        // La liste de spots
-        List<Spot> spots = daoSpotImpl.read(rs.getInt("id_spot"));
+        // Le spot
+        Spot spot = daoSpotImpl.read(rs.getInt("id_spot"));
 
         Topo vTopo = new Topo();
         vTopo.setId(rs.getInt("id"));
         vTopo.setUtilisateur(utilisateur);
-        vTopo.setSpots((ArrayList<Spot>) spots);
+        vTopo.setSpot(spot);
         vTopo.setDate_creation(rs.getString("date_creation"));
 
         return vTopo;

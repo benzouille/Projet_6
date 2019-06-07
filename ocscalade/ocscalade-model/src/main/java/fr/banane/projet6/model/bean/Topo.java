@@ -14,7 +14,7 @@ public class Topo {
     private String nom;
     private String description;
     private String date_creation;
-    private ArrayList<Spot> spots;
+    private Spot spot;
 
     // ==================== Constructeurs ====================
 
@@ -31,15 +31,15 @@ public class Topo {
      * @param nom -
      * @param description -
      * @param date_creation -
-     * @param spots -
+     * @param spot -
      */
-    public Topo(int id, Utilisateur utilisateur,String nom, String description, String date_creation, ArrayList<Spot> spots) {
+    public Topo(int id, Utilisateur utilisateur,String nom, String description, String date_creation, Spot spot) {
         this.id = id;
         this.utilisateur = utilisateur;
         this.nom =nom;
         this.description = description;
         this.date_creation = date_creation;
-        this.spots = spots;
+        this.spot = spot;
     }
 
     // ==================== Getters/Setters ====================
@@ -84,12 +84,12 @@ public class Topo {
         this.date_creation = date_creation;
     }
 
-    public ArrayList<Spot> getSpots() {
-        return spots;
+    public Spot getSpot() {
+        return spot;
     }
 
-    public void setSpots(ArrayList<Spot> spots) {
-        this.spots = spots;
+    public void setSpot(Spot spots) {
+        this.spot = spot;
     }
 
     // ==================== Methodes ====================
@@ -102,7 +102,7 @@ public class Topo {
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
                 ", date_creation='" + date_creation + '\'' +
-                ", spots=" + spots +
+                ", spot=" + spot +
                 '}';
     }
 }

@@ -41,6 +41,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <!-- Modules -->
     <!-- =============================================================== -->
     <modules>
+        <module>ocscalade-batch</module>
         <module>ocscalade-business</module>
         <module>ocscalade-consumer</module>
         <module>ocscalade-model</module>
@@ -201,7 +202,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                         <locales>fr</locales>
                     </configuration>
                 </plugin>
-
             </plugins>
         </pluginManagement>
     </build>
