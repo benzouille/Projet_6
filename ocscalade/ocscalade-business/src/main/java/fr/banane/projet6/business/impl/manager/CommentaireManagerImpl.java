@@ -1,4 +1,6 @@
 package fr.banane.projet6.business.impl.manager;
 
-public class CommentaireManagerImpl {
+import fr.banane.projet6.business.contract.manager.CommentaireManager;
+
+public class CommentaireManagerImpl extends AbstractManager implements CommentaireManager {
 }

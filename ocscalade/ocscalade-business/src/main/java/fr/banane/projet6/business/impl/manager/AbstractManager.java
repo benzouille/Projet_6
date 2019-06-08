@@ -8,16 +8,27 @@ import javax.inject.Named;
 
 public abstract class AbstractManager {
 
-    @Inject
-    @Named("txManagerOcscalade")
-    private PlatformTransactionManager platformTransactionManager;
-    public PlatformTransactionManager getPlatformTransactionManager() {
-        return platformTransactionManager;
-    }
-
-    @Inject
+    //TODO à voir si modification total
     private DaoFactory daoFactory;
-    protected DaoFactory getDaoFactory() {
+
+    protected  DaoFactory getDaoFactory(){
         return daoFactory;
     }
+
+    public  void SetDaoFactory(DaoFactory vdaoFactory){
+        this.daoFactory = vdaoFactory;
+    }
+
+//    @Inject
+//    @Named("txManagerOcscalade")
+//    private PlatformTransactionManager platformTransactionManager;
+//    public PlatformTransactionManager getPlatformTransactionManager() {
+//        return platformTransactionManager;
+//    }
+//
+//    @Inject
+//    private DaoFactory daoFactory;
+//    protected DaoFactory getDaoFactory() {
+//        return daoFactory;
+//    }
 }

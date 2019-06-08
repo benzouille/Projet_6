@@ -1,4 +1,6 @@
 package fr.banane.projet6.business.impl.manager;
 
-public class SpotManagerImpl {
+import fr.banane.projet6.business.contract.manager.SpotManager;
+
+public class SpotManagerImpl extends AbstractManager implements SpotManager {
 }
