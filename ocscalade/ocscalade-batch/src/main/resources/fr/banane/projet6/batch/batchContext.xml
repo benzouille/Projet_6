@@ -26,14 +26,14 @@
 
     <!-- ===== DATASOURCE ===== -->
 
-    <bean id="dataSourceTicketConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+    <bean id="dataSourceConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="location" value="file:${application.batch.config}/conf/db-ocscalade.properties"/>
     </bean>
-    <!-- Création de la datasource "dataSourceTicket" -->
+    <!-- Création de la datasource "dataSourceOcscalade" -->
     <bean id="dataSourceOcscalade" class="org.apache.commons.dbcp2.BasicDataSourceFactory"
           factory-method="createDataSource"
           destroy-method="close">
-        <constructor-arg ref="dataSourceTicketConfiguration"/>
+        <constructor-arg ref="dataSourceConfiguration"/>
     </bean>
 
 </beans>

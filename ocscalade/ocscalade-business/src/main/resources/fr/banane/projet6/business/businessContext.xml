@@ -27,10 +27,10 @@
 
     <!-- ==== Transaction Spring TX ==== -->
     <bean id="txManagerTicket" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSourceTicket"/>
+        <property name="dataSource" ref="dataSourceOcscalade"/>
     </bean>
     <bean id="txManagerVersion" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSourceTicket"/>
+        <property name="dataSource" ref="dataSourceOcscalade"/>
     </bean>
 
 </beans>

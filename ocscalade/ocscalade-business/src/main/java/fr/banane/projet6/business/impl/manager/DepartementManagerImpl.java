@@ -2,7 +2,6 @@ package fr.banane.projet6.business.impl.manager;
 
 import fr.banane.projet6.business.contract.manager.DepartementManager;
 import fr.banane.projet6.model.bean.Departement;
-import fr.banane.projet6.model.bean.Difficulte;
 import fr.banane.projet6.model.exception.NotFoundException;
 
 import javax.inject.Named;
@@ -14,7 +13,6 @@ import java.util.List;
  * @author Banane
  */
 @Named
-
 public class DepartementManagerImpl extends AbstractManager implements DepartementManager {
     @Override
     public List<Departement> getListDepartement() {
@@ -27,7 +25,7 @@ public class DepartementManagerImpl extends AbstractManager implements Departeme
     }
 
     @Override
-    public Departement getDepartementByNum(Integer num) throws NotFoundException {
+    public Departement getDepartementByNum(Integer num) {
         return getDaoFactory().getDaoDepartement().readNum(num);
     }
 }

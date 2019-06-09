@@ -16,11 +16,13 @@ import java.util.List;
 public class DifficulteManagerImpl extends AbstractManager implements DifficulteManager  {
     @Override
     public List<Difficulte> getListDifficulte() {
-        return getDaoFactory().getDaoDifficulte().readAll();
+        //return getDaoFactory().getDaoDifficulte().readAll();
+        return null;
     }
 
     @Override
     public Difficulte getDifficulte(Integer pId) throws NotFoundException {
-        return getDaoFactory().getDaoDifficulte().read(pId);
+        //return getDaoFactory().getDaoDifficulte().read(pId);
+        return null;
     }
 }
