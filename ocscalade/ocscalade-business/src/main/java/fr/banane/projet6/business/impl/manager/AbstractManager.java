@@ -17,7 +17,7 @@ public abstract class AbstractManager {
     public DaoFactory getDaoFactory(){
         return daoFactory;
     }
-    public void SetDaoFactory(DaoFactory vdaoFactory){
+    public void setDaoFactory(DaoFactory vdaoFactory){
         this.daoFactory = vdaoFactory;
     }
 
