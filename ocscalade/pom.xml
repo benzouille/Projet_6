@@ -57,6 +57,11 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <!-- ===== Modules ===== -->
             <dependency>
                 <groupId>${project.groupId}</groupId>
+                <artifactId>ocscalade-batch</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>ocscalade-webapp</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -88,6 +93,17 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                 <artifactId>junit</artifactId>
                 <version>3.8.1</version>
                 <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.6</version>
             </dependency>
 
             <dependency>
