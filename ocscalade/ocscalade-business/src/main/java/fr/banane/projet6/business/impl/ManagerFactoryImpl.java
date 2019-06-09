@@ -11,6 +11,8 @@ public class ManagerFactoryImpl implements ManagerFactory {
     @Inject
     private CommentaireManager commentaireManager;
     @Inject
+    private DepartementManager departementManager;
+    @Inject
     private DifficulteManager difficulteManager;
 
     @Override
@@ -21,6 +23,16 @@ public class ManagerFactoryImpl implements ManagerFactory {
     @Override
     public void setCommentaireManager(CommentaireManager pVersionManager) {
         this.commentaireManager = pVersionManager;
+    }
+
+    @Override
+    public DepartementManager getDepartementManager() {
+        return departementManager;
+    }
+
+    @Override
+    public void setDepartementManager(DepartementManager pVersionManager) {
+        this.departementManager = pVersionManager;
     }
 
     @Override

@@ -7,7 +7,6 @@ import java.util.List;
 
 /**
  * Interface proposant des méthodes de récupération d'une difficulte ou de la liste complète des difficultes.
- * Elle permet également de compter le nombre de difficulte.
  *
  * @author Banane
  *

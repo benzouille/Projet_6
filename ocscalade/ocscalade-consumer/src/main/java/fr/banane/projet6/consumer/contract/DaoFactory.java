@@ -8,6 +8,10 @@ public interface DaoFactory {
     DaoCommentaire getDaoCommentaire();
     void setDaoCommentaire(DaoCommentaire pDaoCommentaire);
 
+    //------ DEPARTEMENT ------
+    DaoDepartement getDaoDepartement();
+    void setDaoDepartement(DaoDepartement pDaoDepartement);
+
     //------ DIFFICULTE ------
     DaoDifficulte getDaoDifficulte();
     void setDaoDifficulte(DaoDifficulte pDaoDifficulte);

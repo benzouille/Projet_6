@@ -8,6 +8,10 @@ public interface ManagerFactory {
     CommentaireManager getCommentaireManager();
     void setCommentaireManager(CommentaireManager pVersionManager);
 
+    //-- Departement
+    DepartementManager getDepartementManager();
+    void setDepartementManager(DepartementManager pVersionManager);
+
     //-- Difficulte
     DifficulteManager getDifficulteManager();
     void setDifficulteManager(DifficulteManager pVersionManager);

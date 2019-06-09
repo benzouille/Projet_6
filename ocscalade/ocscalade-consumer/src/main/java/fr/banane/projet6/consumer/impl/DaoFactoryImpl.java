@@ -14,6 +14,9 @@ public class DaoFactoryImpl implements DaoFactory {
     DaoCommentaire daoCommentaireImpl;
 
     @Inject
+    DaoDepartement daoDepartementImpl;
+
+    @Inject
     DaoDifficulte daoDifficulteImpl;
 
     @Inject
@@ -57,6 +60,16 @@ public class DaoFactoryImpl implements DaoFactory {
     @Override
     public void setDaoCommentaire(DaoCommentaire pDaoCommentaire) {
         this.daoCommentaireImpl = pDaoCommentaire;
+    }
+
+    @Override
+    public DaoDepartement getDaoDepartement() {
+        return daoDepartementImpl;
+    }
+
+    @Override
+    public void setDaoDepartement(DaoDepartement pDaoDepartement) {
+        this.daoDepartementImpl = pDaoDepartement;
     }
 
     @Override
