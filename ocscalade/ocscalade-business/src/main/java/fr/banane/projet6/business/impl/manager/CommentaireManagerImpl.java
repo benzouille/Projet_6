@@ -4,6 +4,6 @@ import fr.banane.projet6.business.contract.manager.CommentaireManager;
 
 import javax.inject.Named;
 
-//TODO ajouter le Named
+@Named
 public class CommentaireManagerImpl extends AbstractManager implements CommentaireManager {
 }

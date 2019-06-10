@@ -19,6 +19,22 @@
 
     <!-- ==== AbstractResource ===== -->
 
+    <!-- //TODO resoudre ces erreurs :
+
+    -_-_-_-Lancé par le batch :
+    Unsatisfied dependency expressed through field 'dataSource';
+    nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException:
+    No qualifying bean of type 'javax.sql.DataSource' available:
+    expected at least 1 bean which qualifies as autowire candidate.
+    Dependency annotations: {@javax.inject.Inject(), @javax.inject.Named(value=dataSourceOCscalade)}
+
+    -_-_-_-Lancé par tomcat :
+    Error creating bean with name 'org.springframework.beans.factory.config.MethodInvokingFactoryBean#0'
+    defined in class path resource [fr/banane/projet6/business/businessContext.xml]:
+    Invocation of init method failed; nested exception is java.lang.IllegalArgumentException:
+    Target method must not be non-static without a target
+    -->
+
     <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
         <property name="targetClass" value="fr.banane.projet6.business.impl.manager.AbstractManager" />
         <property name="targetMethod" value="setDaoFactory" />
@@ -26,11 +42,8 @@
     </bean>
 
     <!-- ==== Transaction Spring TX ==== -->
-    <bean id="txManagerTicket" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSourceOcscalade"/>
-    </bean>
-    <bean id="txManagerVersion" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSourceOcscalade"/>
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSourceOCscalade"/>
     </bean>
 
 </beans>

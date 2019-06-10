@@ -20,8 +20,8 @@ public class ReservationRM implements RowMapper<Reservation> {
     //TODO a terminer apres le Topo
     @Inject
     DaoUtilisateur daoUtilisateurImpl;
-    @Inject
-    DaoTopo daoTopoImpl;
+    //@Inject
+    //DaoTopo daoTopoImpl;
 
     @Override
     public Reservation mapRow(ResultSet rs, int rowNum) throws SQLException {

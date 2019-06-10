@@ -28,6 +28,7 @@
 
     <bean id="dataSourceConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="location" value="file:${application.batch.config}/conf/db-ocscalade.properties"/>
+        <!--<property name="location" value="file:${application.home}/conf/db-ocscalade.properties"/>-->
     </bean>
     <!-- Création de la datasource "dataSourceOcscalade" -->
     <bean id="dataSourceOcscalade" class="org.apache.commons.dbcp2.BasicDataSourceFactory"
