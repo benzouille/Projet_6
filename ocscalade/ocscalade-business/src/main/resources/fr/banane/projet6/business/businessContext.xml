@@ -33,6 +33,8 @@
     defined in class path resource [fr/banane/projet6/business/businessContext.xml]:
     Invocation of init method failed; nested exception is java.lang.IllegalArgumentException:
     Target method must not be non-static without a target
+
+    c'est un probleme de path ?
     -->
 
     <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
