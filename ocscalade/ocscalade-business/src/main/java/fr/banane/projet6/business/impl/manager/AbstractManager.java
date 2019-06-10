@@ -12,17 +12,17 @@ public abstract class AbstractManager {
     @Named("txManager")
     private PlatformTransactionManager platformTransactionManager;
 
-    private DaoFactory daoFactory;
+    private static DaoFactory daoFactory;
 
     public PlatformTransactionManager getPlatformTransactionManager() {
         return platformTransactionManager;
     }
 
-    public DaoFactory getDaoFactory(){
+    protected static DaoFactory getDaoFactory(){
         return daoFactory;
     }
-    public void setDaoFactory(DaoFactory vdaoFactory){
-        this.daoFactory = vdaoFactory;
+    public static void setDaoFactory(DaoFactory vdaoFactory){
+        daoFactory = vdaoFactory;
     }
 
 }
