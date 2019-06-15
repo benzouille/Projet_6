@@ -17,8 +17,7 @@
   <packaging>war</packaging>
 
   <name>${projectName}-webapp Maven Webapp</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>http://www.ocscalade.com</url>
 
   <!-- =============================================================== -->
   <!-- Propriétés -->
@@ -68,6 +67,11 @@
     <dependency>
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
+    </dependency>
+    <!-- JSTL -->
+    <dependency>
+      <groupId>javax.servlet.jsp.jstl</groupId>
+      <artifactId>javax.servlet.jsp.jstl-api</artifactId>
     </dependency>
     <!-- Drivers JDBC PostgreSQL -->
     <dependency>

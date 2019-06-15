@@ -35,6 +35,7 @@
     Target method must not be non-static without a target
 
     c'est un probleme de path ?
+    c'est les beans dataSourceOCscalade contenu dans les webappContext et batchContext qui ne sont pas bon ? ou non lié ?
     -->
 
     <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">

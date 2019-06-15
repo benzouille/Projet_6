@@ -8,9 +8,35 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="utf-8" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">  <%@ include file="/css/test.css" %> </style>
+    <title>inscription</title>
 </head>
 <body>
+<%@ include file="../header_footer/header.jsp" %>
+<br>
+<br>
+<form class="box" action="connexion" method="post">
+    <h1>inscription</h1>
+    <input type="text" name="pseudo" placeholder="Pseudo">
+    <input type="text" name="email" placeholder="e-mail">
+    <input type="password" name="password" placeholder="Mot de passe">
+    <input type="submit" name="_ok_" value="inscription">
+    <a class="lien" href="/ocscalade/connexion">Déjà un compte ?</a>
+</form>
 
+<!-- SCRIPTS -->
+<script src="bundle.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous">
+</script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        crossorigin="anonymous"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+</script>
 </body>
 </html>

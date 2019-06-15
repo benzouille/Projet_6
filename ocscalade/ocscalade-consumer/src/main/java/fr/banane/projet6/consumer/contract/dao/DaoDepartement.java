@@ -19,7 +19,7 @@ public interface DaoDepartement {
      * @return T
      */
     Departement read(int id);
-    Departement readNum(int num);
+    Departement readNum(String num);
     List<Departement> readAll();
 
     /**

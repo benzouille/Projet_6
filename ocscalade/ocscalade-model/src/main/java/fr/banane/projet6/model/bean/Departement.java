@@ -9,7 +9,7 @@ public class Departement {
 
     // ==================== Attributs ====================
     private int id;
-    private int num;
+    private String num;
     private String nom;
 
     // ==================== Constructeurs ====================
@@ -25,7 +25,7 @@ public class Departement {
      * @param num -
      * @param nom -
      */
-    public Departement(int id, int num, String nom) {
+    public Departement(int id, String num, String nom) {
         this.id = id;
         this.num = num;
         this.nom = nom;
@@ -41,11 +41,11 @@ public class Departement {
         this.id = id;
     }
 
-    public int getNum() {
+    public String getNum() {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(String num) {
         this.num = num;
     }
 

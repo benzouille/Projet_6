@@ -1,5 +1,6 @@
 package fr.banane.projet6.consumer.impl.rowmapper;
 
+import fr.banane.projet6.consumer.contract.dao.DaoDepartement;
 import fr.banane.projet6.consumer.contract.dao.DaoPrivilege;
 import fr.banane.projet6.consumer.contract.dao.DaoSexe;
 import fr.banane.projet6.model.bean.Utilisateur;
@@ -23,6 +24,8 @@ public class UtilisateurRM implements RowMapper<Utilisateur> {
     DaoPrivilege daoPrivilegeimpl;
     @Inject
     DaoSexe daoSexeImpl;
+    @Inject
+    DaoDepartement daoDepartementImpl;
 
     @Override
     public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -34,7 +37,7 @@ public class UtilisateurRM implements RowMapper<Utilisateur> {
         vUtilisateur.setPseudo(rs.getString("pseudo"));
         vUtilisateur.setEmail(rs.getString("email"));
         vUtilisateur.setPassword(rs.getString("password"));
-        vUtilisateur.setDepartement(rs.getInt("departement"));
+        vUtilisateur.setDepartement(daoDepartementImpl.read(rs.getInt("departement")));
         vUtilisateur.setDate_naissance(rs.getString("date_naissance"));
         vUtilisateur.setPrivilege(daoPrivilegeimpl.read(rs.getInt("id_privilege")));
 

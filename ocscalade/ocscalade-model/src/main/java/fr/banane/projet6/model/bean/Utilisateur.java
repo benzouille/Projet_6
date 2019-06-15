@@ -14,7 +14,7 @@ public class Utilisateur {
     private String pseudo;
     private String email;
     private String password;
-    private int departement;
+    private Departement departement;
     private String date_naissance;
 
     // ==================== Constructeurs ====================
@@ -35,7 +35,7 @@ public class Utilisateur {
      * @param departement -
      * @param date_naissance -
      */
-    public Utilisateur(int id, Sexe sexe, Privilege privilege, String pseudo, String email, String password, int departement, String date_naissance){
+    public Utilisateur(int id, Sexe sexe, Privilege privilege, String pseudo, String email, String password, Departement departement, String date_naissance){
         this.id = id;
         this.sexe = sexe;
         this.privilege = privilege;
@@ -96,11 +96,11 @@ public class Utilisateur {
         this.password = password;
     }
 
-    public int getDepartement() {
+    public Departement getDepartement() {
         return departement;
     }
 
-    public void setDepartement(int departement) {
+    public void setDepartement(Departement departement) {
         this.departement = departement;
     }
 

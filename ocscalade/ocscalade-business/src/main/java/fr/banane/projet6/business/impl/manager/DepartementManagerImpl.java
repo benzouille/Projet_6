@@ -25,7 +25,7 @@ public class DepartementManagerImpl extends AbstractManager implements Departeme
     }
 
     @Override
-    public Departement getDepartementByNum(Integer num) {
+    public Departement getDepartementByNum(String num) {
         return getDaoFactory().getDaoDepartement().readNum(num);
     }
 }

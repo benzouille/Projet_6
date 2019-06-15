@@ -36,5 +36,5 @@ public interface DepartementManager {
      * @return L'objet Departement correspondant à son numéro.
      * @throws NotFoundException
      */
-    public Departement getDepartementByNum(Integer num);
+    public Departement getDepartementByNum(String num);
 }

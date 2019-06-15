@@ -28,7 +28,7 @@ public class DaoUtilisateurImpl extends AbstractDao implements DaoUtilisateur {
 
     @Override
     public boolean create(Utilisateur obj) {
-        String vSQL = "INSERT INTO utilisateur (id_sexe, pseudo, email, password, departement, date_naissance, id_privilege) " +
+        String vSQL = "INSERT INTO utilisateur (id_sexe, pseudo, email, password, id_departement, date_naissance, id_privilege) " +
                 "VALUES (:id_sexe, :pseudo, :email, :password, :departement, :date_naissance, :id_privilege)";
 
         MapSqlParameterSource vParams = new MapSqlParameterSource();
@@ -36,7 +36,7 @@ public class DaoUtilisateurImpl extends AbstractDao implements DaoUtilisateur {
         vParams.addValue("pseudo", obj.getPseudo(), Types.VARCHAR);
         vParams.addValue("email", obj.getEmail(), Types.VARCHAR);
         vParams.addValue("password", obj.getPassword(), Types.VARCHAR);
-        vParams.addValue("departement", obj.getDepartement(), Types.INTEGER);
+        vParams.addValue("departement", obj.getDepartement().getId(), Types.INTEGER);
         vParams.addValue("date_naissance", obj.getDate_naissance(), Types.VARCHAR);
         vParams.addValue("id_privilege", obj.getPrivilege().getId(), Types.INTEGER);
 
@@ -79,7 +79,7 @@ public class DaoUtilisateurImpl extends AbstractDao implements DaoUtilisateur {
 
     @Override
     public boolean update(Utilisateur obj) {
-        String vSQL = "UPDATE utilisateur SET id_sexe=:id_sexe, pseudo=:pseudo, email=:email, password=:password, departement=:departement, date_naissance=:date_naissance, id_privilege=:id_privilege WHERE id = :id";
+        String vSQL = "UPDATE utilisateur SET id_sexe=:id_sexe, pseudo=:pseudo, email=:email, password=:password, id_departement=:departement, date_naissance=:date_naissance, id_privilege=:id_privilege WHERE id = :id";
 
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("id", obj.getId(), Types.INTEGER);
@@ -87,7 +87,7 @@ public class DaoUtilisateurImpl extends AbstractDao implements DaoUtilisateur {
         vParams.addValue("pseudo", obj.getPseudo(), Types.VARCHAR);
         vParams.addValue("email", obj.getEmail(), Types.VARCHAR);
         vParams.addValue("password", obj.getPassword(), Types.VARCHAR);
-        vParams.addValue("departement", obj.getDepartement(), Types.INTEGER);
+        vParams.addValue("departement", obj.getDepartement().getId(), Types.INTEGER);
         vParams.addValue("date_naissance", obj.getDate_naissance(), Types.VARCHAR);
         vParams.addValue("id_privilege", obj.getPrivilege().getId(), Types.INTEGER);
 

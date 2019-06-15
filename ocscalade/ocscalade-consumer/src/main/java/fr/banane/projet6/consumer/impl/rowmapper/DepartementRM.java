@@ -20,7 +20,7 @@ public class DepartementRM implements RowMapper<Departement> {
     public Departement mapRow(ResultSet rs, int rowNum) throws SQLException {
         Departement vDepartement = new Departement();
         vDepartement.setId(rs.getInt("id"));
-        vDepartement.setNum(rs.getInt("num"));
+        vDepartement.setNum(rs.getString("num"));
         vDepartement.setNom(rs.getString("nom"));
 
         return vDepartement;
