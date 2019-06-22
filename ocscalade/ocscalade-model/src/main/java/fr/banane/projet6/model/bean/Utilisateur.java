@@ -22,6 +22,10 @@ public class Utilisateur {
      * Constructeur par défaut
      */
     public Utilisateur(){
+        this.sexe = new Sexe(3, "non renseigné");
+        this.privilege = new Privilege(1, "utilisateur");
+        this.departement = new Departement(102, "non renseigné", "non renseigné");
+        this.date_naissance = "inconnu";
     }
 
     /**

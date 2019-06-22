@@ -29,7 +29,6 @@ public class UtilisateurRM implements RowMapper<Utilisateur> {
 
     @Override
     public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
-        //id id_sexe pseudo email password departement date_naissance id_privilege
         Utilisateur vUtilisateur = new Utilisateur();
 
         vUtilisateur.setId(rs.getInt("id"));
@@ -37,7 +36,7 @@ public class UtilisateurRM implements RowMapper<Utilisateur> {
         vUtilisateur.setPseudo(rs.getString("pseudo"));
         vUtilisateur.setEmail(rs.getString("email"));
         vUtilisateur.setPassword(rs.getString("password"));
-        vUtilisateur.setDepartement(daoDepartementImpl.read(rs.getInt("departement")));
+        vUtilisateur.setDepartement(daoDepartementImpl.read(rs.getInt("id_departement")));
         vUtilisateur.setDate_naissance(rs.getString("date_naissance"));
         vUtilisateur.setPrivilege(daoPrivilegeimpl.read(rs.getInt("id_privilege")));
 

@@ -9,11 +9,21 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css"><%@ include file="/css/test.css" %></style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <style type="text/css"><%@ include file="/WEB-INF/css/utilisateur.css" %></style>
     <title>connexion</title>
+    <style>
+        <%--body{--%>
+            <%--margin: 0;--%>
+            <%--padding-top: 70px;--%>
+            <%--background-image: url("<%@ include file="../images/connexion2.jpg" %>");--%>
+        <%--}--%>
+    </style>
 </head>
-<body>
+<body background="connexion2.jpg">
+<%-- HEADER --%>
 <%@ include file="../header_footer/header.jsp" %>
 <br>
 <br>
@@ -25,17 +35,26 @@
     <a href="/ocscalade/inscription">Pas encore de compte ?</a>
 </form>
 
-<!-- SCRIPTS -->
-<script src="bundle.js"></script>
+<%-- FOOTER --%>
+<%@ include file="../header_footer/footer.jsp" %>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+<!-- SCRIPTS -->
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous">
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous">
 </script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        crossorigin="anonymous"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous">
 </script>
+
 </body>
 </html>

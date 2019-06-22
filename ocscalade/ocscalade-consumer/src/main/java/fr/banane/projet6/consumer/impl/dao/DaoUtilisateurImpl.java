@@ -23,8 +23,6 @@ public class DaoUtilisateurImpl extends AbstractDao implements DaoUtilisateur {
 
     @Inject
     UtilisateurRM utilisateurRM;
-    @Inject
-    DaoSpot daoSpotImpl;
 
     @Override
     public boolean create(Utilisateur obj) {
@@ -56,8 +54,20 @@ public class DaoUtilisateurImpl extends AbstractDao implements DaoUtilisateur {
     }
 
     @Override
-    public Utilisateur read(String code) {
-        return null;
+    public Utilisateur read(String pseudo) {
+
+        Utilisateur vUtilisateur = null;
+
+        String vSQL = "SELECT * FROM utilisateur WHERE pseudo='"+pseudo+"'";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Utilisateur> vListUtilisateur = null;
+        vListUtilisateur = vJdbcTemplate.query(vSQL, utilisateurRM);
+        if(vListUtilisateur.size() != 0) {
+            vUtilisateur = vListUtilisateur.get(0);
+        }
+
+        return vUtilisateur;
+
     }
 
     @Override
@@ -79,7 +89,8 @@ public class DaoUtilisateurImpl extends AbstractDao implements DaoUtilisateur {
 
     @Override
     public boolean update(Utilisateur obj) {
-        String vSQL = "UPDATE utilisateur SET id_sexe=:id_sexe, pseudo=:pseudo, email=:email, password=:password, id_departement=:departement, date_naissance=:date_naissance, id_privilege=:id_privilege WHERE id = :id";
+        String vSQL = "UPDATE utilisateur SET " +
+                "id_sexe=:id_sexe, pseudo=:pseudo, email=:email, password=:password, id_departement=:departement, date_naissance=:date_naissance, id_privilege=:id_privilege WHERE id = :id";
 
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("id", obj.getId(), Types.INTEGER);

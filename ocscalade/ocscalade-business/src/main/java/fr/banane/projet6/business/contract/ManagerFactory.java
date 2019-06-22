@@ -53,8 +53,8 @@ public interface ManagerFactory {
     void setTopoManager(TopoManager pVersionManager);
 
     //-- User
-    UtilisateurManager getUserManager();
-    void setUserManager(UtilisateurManager pVersionManager);
+    UtilisateurManager getUtilisateurManager();
+    void setUtilisateurManager(UtilisateurManager pVersionManager);
 
     //-- Voie
     VoieManager getVoieManager();

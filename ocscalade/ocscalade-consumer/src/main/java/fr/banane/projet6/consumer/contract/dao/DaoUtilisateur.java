@@ -25,7 +25,7 @@ public interface DaoUtilisateur {
      * @return T
      */
     Utilisateur read(int id);
-    Utilisateur read(String code);
+    Utilisateur read(String pseudo);
     List<Utilisateur> readAll();
     List<Utilisateur> readAll(int id);
 

@@ -22,6 +22,8 @@ public class ManagerFactoryImpl implements ManagerFactory {
     private DepartementManager departementManager;
     @Inject
     private DifficulteManager difficulteManager;
+    @Inject
+    private UtilisateurManager utilisateurManager;
 
     @Override
     public CommentaireManager getCommentaireManager() {
@@ -144,13 +146,13 @@ public class ManagerFactoryImpl implements ManagerFactory {
     }
 
     @Override
-    public UtilisateurManager getUserManager() {
-        return null;
+    public UtilisateurManager getUtilisateurManager() {
+        return utilisateurManager;
     }
 
     @Override
-    public void setUserManager(UtilisateurManager pVersionManager) {
-
+    public void setUtilisateurManager(UtilisateurManager pVersionManager) {
+        this.utilisateurManager = pVersionManager;
     }
 
     @Override

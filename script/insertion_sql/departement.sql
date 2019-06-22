@@ -99,4 +99,5 @@ INSERT INTO departement (num, nom) VALUES
 ('971', 'Guadeloupe'),
 ('973', 'Guyane'),
 ('972', 'Martinique'),
-('974', 'Réunion');
+('974', 'Réunion'),
+('vide', 'non renseigné');
