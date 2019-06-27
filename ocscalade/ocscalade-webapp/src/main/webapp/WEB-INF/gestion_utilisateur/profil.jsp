@@ -12,38 +12,30 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
     <style type="text/css">  <%@ include file="/WEB-INF/css/utilisateur.css" %> </style>
     <title>profil</title>
 </head>
 <body>
+
+<%-- HEADER --%>
 <%@ include file="../header_footer/header.jsp" %>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<%--<form class="box" action="profil" method="post">--%>
-<%--<h1>Profil</h1>--%>
-<%--<input type="text" name="pseudo" placeholder="Pseudo">--%>
-<%--<input type="text" name="email" placeholder="e-mail">--%>
-<%--<input type="password" name="password" placeholder="Mot de passe">--%>
-<%--<input type="submit" name="_ok_profil_" value="ok">--%>
 
-<%--</form>--%>
-
+<%-- BODY --%>
 <div class="container">
     <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10 profil">
-            <form action="profil" method="post">
+        <div class="col-xl-2 col-lg-2 col-md-2"></div>
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+            <form class="box-profil" action="profil" method="post">
+                <h1>Profil</h1>
                 <div class="row">
                     <div class="col-lg-4">
                         <label for="id_pseudo" class="">Pseudo : </label>
                     </div>
                     <div class="col-lg-8">
-                        <input id="id_pseudo" class="" type="text" value="test ${utilisateur.pseudo}"/>
+                        <input id="id_pseudo" class="" type="text" value="<c:if test="${ !empty sessionScope.utilisateur}">${ sessionScope.utilisateur.pseudo }</c:if>"/>
                     </div>
                 </div>
                 <div class="row">
@@ -51,7 +43,7 @@
                         <label for="id_email" class="">Email : </label>
                     </div>
                     <div class="col-lg-8 col-md-12">
-                        <input id="id_email" class="" type="text" name="email" value="email ${utilisateur.email}"/>
+                        <input id="id_email" class="" type="text" name="email" value="<c:if test="${ !empty sessionScope.utilisateur}">${ sessionScope.utilisateur.email }</c:if>"/>
                     </div>
                 </div>
                 <div class="row">
@@ -59,7 +51,7 @@
                         <label for="id_password" class="">Mot de passe : </label>
                     </div>
                     <div class="col-lg-8 col-md-12">
-                        <input id="id_password" class="" type="text" name="password" value="password ${utilisateur.email}"/>
+                        <input id="id_password" class="" type="text" name="password" value="<c:if test="${ !empty sessionScope.utilisateur}">${ sessionScope.utilisateur.password }</c:if>"/>
                     </div>
                 </div>
                 <div class="row">
@@ -67,7 +59,12 @@
                         <label for="id_sexe" class="">Sexe : </label>
                     </div>
                     <div class="col-lg-8 col-md-12">
-                        <input id="id_sexe" class="" type="text" name="sexe" value="sexe ${utilisateur.email}"/>
+                        <select class="custom-select" id="id_sexe">
+                            <option selected>Choose...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
@@ -75,14 +72,22 @@
                         <label for="id_departement" class="">Departement : </label>
                     </div>
                     <div class="col-lg-8 col-md-12">
-                        <input id="id_departement" class="" type="text" name="departement" value="departement ${utilisateur.email}"/>
+                        <select class="custom-select" id="id_departement">
+                            <option selected>Choose...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="col-1"></div>
+        <div class="col-xl-2 col-lg-2 col-md-2"></div>
     </div>
 </div>
+
+<%-- FOOTER --%>
+<%@ include file="../header_footer/footer.jsp" %>
 
 <!-- SCRIPTS -->
 

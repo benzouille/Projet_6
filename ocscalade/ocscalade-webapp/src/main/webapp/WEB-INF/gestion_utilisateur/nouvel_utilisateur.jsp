@@ -12,24 +12,37 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
     <style type="text/css">  <%@ include file="/WEB-INF/css/utilisateur.css" %> </style>
     <title>inscription</title>
 </head>
 <body>
 <%@ include file="../header_footer/header.jsp" %>
-<br>
-<br>
-<form class="box" action="inscription" method="post">
-    <h1>inscription</h1>
-    <c:if test="${ !empty erreur}">
-        <p class="red">${ erreur } !</p>
-    </c:if>
-    <input type="text" name="pseudo" placeholder="Pseudo">
-    <input type="text" name="email" placeholder="e-mail">
-    <input type="password" name="password" placeholder="Mot de passe">
-    <input type="submit" name="_ok_creation_" value="inscription">
-    <a class="lien" href="/ocscalade/connexion">Déjà un compte ?</a>
-</form>
+<%-- BODY --%>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-3"></div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+            <form class="box" action="inscription" method="post">
+                <h1>inscription</h1>
+                <c:if test="${ !empty erreur}">
+                    <p class="red">${ erreur } !</p>
+                </c:if>
+                <input type="text" name="pseudo" placeholder="Pseudo">
+                <input type="text" name="email" placeholder="e-mail">
+                <input type="password" name="password" placeholder="Mot de passe">
+                <input type="submit" name="_ok_creation_" value="inscription">
+                <a class="link" href="/ocscalade/connexion">Déjà un compte ?</a>
+            </form>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-3"></div>
+    </div>
+</div>
+
+<%-- FOOTER --%>
+<%@ include file="../header_footer/footer.jsp" %>
 
 <!-- SCRIPTS -->
 

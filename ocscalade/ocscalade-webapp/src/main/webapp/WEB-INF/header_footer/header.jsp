@@ -9,74 +9,56 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
+    <style type="text/css">  <%@ include file="/WEB-INF/css/header.css" %> </style>
 </head>
 
-<%--<nav class="navbar navbar-inverse navbar-fixed-top">--%>
-    <%--<div class="container-fluid">--%>
-        <%--<div class="navbar-header">--%>
-            <%--<button type="button" data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle">--%>
-                <%--<span class="icon-bar"></span>--%>
-                <%--<span class="icon-bar"></span>--%>
-                <%--<span class="icon-bar"></span>--%>
-            <%--</button>--%>
-            <%--<a href="/ocscalade" class="navbar-brand">OC'scalade</a>--%>
-        <%--</div>--%>
-        <%--<div class="collapse navbar-collapse">--%>
-            <%--<ul class="nav navbar-nav">--%>
-                <%--<li><a href="/ocscalade/topo">Topo</a></li>--%>
-                <%--<li><a href="/ocscalade/spot">Spot</a></li>--%>
-                <%--<li class="nav-item dropdown">--%>
-                    <%--<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Rechercher</a>--%>
-                    <%--<div class="dropdown-menu">--%>
-                        <%--<a class="dropdown-item" href="/ocscalade/rechercher_topo">topo</a>--%>
-                        <%--<div role="separator" class="dropdown-divider"></div>--%>
-                        <%--<a class="dropdown-item" href="/ocscalade/rechercher_spot">spot</a>--%>
-                    <%--</div>--%>
-                <%--</li>--%>
-                <%--<li><a href="/ocscalade/inscription">S'inscrire</a></li>--%>
-                <%--<li><a href="/ocscalade/connexion">Se connecter</a></li>--%>
-
-                <%--<li><a href="/ocscalade/profil">profil</a></li>--%>
-            <%--</ul>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</nav>--%>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-        <a class="navbar-brand" href="/ocscalade">OC'scalade</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/ocscalade/topo">Topo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/ocscalade/spot">Spot</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Rechercher
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/ocscalade/rechercher_topo">Topo</a>
-                        <a class="dropdown-item" href="/ocscalade/rechercher_spot">Spot</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/ocscalade/inscription">S'incrire</a>
-                </li>
+    <a class="navbar-brand" href="/ocscalade">OC'scalade</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/ocscalade/topo">Topo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/ocscalade/spot">Spot</a>
+            </li>
+            <c:if test="${ empty sessionScope.utilisateur}">
+            <li class="nav-item">
+                <a class="nav-link" href="/ocscalade/inscription">S'inscrire</a>
+            </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/ocscalade/connexion">Se connecter</a>
                 </li>
+            </c:if>
+            <c:if test="${ !empty sessionScope.utilisateur}">
                 <li class="nav-item">
-                    <%--TODO A modifier et mettre un icone de bonhomme à la place de profil le faire apparaitre que si l'on est connecté--%>
-                    <a class="nav-link" href="/ocscalade/profil">Profil</a>
+                    <a class="nav-link" href="/ocscalade/profil"><i class="fa fa-user" style="font-size:25px"></i>Profil</a>
                 </li>
-            </ul>
-        </div>
-    </nav>
+            </c:if>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-search"></i> Rechercher
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/ocscalade/rechercher_topo">Topo</a>
+                    <a class="dropdown-item" href="/ocscalade/rechercher_spot">Spot</a>
+                </div>
+            </li>
+        </ul>
+        <c:if test="${ !empty sessionScope.utilisateur}">
+            <form class="form-inline my-2 my-lg-0" action="index" method="post">
+                <button class="btn btn-outline-secondary btn-outline-danger " type="submit" name="_disconnect_"><i class="fa fa-power-off"></i> Deconnexion</button>
+            </form>
+        </c:if>
+    </div>
+</nav>
 
 <!-- SCRIPTS -->
 

@@ -20,12 +20,15 @@ public class IndexServlet extends HttpServlet {
             vUtilisateur = (Utilisateur)session.getAttribute("utilisateur");
         }
 
-        this.getServletContext().getRequestDispatcher("/../index.jsp").forward(req, resp);
+        this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        this.getServletContext().getRequestDispatcher("/../index.jsp").forward(req, resp);
+        HttpSession session = req.getSession();
+        if(req.getParameter("_disconnect_") != null) {
+            session.invalidate();
+        }
+        this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }

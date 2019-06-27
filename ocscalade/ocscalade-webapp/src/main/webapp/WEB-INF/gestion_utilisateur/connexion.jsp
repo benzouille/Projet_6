@@ -12,28 +12,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
     <style type="text/css"><%@ include file="/WEB-INF/css/utilisateur.css" %></style>
     <title>connexion</title>
-    <style>
-        <%--body{--%>
-            <%--margin: 0;--%>
-            <%--padding-top: 70px;--%>
-            <%--background-image: url("<%@ include file="../images/connexion2.jpg" %>");--%>
-        <%--}--%>
-    </style>
 </head>
-<body background="connexion2.jpg">
+<body>
 <%-- HEADER --%>
 <%@ include file="../header_footer/header.jsp" %>
-<br>
-<br>
-<form class="box" action="connexion" method="post">
-    <h1>Connexion</h1>
-    <input type="text" name="pseudo" placeholder="Pseudo">
-    <input type="password" name="password" placeholder="Mot de passe">
-    <input type="submit" name="_ok_" value="connexion">
-    <a href="/ocscalade/inscription">Pas encore de compte ?</a>
-</form>
+
+<%-- BODY --%>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-3"></div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+            <form class="box" action="connexion" method="post">
+                <h1>Connexion</h1>
+                <input type="text" name="pseudo" placeholder="Pseudo">
+                <input type="password" name="password" placeholder="Mot de passe">
+                <input type="submit" name="_ok_" value="connexion">
+                <a class="link" href="/ocscalade/inscription">Pas encore de compte ?</a>
+            </form>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-3"></div>
+    </div>
+</div>
 
 <%-- FOOTER --%>
 <%@ include file="../header_footer/footer.jsp" %>

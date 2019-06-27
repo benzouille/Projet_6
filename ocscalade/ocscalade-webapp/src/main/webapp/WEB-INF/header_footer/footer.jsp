@@ -24,33 +24,33 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 footer-info">
                     <h3>OC'scalade</h3>
-                    <p>OC'scalade est un site communautaire de partage d'information sur les spots et de topo crée par notre communauté partout en France</p>
+                    <p>OC'scalade est un site communautaire de partage d'information sur les spots et de topo créé par notre communauté partout en France</p>
                 </div>
                 <div class="col-lg-4 col-md-6 footer-link">
                     <h4>Liens utiles</h4>
                     <ul>
-                        <li><a href="https://www.ffme.fr/">Fédération francaise d'escalade</a></li>
-                        <li><a href="https://www.grimper.com/">Grimper, le magazine d'escalade</a></li>
-                        <li><a href=" https://matos-escalade.info/">Matos, comparateur de materiel</a></li>
+                        <li><a class="link" href="https://www.ffme.fr/">Fédération francaise d'escalade</a></li>
+                        <li><a class="link" href="https://www.grimper.com/">Grimper, le magazine d'escalade</a></li>
+                        <li><a class="link" href=" https://matos-escalade.info/">Matos, comparateur de materiel</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-12 footer-contact">
                    <h4>Contact</h4>
-                    <p>
-                       <strong>Email : </strong> Banane@oscalade.com
+                    <p class="email" >
+                       <strong>Email : </strong><a class="link" href="#">Banane@ocscalade.com</a>
                     </p>
                     <div class="social-link">
-                        <a href="#" class="twitter"><i class="fa fa-twitter" style="font-size:30px"></i></a>
-                        <a href="#" class="twitter"><i class="fa fa-facebook-square" style="font-size:30px"></i></a>
-                        <a href="#" class="twitter"><i class="fa fa-instagram" style="font-size:30px"></i></a>
-                        <a href="#" class="twitter"><i class="fa fa-youtube" style="font-size:30px"></i></a>
+                        <a href="#" class="link"><i class="fa fa-twitter" style="font-size:30px"></i></a>
+                        <a href="#" class="link"><i class="fa fa-facebook-square" style="font-size:30px"></i></a>
+                        <a href="#" class="link"><i class="fa fa-instagram" style="font-size:30px"></i></a>
+                        <a href="#" class="link"><i class="fa fa-youtube" style="font-size:30px"></i></a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="credits">
-                <p><a href="#"><strong>Banane Design</strong></a> 2019</p>
+                <p><a class="link" href="#"><strong>Banane Design</strong></a> 2019</p>
                 <p> Designé par la banane</p>
             </div>
         </div>

@@ -70,6 +70,51 @@
         <url-pattern>/profil</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>TopoServlet</servlet-name>
+        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.TopoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TopoServlet</servlet-name>
+        <url-pattern>/topo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SpotServlet</servlet-name>
+        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.SpotServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SpotServlet</servlet-name>
+        <url-pattern>/spot</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SecteurServlet</servlet-name>
+        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.SecteurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SecteurServlet</servlet-name>
+        <url-pattern>/secteur</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RechercherSpotServlet</servlet-name>
+        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.RechercherSpotServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RechercherSpotServlet</servlet-name>
+        <url-pattern>/rechercher_spot</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RechercherTopoServlet</servlet-name>
+        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.RechercherTopoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RechercherTopoServlet</servlet-name>
+        <url-pattern>/rechercher_topo</url-pattern>
+    </servlet-mapping>
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/bootstrapContext.xml</param-value>
