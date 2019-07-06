@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 
 <head>
@@ -14,6 +15,7 @@
 </head>
 
 <body>
+
 <%-- HEADER --%>
 <%@ include file="/WEB-INF/header_footer/header.jsp" %>
 
@@ -28,21 +30,21 @@
             <div class="carousel-item active">
                 <img src="https://zupimages.net/up/19/26/4gkm.jpg" class="d-block img-fluid" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>La faille du Sud <span class="badge badge-success">Officiel</span></h5>
+                    <h3>La faille du Sud <span class="badge badge-success">Officiel</span></h3>
                     <p>Spot officiel.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="https://zupimages.net/up/19/26/buy6.jpg" class="d-block img-fluid" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>La faille verte <span class="badge badge-success">Officiel</span></h5>
+                    <h3>La faille verte <span class="badge badge-success">Officiel</span></h3>
                     <p>Spot officiel.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="https://zupimages.net/up/19/26/p9te.jpg" class="d-block img-fluid" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Le pic  <span class="badge badge-success">Officiel</span></h5>
+                    <h3>Le pic  <span class="badge badge-success">Officiel</span></h3>
                     <p>Spot officiel.</p>
                 </div>
             </div>
@@ -58,105 +60,159 @@
     </div>
 </div>
 <hr>
-<div class="container">
-    <h2>Les derniers spots ajoutés</h2>
-    <div class="row">
-        <div class="card col-lg-3 col-md-4 col-sm-2" style="width: 18rem;">
-            <img href="#" src="https://s2.qwant.com/thumbr/0x0/7/4/af95051d3c21034b8e620c9b1f06d628f608297a66f5ae22985be782cce03f/escalade-effet.jpg?u=http%3A%2F%2Fenmontagne.eu%2Fwp-content%2Fuploads%2F2017%2F07%2Fescalade-effet.jpg&q=0&b=1&p=0&a=1" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Nom du spot</h5>
-                <p class="card-text">résumé du spot.</p>
-                <a href="#" class="btn btn-primary">plus d'information</a>
+<div class="container cardTab">
+    <h2 class="text-center"><strong>Les derniers spots ajoutés</strong></h2>
+
+    <hr class="my-4">
+
+    <div class="row marginBottom">
+        <div class="col-lg-3 col-md-4 col-sm-6" >
+            <div class="card">
+                <div class="div_image">
+                    <img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nom du spot</h5>
+                    <p class="card-text">résumé du spot.</p>
+                    <a href="#" class="btn btn-primary">plus d'information</a>
+                </div>
             </div>
         </div>
-        <div class="card col-lg-3 col-md-4" style="width: 18rem;">
-            <img href="#" src="https://s2.qwant.com/thumbr/0x0/7/4/af95051d3c21034b8e620c9b1f06d628f608297a66f5ae22985be782cce03f/escalade-effet.jpg?u=http%3A%2F%2Fenmontagne.eu%2Fwp-content%2Fuploads%2F2017%2F07%2Fescalade-effet.jpg&q=0&b=1&p=0&a=1" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Nom du spot</h5>
-                <p class="card-text">résumé du spot.</p>
-                <a href="#" class="btn btn-primary">plus d'information</a>
+        <div class="col-lg-3 col-md-4 col-sm-6" >
+            <div class="card">
+                <div class="div_image">
+                    <img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nom du spot</h5>
+                    <p class="card-text">résumé du spot.</p>
+                    <a href="#" class="btn btn-primary">plus d'information</a>
+                </div>
             </div>
         </div>
-        <div class="card col-lg-3 col-md-4" style="width: 18rem;">
-            <img href="#" src="https://s2.qwant.com/thumbr/0x0/7/4/af95051d3c21034b8e620c9b1f06d628f608297a66f5ae22985be782cce03f/escalade-effet.jpg?u=http%3A%2F%2Fenmontagne.eu%2Fwp-content%2Fuploads%2F2017%2F07%2Fescalade-effet.jpg&q=0&b=1&p=0&a=1" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Nom du spot</h5>
-                <p class="card-text">résumé du spot.</p>
-                <a href="#" class="btn btn-primary">plus d'information</a>
+        <div class="col-lg-3 col-md-4 col-sm-6" >
+            <div class="card">
+                <div class="div_image">
+                    <img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nom du spot</h5>
+                    <p class="card-text">résumé du spot.</p>
+                    <a href="#" class="btn btn-primary">plus d'information</a>
+                </div>
             </div>
         </div>
-        <div class="card col-lg-3 col-md-4" style="width: 18rem;">
-            <img href="#" src="https://s2.qwant.com/thumbr/0x0/7/4/af95051d3c21034b8e620c9b1f06d628f608297a66f5ae22985be782cce03f/escalade-effet.jpg?u=http%3A%2F%2Fenmontagne.eu%2Fwp-content%2Fuploads%2F2017%2F07%2Fescalade-effet.jpg&q=0&b=1&p=0&a=1" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Nom du spot</h5>
-                <p class="card-text">résumé du spot.</p>
-                <a href="#" class="btn btn-primary">plus d'information</a>
+        <div class="col-lg-3 col-md-4 col-sm-6" >
+            <div class="card">
+                <div class="div_image">
+                    <img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nom du spot</h5>
+                    <p class="card-text">résumé du spot.</p>
+                    <a href="#" class="btn btn-primary">plus d'information</a>
+                </div>
             </div>
         </div>
-        <div class="card col-lg-3 col-md-4" style="width: 18rem;">
-            <img href="#" src="https://s2.qwant.com/thumbr/0x0/7/4/af95051d3c21034b8e620c9b1f06d628f608297a66f5ae22985be782cce03f/escalade-effet.jpg?u=http%3A%2F%2Fenmontagne.eu%2Fwp-content%2Fuploads%2F2017%2F07%2Fescalade-effet.jpg&q=0&b=1&p=0&a=1" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Nom du spot</h5>
-                <p class="card-text">résumé du spot.</p>
-                <a href="#" class="btn btn-primary">plus d'information</a>
+
+        <div class="col-lg-3 col-md-4 col-sm-6" >
+            <div class="card">
+                <div class="div_image">
+                    <img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nom du spot</h5>
+                    <p class="card-text">résumé du spot.</p>
+                    <a href="#" class="btn btn-primary">plus d'information</a>
+                </div>
             </div>
         </div>
-        <div class="card col-lg-3 col-md-4" style="width: 18rem;">
-            <img href="#" src="https://s2.qwant.com/thumbr/0x0/7/4/af95051d3c21034b8e620c9b1f06d628f608297a66f5ae22985be782cce03f/escalade-effet.jpg?u=http%3A%2F%2Fenmontagne.eu%2Fwp-content%2Fuploads%2F2017%2F07%2Fescalade-effet.jpg&q=0&b=1&p=0&a=1" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Nom du spot</h5>
-                <p class="card-text">résumé du spot.</p>
-                <a href="#" class="btn btn-primary">plus d'information</a>
+        <div class="col-lg-3 col-md-4 col-sm-6" >
+            <div class="card">
+                <div class="div_image">
+                    <img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nom du spot</h5>
+                    <p class="card-text">résumé du spot.</p>
+                    <a href="#" class="btn btn-primary">plus d'information</a>
+                </div>
             </div>
         </div>
-        <div class="card col-lg-3 col-md-4" style="width: 18rem;">
-            <img href="#" src="https://s2.qwant.com/thumbr/0x0/7/4/af95051d3c21034b8e620c9b1f06d628f608297a66f5ae22985be782cce03f/escalade-effet.jpg?u=http%3A%2F%2Fenmontagne.eu%2Fwp-content%2Fuploads%2F2017%2F07%2Fescalade-effet.jpg&q=0&b=1&p=0&a=1" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Nom du spot</h5>
-                <p class="card-text">résumé du spot.</p>
-                <a href="#" class="btn btn-primary">plus d'information</a>
+        <div class="col-lg-3 col-md-4 col-sm-6" >
+            <div class="card">
+                <div class="div_image">
+                    <img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nom du spot</h5>
+                    <p class="card-text">résumé du spot.</p>
+                    <a href="#" class="btn btn-primary">plus d'information</a>
+                </div>
             </div>
         </div>
-        <div class="card col-lg-3 col-md-4" style="width: 18rem;">
-            <img href="#" src="https://s2.qwant.com/thumbr/0x0/7/4/af95051d3c21034b8e620c9b1f06d628f608297a66f5ae22985be782cce03f/escalade-effet.jpg?u=http%3A%2F%2Fenmontagne.eu%2Fwp-content%2Fuploads%2F2017%2F07%2Fescalade-effet.jpg&q=0&b=1&p=0&a=1" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Nom du spot</h5>
-                <p class="card-text">résumé du spot.</p>
-                <a href="#" class="btn btn-primary">plus d'information</a>
+        <div class="col-lg-3 col-md-4 col-sm-6" >
+            <div class="card">
+                <div class="div_image">
+                    <img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nom du spot</h5>
+                    <p class="card-text">résumé du spot.</p>
+                    <a href="#" class="btn btn-primary">plus d'information</a>
+                </div>
             </div>
         </div>
-        <div class="card col-lg-3 col-md-4" style="width: 18rem;">
-            <img href="#" src="https://s2.qwant.com/thumbr/0x0/7/4/af95051d3c21034b8e620c9b1f06d628f608297a66f5ae22985be782cce03f/escalade-effet.jpg?u=http%3A%2F%2Fenmontagne.eu%2Fwp-content%2Fuploads%2F2017%2F07%2Fescalade-effet.jpg&q=0&b=1&p=0&a=1" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Nom du spot</h5>
-                <p class="card-text">résumé du spot.</p>
-                <a href="#" class="btn btn-primary">plus d'information</a>
+
+        <div class="col-lg-3 col-md-4 col-sm-2 col-sm-6" >
+            <div class="card">
+                <div class="div_image">
+                    <img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nom du spot</h5>
+                    <p class="card-text">résumé du spot.</p>
+                    <a href="#" class="btn btn-primary">plus d'information</a>
+                </div>
             </div>
         </div>
-        <div class="card col-lg-3 col-md-4" style="width: 18rem;">
-            <img href="#" src="https://s2.qwant.com/thumbr/0x0/7/4/af95051d3c21034b8e620c9b1f06d628f608297a66f5ae22985be782cce03f/escalade-effet.jpg?u=http%3A%2F%2Fenmontagne.eu%2Fwp-content%2Fuploads%2F2017%2F07%2Fescalade-effet.jpg&q=0&b=1&p=0&a=1" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Nom du spot</h5>
-                <p class="card-text">résumé du spot.</p>
-                <a href="#" class="btn btn-primary">plus d'information</a>
+        <div class="col-lg-3 col-md-4 col-sm-6" >
+            <div class="card">
+                <div class="div_image">
+                    <img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nom du spot</h5>
+                    <p class="card-text">résumé du spot.</p>
+                    <a href="#" class="btn btn-primary">plus d'information</a>
+                </div>
             </div>
         </div>
-        <div class="card col-lg-3 col-md-4" style="width: 18rem;">
-            <img href="#" src="https://s2.qwant.com/thumbr/0x0/7/4/af95051d3c21034b8e620c9b1f06d628f608297a66f5ae22985be782cce03f/escalade-effet.jpg?u=http%3A%2F%2Fenmontagne.eu%2Fwp-content%2Fuploads%2F2017%2F07%2Fescalade-effet.jpg&q=0&b=1&p=0&a=1" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Nom du spot</h5>
-                <p class="card-text">résumé du spot.</p>
-                <a href="#" class="btn btn-primary">plus d'information</a>
+        <div class="col-lg-3 col-md-4 col-sm-6" >
+            <div class="card">
+                <div class="div_image">
+                    <img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nom du spot</h5>
+                    <p class="card-text">résumé du spot.</p>
+                    <a href="#" class="btn btn-primary">plus d'information</a>
+                </div>
             </div>
         </div>
-        <div class="card col-lg-3 col-md-4" style="width: 18rem;">
-            <img href="#" src="https://s2.qwant.com/thumbr/0x0/7/4/af95051d3c21034b8e620c9b1f06d628f608297a66f5ae22985be782cce03f/escalade-effet.jpg?u=http%3A%2F%2Fenmontagne.eu%2Fwp-content%2Fuploads%2F2017%2F07%2Fescalade-effet.jpg&q=0&b=1&p=0&a=1" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Nom du spot</h5>
-                <p class="card-text">résumé du spot.</p>
-                <a href="#" class="btn btn-primary">plus d'information</a>
+        <div class="col-lg-3 col-md-4 col-sm-6" >
+            <div class="card">
+                <div class="div_image">
+                    <img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nom du spot</h5>
+                    <p class="card-text">résumé du spot.</p>
+                    <a href="#" class="btn btn-primary">plus d'information</a>
+                </div>
             </div>
         </div>
+
     </div>
 </div>
 
@@ -164,16 +220,15 @@
 <%@ include file="/WEB-INF/header_footer/footer.jsp" %>
 
 <!-- SCRIPTS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous">
+</script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous">
 
-</script>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous">
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

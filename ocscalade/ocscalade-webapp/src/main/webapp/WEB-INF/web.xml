@@ -25,6 +25,7 @@
         <welcome-file>default.jsp</welcome-file>
     </welcome-file-list>
 
+    <!-- A VIRER-->
     <servlet>
         <servlet-name>TestServlet</servlet-name>
         <servlet-class>fr.banane.projet6.webapp.test.TestServlet</servlet-class>
@@ -34,6 +35,7 @@
         <url-pattern>/test</url-pattern>
     </servlet-mapping>
 
+    <!-- INDEX -->
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
         <servlet-class>fr.banane.projet6.webapp.servlets.IndexServlet</servlet-class>
@@ -43,6 +45,7 @@
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
 
+    <!-- USER -->
     <servlet>
         <servlet-name>ConnexionServlet</servlet-name>
         <servlet-class>fr.banane.projet6.webapp.servlets.gestion_utilisateur.ConnexionServlet</servlet-class>
@@ -70,40 +73,32 @@
         <url-pattern>/profil</url-pattern>
     </servlet-mapping>
 
+    <!-- TOPO -->
+    <servlet>
+        <servlet-name>ToposServlet</servlet-name>
+        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.ToposServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ToposServlet</servlet-name>
+        <url-pattern>/topos</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>TopoServlet</servlet-name>
         <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.TopoServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>TopoServlet</servlet-name>
-        <url-pattern>/topo</url-pattern>
+        <url-pattern>/topos/topo</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>SpotServlet</servlet-name>
-        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.SpotServlet</servlet-class>
+        <servlet-name>NouveauTopoServlet</servlet-name>
+        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.nouveau.NouveauTopoServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>SpotServlet</servlet-name>
-        <url-pattern>/spot</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>SecteurServlet</servlet-name>
-        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.SecteurServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SecteurServlet</servlet-name>
-        <url-pattern>/secteur</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>RechercherSpotServlet</servlet-name>
-        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.RechercherSpotServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RechercherSpotServlet</servlet-name>
-        <url-pattern>/rechercher_spot</url-pattern>
+        <servlet-name>NouveauTopoServlet</servlet-name>
+        <url-pattern>/topos/nouveau</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -112,7 +107,54 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>RechercherTopoServlet</servlet-name>
-        <url-pattern>/rechercher_topo</url-pattern>
+        <url-pattern>/topos/rechercher</url-pattern>
+    </servlet-mapping>
+
+    <!-- SPOT -->
+    <servlet>
+        <servlet-name>SpotsServlet</servlet-name>
+        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.SpotsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SpotsServlet</servlet-name>
+        <url-pattern>/spots</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SpotServlet</servlet-name>
+        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.SpotServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SpotServlet</servlet-name>
+        <url-pattern>/spots/spot</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NouveauSpotServlet</servlet-name>
+        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.nouveau.NouveauSpotServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NouveauSpotServlet</servlet-name>
+        <url-pattern>/spots/nouveau</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RechercherSpotServlet</servlet-name>
+        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.RechercherSpotServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RechercherSpotServlet</servlet-name>
+        <url-pattern>/spots/rechercher</url-pattern>
+    </servlet-mapping>
+
+    <!-- SECTEUR -->
+    <servlet>
+        <servlet-name>SecteurServlet</servlet-name>
+        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.SecteurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SecteurServlet</servlet-name>
+        <url-pattern>/secteur</url-pattern>
     </servlet-mapping>
 
     <context-param>

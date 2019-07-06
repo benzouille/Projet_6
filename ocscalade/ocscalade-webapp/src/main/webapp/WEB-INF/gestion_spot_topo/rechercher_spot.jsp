@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1>RECHERCHER SPOT</h1>
 </body>
 </html>
