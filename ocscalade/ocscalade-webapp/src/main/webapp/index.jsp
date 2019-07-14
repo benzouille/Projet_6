@@ -69,7 +69,7 @@
         <div class="col-lg-3 col-md-4 col-sm-6" >
             <div class="card">
                 <div class="div_image">
-                    <img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                    <img href="#" src="./images/website/connexion2.jpg" class="card-img-top" alt="...">
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Nom du spot</h5>
@@ -228,7 +228,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous">
-
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

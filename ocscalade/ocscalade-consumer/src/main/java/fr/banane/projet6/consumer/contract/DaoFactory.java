@@ -24,10 +24,6 @@ public interface DaoFactory {
     DaoImage getDaoImage();
     void setDaoImage(DaoImage pDaoImage);
 
-    //------ LONGUEUR ------
-    DaoLongueur getDaoLongueur();
-    void setDaoLongueur(DaoLongueur pDaoLongueur);
-
     //------ PRIVILEGE ------
     DaoPrivilege getDaoPrivilege();
     void setDaoPrivilege(DaoPrivilege pDaoPrivilege);

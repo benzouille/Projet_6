@@ -33,21 +33,78 @@
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 col-6">
             <form class="form-inline pull-left" action="topos" method="post">
-                <a href="/ocscalade/topos/recherche" class="btn btn-outline-secondary btn-lg" role="button"> <i class="fa fa-search"></i> Rechercher</a>
+                <a href="/ocscalade/topos/rechercher" class="btn btn-outline-secondary btn-lg" role="button"> <i class="fa fa-search"></i> Rechercher</a>
             </form>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-6">
             <c:if test="${ !empty sessionScope.utilisateur}">
                 <form class="form-inline pull-right" action="topos" method="post">
-                    <a href="/ocscalade/topos/nouveau" class="btn btn-outline-success btn-lg" role="button"><i class="fa fa-plus"></i> Nouveau</a>
+                    <a href="/ocscalade/topos/nouveau" class="btn btn-outline-success btn-lg" role="button" data-toggle="modal" data-target="#spotsModal"><i class="fa fa-plus"></i> Nouveau</a>
                 </form>
+                <!-- Modal -->
+                <div class="modal fade" id="spotsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Nouveau topo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="nom">Nom</label>
+                                                <input type="text" class="form-control" id="nom" placeholder="nom">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-9">
+                                                <label for="inputSpot">Spot</label>
+                                                <select id="inputSpot" class="form-control">
+                                                    <option selected>Choose...</option>
+                                                    <option>...</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="inputDep">Département</label>
+                                                <select id="inputDep" class="form-control">
+                                                    <option selected>Choose...</option>
+                                                    <option>...</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                <label class="form-check-label" for="gridCheck">
+                                                    Mettre à disposition des utilisateurs
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputDescription">Description</label>
+                                            <textarea class="form-control" id="inputDescription" rows="6" placeholder="400 caractères maxi."></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-primary">Enregistrer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </c:if>
         </div>
     </div>
 
     <hr class="my-4">
 
-    <div>
+    <div class="table-responsive">
         <table class="table table-hover">
             <thead class="thead-dark">
             <tr>
@@ -112,7 +169,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous">
-
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

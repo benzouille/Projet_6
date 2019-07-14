@@ -26,9 +26,6 @@ public class DaoFactoryImpl implements DaoFactory {
     DaoImage daoImageImpl;
 
     @Inject
-    DaoLongueur daoLongueurImpl;
-
-    @Inject
     DaoPrivilege daoPrivilegeImpl;
 
     @Inject
@@ -100,16 +97,6 @@ public class DaoFactoryImpl implements DaoFactory {
     @Override
     public void setDaoImage(DaoImage pDaoImage) {
         this.daoImageImpl = pDaoImage;
-    }
-
-    @Override
-    public DaoLongueur getDaoLongueur() {
-        return daoLongueurImpl;
-    }
-
-    @Override
-    public void setDaoLongueur(DaoLongueur pDaoLongueur) {
-        this.daoLongueurImpl = pDaoLongueur;
     }
 
     @Override

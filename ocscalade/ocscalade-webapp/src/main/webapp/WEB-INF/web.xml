@@ -84,21 +84,21 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>MesToposServlet</servlet-name>
+        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.MesToposServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MesToposServlet</servlet-name>
+        <url-pattern>/topos/mes_topos</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>TopoServlet</servlet-name>
         <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.TopoServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>TopoServlet</servlet-name>
         <url-pattern>/topos/topo</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>NouveauTopoServlet</servlet-name>
-        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.nouveau.NouveauTopoServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>NouveauTopoServlet</servlet-name>
-        <url-pattern>/topos/nouveau</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -130,15 +130,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>NouveauSpotServlet</servlet-name>
-        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.nouveau.NouveauSpotServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>NouveauSpotServlet</servlet-name>
-        <url-pattern>/spots/nouveau</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>RechercherSpotServlet</servlet-name>
         <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.RechercherSpotServlet</servlet-class>
     </servlet>
@@ -154,7 +145,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>SecteurServlet</servlet-name>
-        <url-pattern>/secteur</url-pattern>
+        <url-pattern>/spots/spot/secteur</url-pattern>
     </servlet-mapping>
 
     <context-param>

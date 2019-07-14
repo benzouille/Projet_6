@@ -1,6 +1,5 @@
 package fr.banane.projet6.consumer.impl.dao;
 
-import fr.banane.projet6.consumer.contract.dao.DaoLongueur;
 import fr.banane.projet6.consumer.contract.dao.DaoVoie;
 import fr.banane.projet6.consumer.impl.rowmapper.VoieRM;
 import fr.banane.projet6.model.bean.Voie;
@@ -24,9 +23,6 @@ public class DaoVoieImpl extends AbstractDao implements DaoVoie {
 
     @Inject
     VoieRM voieRM;
-
-    @Inject
-    DaoLongueur daoLongueurImpl;
 
     @Override
     public boolean create(Voie obj) {
@@ -83,6 +79,7 @@ public class DaoVoieImpl extends AbstractDao implements DaoVoie {
         vParams.addValue("nom", obj.getNom(), Types.VARCHAR);
         vParams.addValue("id_secteur", obj.getId_secteur(), Types.INTEGER);
         vParams.addValue("id_difficulte", obj.getDifficulte().getId(), Types.INTEGER);
+        vParams.addValue("nb_longueur", obj.getNb_longueur(), Types.INTEGER);
         vParams.addValue("description", obj.getDescription(), Types.VARCHAR);
 
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
@@ -93,9 +90,6 @@ public class DaoVoieImpl extends AbstractDao implements DaoVoie {
 
     @Override
     public boolean delete(Voie obj) {
-
-        //supression des longueurs liées à l'id de la voie
-        daoLongueurImpl.deleteAll(obj.getId());
 
         String vSQL = "DELETE FROM voie WHERE id = :id";
 

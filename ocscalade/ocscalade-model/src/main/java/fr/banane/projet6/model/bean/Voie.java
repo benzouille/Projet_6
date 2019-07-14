@@ -11,10 +11,13 @@ public class Voie {
     // ==================== Attributs ====================
     private int id;
     private int id_secteur;
-    private ArrayList<Longueur> longueurs;
     private Difficulte difficulte;
+    private boolean equipement;
+    private int nb_point;
+    private int nb_longueur;
     private String nom;
     private String description;
+    private ArrayList<String> images;
 
     // ==================== Constructeurs ====================
 
@@ -28,18 +31,24 @@ public class Voie {
      * Constructeur
      * @param id -
      * @param id_secteur -
-     * @param longueurs -
      * @param difficulte -
+     * @param equipement -
+     * @param nb_point -
+     * @param nb_longueur -
      * @param nom -
      * @param description -
+     * @param images
      */
-    public Voie(int id, int id_secteur, ArrayList<Longueur> longueurs, Difficulte difficulte, String nom, String description) {
+    public Voie(int id, int id_secteur, Difficulte difficulte, boolean equipement, int nb_point, int nb_longueur, String nom, String description, ArrayList<String>images) {
         this.id = id;
         this.id_secteur = id_secteur;
-        this.longueurs = longueurs;
         this.difficulte = difficulte;
+        this.equipement = equipement;
+        this.nb_point = nb_point;
+        this.nb_longueur = nb_longueur;
         this.nom = nom;
         this.description = description;
+        this.images = images;
     }
     // ==================== Getters/Setters ====================
 
@@ -59,20 +68,36 @@ public class Voie {
         this.id_secteur = id_secteur;
     }
 
-    public ArrayList<Longueur> getLongueurs() {
-        return longueurs;
-    }
-
-    public void setLongueurs(ArrayList<Longueur> longueurs) {
-        this.longueurs = longueurs;
-    }
-
     public Difficulte getDifficulte() {
         return difficulte;
     }
 
     public void setDifficulte(Difficulte difficulte) {
         this.difficulte = difficulte;
+    }
+
+    public boolean isEquipement() {
+        return equipement;
+    }
+
+    public void setEquipement(boolean equipement) {
+        this.equipement = equipement;
+    }
+
+    public int getNb_point() {
+        return nb_point;
+    }
+
+    public void setNb_point(int nb_point) {
+        this.nb_point = nb_point;
+    }
+
+    public int getNb_longueur() {
+        return nb_longueur;
+    }
+
+    public void setNb_longueur(int nb_longueur) {
+        this.nb_longueur = nb_longueur;
     }
 
     public String getNom() {
@@ -91,6 +116,14 @@ public class Voie {
         this.description = description;
     }
 
+    public ArrayList<String> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<String> images) {
+        this.images = images;
+    }
+
     // ==================== Methodes ====================
 
     @Override
@@ -99,8 +132,12 @@ public class Voie {
                 "id=" + id +
                 ", id_secteur=" + id_secteur +
                 ", difficulte=" + difficulte +
+                ", equipement=" + equipement +
+                ", nb_point=" + nb_point +
+                ", nb_longueur=" + nb_longueur +
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
+                ", images=" + images +
                 '}';
     }
 }

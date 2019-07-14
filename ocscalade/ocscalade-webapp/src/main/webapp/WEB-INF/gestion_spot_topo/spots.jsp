@@ -33,13 +33,72 @@
 
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-            <a href="/ocscalade/spots/recherche" class="btn btn-outline-secondary btn-lg" role="button"> <i class="fa fa-search"></i> Rechercher</a>
+            <a href="/ocscalade/spots/rechercher" class="btn btn-outline-secondary btn-lg" role="button"> <i class="fa fa-search"></i> Rechercher</a>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-6">
             <c:if test="${ !empty sessionScope.utilisateur}">
                 <form class="form-inline pull-right" action="topos" method="post">
-                    <a href="/ocscalade/spots/nouveau" class="btn btn-outline-success btn-lg" role="button"><i class="fa fa-plus"></i> Nouveau</a>
+                    <a href="/ocscalade/spots/nouveau" class="btn btn-outline-success btn-lg" role="button" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Nouveau</a>
                 </form>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Nouveau spot</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="nom">Nom</label>
+                                                <input type="text" class="form-control" id="nom" placeholder="nom">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-9">
+                                                <label for="localisation">Localisation</label>
+                                                <input type="text" class="form-control" id="localisation" placeholder="localisation">
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="inputDep">Département</label>
+                                                <select id="inputDep" class="form-control">
+                                                    <option selected>Choose...</option>
+                                                    <option>...</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputDescription">Description</label>
+                                            <textarea class="form-control" id="inputDescription" rows="6" placeholder="400 caractères maxi."></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Photos</label>
+                                            <p><small>3 photos maximum, de format *.jpg et de taille A TESTER px max.</small></p>
+                                            <div class="form-group">
+                                                <input type="file" class="form-control-file" id="photo1">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="file" class="form-control-file" id="photo2">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="file" class="form-control-file" id="photo3">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-primary">Enregistrer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </c:if>
         </div>
     </div>
@@ -56,7 +115,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Nom du spot</h5>
                     <p class="card-text">résumé du spot.</p>
-                    <a href="/ocscalade/spots/spot" class="btn btn-primary">plus d'information</a>
+                    <a href="/ocscalade/spots/spot" class="btn btn-primary stretched-link">plus d'information</a>
                 </div>
             </div>
         </div>

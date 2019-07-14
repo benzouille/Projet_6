@@ -24,10 +24,6 @@ public interface ManagerFactory {
     ImageManager getImageManager();
     void setImageManager(ImageManager pVersionManager);
 
-    //-- Longueur
-    LongueurManager getLongueurManager();
-    void setLongueurManager(LongueurManager pVersionManager);
-
     //-- Privilege
     PrivilegeManager getPrivilegeManager();
     void setPrivilegeManager(PrivilegeManager pVersionManager);

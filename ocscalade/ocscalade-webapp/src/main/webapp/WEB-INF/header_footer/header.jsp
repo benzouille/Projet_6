@@ -42,10 +42,7 @@
                 </c:if>
                 <c:if test="${ !empty sessionScope.utilisateur}">
                     <li class="nav-item">
-                        <a class="nav-link" href="/ocscalade"><i class="fa fa-book" style="font-size:25px"></i> Mes topos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/ocscalade"><i class="fa fa-calendar" style="font-size:25px; color: #78e08f"></i> Réservation</a>
+                        <a class="nav-link" href="/ocscalade/topos/mes_topos"><i class="fa fa-book" style="font-size:25px"></i> Mes topos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/ocscalade/profil"><i class="fa fa-user" style="font-size:25px"></i> Profil</a>

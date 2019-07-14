@@ -76,16 +76,6 @@ public class ManagerFactoryImpl implements ManagerFactory {
     }
 
     @Override
-    public LongueurManager getLongueurManager() {
-        return null;
-    }
-
-    @Override
-    public void setLongueurManager(LongueurManager pVersionManager) {
-
-    }
-
-    @Override
     public PrivilegeManager getPrivilegeManager() {
         return null;
     }

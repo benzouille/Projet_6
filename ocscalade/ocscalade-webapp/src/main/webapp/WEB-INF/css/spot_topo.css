@@ -3,6 +3,16 @@
     box-shadow: 0 5px 15px -5px #00000070;
     color: white;
 }
+.rotate{
+    transform:rotate(345deg);
+}
+.carousel {
+
+}
+.carousel-item {
+    max-height: 600px;
+    width:100%;
+}
 .card{
     margin-left: -8px;
     margin-bottom: 10px;
@@ -20,12 +30,14 @@
     border: 2px solid #00000070;
     box-shadow: 0 5px 15px -5px #00000070;
 }
-.row{
-    margin-left: 0px;
-    margin-right: 0px;
+.turquoise{
+    color: #60a3bc;
 }
 .card img {
     width: 80%;
+}
+.padding-0{
+    padding: 0px;
 }
 .marginBottom{
     margin-bottom: 5px;
