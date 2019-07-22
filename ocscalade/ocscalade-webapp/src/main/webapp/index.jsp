@@ -74,7 +74,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Nom du spot</h5>
                     <p class="card-text">résumé du spot.</p>
-                    <a href="#" class="btn btn-primary">plus d'information</a>
+                    <a href="/ocscalade/spots/spot" class="btn btn-primary">plus d'information</a>
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Nom du spot</h5>
                     <p class="card-text">résumé du spot.</p>
-                    <a href="#" class="btn btn-primary">plus d'information</a>
+                    <a href="/ocscalade/spots/spot" class="btn btn-primary">plus d'information</a>
                 </div>
             </div>
         </div>
@@ -98,7 +98,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Nom du spot</h5>
                     <p class="card-text">résumé du spot.</p>
-                    <a href="#" class="btn btn-primary">plus d'information</a>
+                    <a href="/ocscalade/spots/spot" class="btn btn-primary">plus d'information</a>
                 </div>
             </div>
         </div>
@@ -110,7 +110,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Nom du spot</h5>
                     <p class="card-text">résumé du spot.</p>
-                    <a href="#" class="btn btn-primary">plus d'information</a>
+                    <a href="/ocscalade/spots/spot" class="btn btn-primary">plus d'information</a>
                 </div>
             </div>
         </div>
@@ -123,7 +123,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Nom du spot</h5>
                     <p class="card-text">résumé du spot.</p>
-                    <a href="#" class="btn btn-primary">plus d'information</a>
+                    <a href="/ocscalade/spots/spot" class="btn btn-primary">plus d'information</a>
                 </div>
             </div>
         </div>
@@ -135,7 +135,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Nom du spot</h5>
                     <p class="card-text">résumé du spot.</p>
-                    <a href="#" class="btn btn-primary">plus d'information</a>
+                    <a href="/ocscalade/spots/spot" class="btn btn-primary">plus d'information</a>
                 </div>
             </div>
         </div>

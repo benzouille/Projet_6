@@ -39,11 +39,11 @@
                 <div class="form-group col-md-6">
                     <label>Par départements</label>
                     <div class="input-group mb-3">
-                        <select class="custom-select" id="inputGroupSelect01">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="custom-select" id="departement">
+                            <option selected>Séléctionnez</option>
+                            <c:forEach items="${vListDepartements}" var="departement">
+                                <option><c:out value="${departement.num}"/></option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>

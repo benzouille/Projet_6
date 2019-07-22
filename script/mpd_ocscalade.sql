@@ -22,17 +22,6 @@ CREATE TABLE public.difficulte (
 
 ALTER SEQUENCE public.difficulte_id_seq OWNED BY public.difficulte.id;
 
-CREATE SEQUENCE public.duree_id_seq;
-
-CREATE TABLE public.duree (
-                id INTEGER NOT NULL DEFAULT nextval('public.duree_id_seq'),
-                duree VARCHAR(25) NOT NULL,
-                CONSTRAINT duree_pk PRIMARY KEY (id)
-);
-
-
-ALTER SEQUENCE public.duree_id_seq OWNED BY public.duree.id;
-
 CREATE SEQUENCE public.sexe_id_seq;
 
 CREATE TABLE public.sexe (
@@ -108,8 +97,8 @@ CREATE TABLE public.reservation (
                 id INTEGER NOT NULL DEFAULT nextval('public.reservation_id_seq'),
                 id_topo INTEGER NOT NULL,
                 id_utilisateur_locataire INTEGER NOT NULL,
-                date DATE NOT NULL,
-                id_duree INTEGER NOT NULL,
+                date_debut DATE NOT NULL,
+                date_fin DATE NOT NULL,
                 CONSTRAINT reservation_pk PRIMARY KEY (id, id_topo, id_utilisateur_locataire)
 );
 
@@ -122,6 +111,7 @@ CREATE TABLE public.image (
                 id INTEGER NOT NULL DEFAULT nextval('public.image_id_seq'),
                 id_spot INTEGER NOT NULL,
                 titre VARCHAR NOT NULL,
+                path VARCHAR NOT NULL,
                 CONSTRAINT image_pk PRIMARY KEY (id)
 );
 
@@ -148,25 +138,15 @@ CREATE TABLE public.voie (
                 nom VARCHAR(25) NOT NULL,
                 id_secteur INTEGER NOT NULL,
                 id_difficulte INTEGER NOT NULL,
+                nb_longueur INTEGER NOT NULL,
+                equipement BOOLEAN NOT NULL,
+                nb_point INTEGER,
                 description VARCHAR(1000) NOT NULL,
                 CONSTRAINT voie_pk PRIMARY KEY (id)
 );
 
 
 ALTER SEQUENCE public.voie_id_seq OWNED BY public.voie.id;
-
-CREATE SEQUENCE public.longueur_id_seq;
-
-CREATE TABLE public.longueur (
-                id INTEGER NOT NULL DEFAULT nextval('public.longueur_id_seq'),
-                id_voie INTEGER NOT NULL,
-                equipement BOOLEAN NOT NULL,
-                nb_point INTEGER,
-                CONSTRAINT longueur_pk PRIMARY KEY (id)
-);
-
-
-ALTER SEQUENCE public.longueur_id_seq OWNED BY public.longueur.id;
 
 CREATE SEQUENCE public.commentaire_id_seq;
 
@@ -198,13 +178,6 @@ NOT DEFERRABLE;
 ALTER TABLE public.voie ADD CONSTRAINT difficulte_voie_fk
 FOREIGN KEY (id_difficulte)
 REFERENCES public.difficulte (id)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE public.reservation ADD CONSTRAINT duree_reservation_fk
-FOREIGN KEY (id_duree)
-REFERENCES public.duree (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
@@ -289,13 +262,6 @@ NOT DEFERRABLE;
 ALTER TABLE public.voie ADD CONSTRAINT secteur_voie_fk
 FOREIGN KEY (id_secteur)
 REFERENCES public.secteur (id)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE public.longueur ADD CONSTRAINT voie_longueur_fk
-FOREIGN KEY (id_voie)
-REFERENCES public.voie (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;

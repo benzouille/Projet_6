@@ -25,9 +25,11 @@ public interface DaoSpot {
      * @return T
      */
     Spot read(int id);
-    Spot read(String code);
+    Spot readByName(String name);
     List<Spot> readAll();
-    List<Spot> readAll(int id);
+    List<Spot> readAllByIdCreateur(int id);
+    List<Spot> getListSpotByDepartement(int id_dep);
+    List<Spot> getListSpotByOfficiel();
 
     /**
      * Méthode de mise à jour

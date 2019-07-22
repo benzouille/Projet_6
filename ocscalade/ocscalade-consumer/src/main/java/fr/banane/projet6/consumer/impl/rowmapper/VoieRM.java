@@ -32,6 +32,9 @@ public class VoieRM implements RowMapper<Voie> {
         vVoie.setId(rs.getInt("id"));
         vVoie.setId_secteur(rs.getInt("id_secteur"));
         vVoie.setDifficulte(difficulte);
+        vVoie.setEquipement(rs.getBoolean("equipement"));
+        vVoie.setNb_point(rs.getInt("nb_point"));
+        vVoie.setNb_longueur(rs.getInt("nb_longueur"));
         vVoie.setDescription(rs.getString("description"));
 
         return vVoie;

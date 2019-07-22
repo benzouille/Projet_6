@@ -25,6 +25,7 @@ public class Spot {
      * Constructeur par défaut
      */
     public Spot(){
+
     }
 
     /**

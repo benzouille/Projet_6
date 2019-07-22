@@ -61,9 +61,9 @@
                     <div class="col-lg-8 col-md-12">
                         <select class="custom-select" id="id_sexe">
                             <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <c:forEach items="${vListSexes}" var="sexe">
+                            <option><c:out value="${sexe.sexe}"/></option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -73,10 +73,10 @@
                     </div>
                     <div class="col-lg-8 col-md-12">
                         <select class="custom-select" id="id_departement">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option selected>Séléctionnez</option>
+                            <c:forEach items="${vListDepartements}" var="departement">
+                                <option><c:out value="${departement.num}"/></option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>

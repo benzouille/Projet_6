@@ -24,6 +24,8 @@ public class ManagerFactoryImpl implements ManagerFactory {
     private DifficulteManager difficulteManager;
     @Inject
     private UtilisateurManager utilisateurManager;
+    @Inject
+    private SexeManager sexeManager;
 
     @Override
     public CommentaireManager getCommentaireManager() {
@@ -107,12 +109,12 @@ public class ManagerFactoryImpl implements ManagerFactory {
 
     @Override
     public SexeManager getSexeManager() {
-        return null;
+        return sexeManager;
     }
 
     @Override
     public void setSexeManager(SexeManager pVersionManager) {
-
+        this.sexeManager = pVersionManager;
     }
 
     @Override

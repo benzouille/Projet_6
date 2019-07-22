@@ -62,17 +62,19 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-9">
-                                                <label for="inputSpot">Spot</label>
-                                                <select id="inputSpot" class="form-control">
+                                                <label for="spot">Spot</label>
+                                                <select id="spot" class="form-control">
                                                     <option selected>Choose...</option>
                                                     <option>...</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-3">
-                                                <label for="inputDep">Département</label>
-                                                <select id="inputDep" class="form-control">
-                                                    <option selected>Choose...</option>
-                                                    <option>...</option>
+                                                <label for="departement">Département</label>
+                                                <select id="departement" class="form-control">
+                                                    <option selected>Séléctionnez</option>
+                                                    <c:forEach items="${vListDepartements}" var="departement">
+                                                        <option><c:out value="${departement.num}"/></option>
+                                                    </c:forEach>
                                                 </select>
                                             </div>
                                         </div>

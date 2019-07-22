@@ -6,7 +6,7 @@ import fr.banane.projet6.model.exception.NotFoundException;
 import java.util.List;
 
 /**
- * Interface proposant des méthodes de récupération d'une departement ou de la liste complète des departement.
+ * Interface proposant des méthodes de récupération d'un departement ou de la liste complète des departements.
  *
  * @author Banane
  *
@@ -14,11 +14,11 @@ import java.util.List;
 public interface DepartementManager {
 
     /**
-     * Retourne la liste des Departement.
+     * Retourne la liste des Departements.
      *
-     * @return Une liste de Departement.
+     * @return Une liste de Departements.
      */
-    public List<Departement> getListDepartement();
+    List<Departement> getListDepartement();
 
     /**
      * Retourne un objet Departement en particulier selon son 'id'.
@@ -27,7 +27,7 @@ public interface DepartementManager {
      * @return L'objet Departement correspondant à l'identifiant.
      * @throws NotFoundException
      */
-    public Departement getDepartement(Integer pId) throws NotFoundException;
+    Departement getDepartement(Integer pId) throws NotFoundException;
 
     /**
      * Retourne un objet Departement en particulier selon son 'num'.
@@ -36,5 +36,5 @@ public interface DepartementManager {
      * @return L'objet Departement correspondant à son numéro.
      * @throws NotFoundException
      */
-    public Departement getDepartementByNum(String num);
+    Departement getDepartementByNum(String num);
 }

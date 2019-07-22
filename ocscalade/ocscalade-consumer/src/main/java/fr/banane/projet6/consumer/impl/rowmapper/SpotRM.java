@@ -36,8 +36,10 @@ public class SpotRM implements RowMapper<Spot> {
 
         //Liste de secteur
         ArrayList<Secteur> secteurs = (ArrayList<Secteur>) daoSecteurImpl.readAll(rs.getInt("id"));
+
         //Liste d'image
         ArrayList<Image> images = (ArrayList<Image>) daoImageImpl.readAll(rs.getInt("id"));
+
         //Le créateur
         Utilisateur createur =daoUtilisateurImpl.read(rs.getInt("id_createur"));
 
