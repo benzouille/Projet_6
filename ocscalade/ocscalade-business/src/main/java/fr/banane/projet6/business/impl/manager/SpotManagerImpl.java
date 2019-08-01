@@ -56,7 +56,7 @@ public class SpotManagerImpl extends AbstractManager implements SpotManager {
     }
 
     @Override
-    public Spot getSpot(Integer pId) throws NotFoundException {
+    public Spot getSpot(Integer pId) {
         return getDaoFactory().getDaoSpot().read(pId);
     }
 
@@ -83,7 +83,7 @@ public class SpotManagerImpl extends AbstractManager implements SpotManager {
     }
 
     @Override
-    public void deleteUtilisateur(Spot vSpot) {
+    public void deleteSpot(Spot vSpot) {
 
     }
 }

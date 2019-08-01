@@ -20,8 +20,10 @@ public class DepartementManagerImpl extends AbstractManager implements Departeme
     }
 
     @Override
-    public Departement getDepartement(Integer pId) throws NotFoundException {
-        return getDaoFactory().getDaoDepartement().read(pId);
+    public Departement getDepartement(Integer pId) {
+        Departement dep = null;
+          dep = getDaoFactory().getDaoDepartement().read(pId);
+        return dep;
     }
 
     @Override

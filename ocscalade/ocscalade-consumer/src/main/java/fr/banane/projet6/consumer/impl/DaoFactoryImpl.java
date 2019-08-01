@@ -20,9 +20,6 @@ public class DaoFactoryImpl implements DaoFactory {
     DaoDifficulte daoDifficulteImpl;
 
     @Inject
-    DaoDuree daoDureeImpl;
-
-    @Inject
     DaoImage daoImageImpl;
 
     @Inject
@@ -77,16 +74,6 @@ public class DaoFactoryImpl implements DaoFactory {
     @Override
     public void setDaoDifficulte(DaoDifficulte pDaoDifficulte) {
         this.daoDifficulteImpl = pDaoDifficulte;
-    }
-
-    @Override
-    public DaoDuree getDaoDuree() {
-        return daoDureeImpl;
-    }
-
-    @Override
-    public void setDaoDuree(DaoDuree pDaoDuree) {
-        this.daoDureeImpl = pDaoDuree;
     }
 
     @Override

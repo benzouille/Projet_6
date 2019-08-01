@@ -66,8 +66,8 @@ public class DaoSecteurImpl extends AbstractDao implements DaoSecteur {
     }
 
     @Override
-    public List<Secteur> readAll(int id) {
-        String vSQL = "SELECT * FROM secteur WHERE id_spot="+id;
+    public List<Secteur> readAllByIdSpot(int id_spot) {
+        String vSQL = "SELECT * FROM secteur WHERE id_spot="+id_spot;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Secteur> vListSecteur = vJdbcTemplate.query(vSQL, secteurRM);
         return vListSecteur;

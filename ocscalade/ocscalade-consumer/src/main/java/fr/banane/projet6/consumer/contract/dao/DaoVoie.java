@@ -27,7 +27,7 @@ public interface DaoVoie {
     Voie read(int id);
     Voie read(String code);
     List<Voie> readAll();
-    List<Voie> readAll(int id);
+    List<Voie> readAllByIdSecteur(int id_secteur);
 
     /**
      * Méthode de mise à jour

@@ -63,8 +63,8 @@ public class DaoVoieImpl extends AbstractDao implements DaoVoie {
     }
 
     @Override
-    public List<Voie> readAll(int id) {
-        String vSQL = "SELECT * FROM voie WHERE id_secteur="+id;
+    public List<Voie> readAllByIdSecteur(int id_secteur) {
+        String vSQL = "SELECT * FROM voie WHERE id_secteur="+id_secteur;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Voie> vListVoie = vJdbcTemplate.query(vSQL, voieRM);
         return vListVoie;

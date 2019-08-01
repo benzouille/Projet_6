@@ -16,10 +16,6 @@ public interface DaoFactory {
     DaoDifficulte getDaoDifficulte();
     void setDaoDifficulte(DaoDifficulte pDaoDifficulte);
 
-    //------ DUREE ------
-    DaoDuree getDaoDuree();
-    void setDaoDuree(DaoDuree pDaoDuree);
-
     //------ IMAGE ------
     DaoImage getDaoImage();
     void setDaoImage(DaoImage pDaoImage);

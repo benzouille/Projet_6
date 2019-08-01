@@ -16,10 +16,6 @@ public interface ManagerFactory {
     DifficulteManager getDifficulteManager();
     void setDifficulteManager(DifficulteManager pVersionManager);
 
-    //-- Duree
-    DureeManager getDureeManager();
-    void setDureeManager(DureeManager pVersionManager);
-
     //-- Image
     ImageManager getImageManager();
     void setImageManager(ImageManager pVersionManager);
@@ -55,5 +51,4 @@ public interface ManagerFactory {
     //-- Voie
     VoieManager getVoieManager();
     void setVoieManager(VoieManager pVersionManager);
-    
 }

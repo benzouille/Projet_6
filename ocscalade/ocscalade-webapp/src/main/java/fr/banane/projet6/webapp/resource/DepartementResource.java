@@ -11,7 +11,7 @@ public class DepartementResource extends AbstractResource {
         return getManagerFactory().getDepartementManager().getListDepartement();
     }
 
-    public Departement getDepartement(Integer pId) throws NotFoundException {
+    public Departement getDepartement(Integer pId) {
         return getManagerFactory().getDepartementManager().getDepartement(pId);
     }
 

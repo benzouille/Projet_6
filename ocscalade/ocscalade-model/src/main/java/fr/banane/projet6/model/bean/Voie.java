@@ -1,7 +1,5 @@
 package fr.banane.projet6.model.bean;
 
-import java.util.ArrayList;
-
 /**
  * Objet metier représentant un Topo
  *
@@ -17,7 +15,6 @@ public class Voie {
     private int nb_longueur;
     private String nom;
     private String description;
-    private ArrayList<String> images;
 
     // ==================== Constructeurs ====================
 
@@ -25,6 +22,8 @@ public class Voie {
      * Constructeur par défaut
      */
     public Voie(){
+        nb_point = 0;
+        nb_longueur = 1;
     }
 
     /**
@@ -37,9 +36,8 @@ public class Voie {
      * @param nb_longueur -
      * @param nom -
      * @param description -
-     * @param images
      */
-    public Voie(int id, int id_secteur, Difficulte difficulte, boolean equipement, int nb_point, int nb_longueur, String nom, String description, ArrayList<String>images) {
+    public Voie(int id, int id_secteur, Difficulte difficulte, boolean equipement, int nb_point, int nb_longueur, String nom, String description) {
         this.id = id;
         this.id_secteur = id_secteur;
         this.difficulte = difficulte;
@@ -48,7 +46,6 @@ public class Voie {
         this.nb_longueur = nb_longueur;
         this.nom = nom;
         this.description = description;
-        this.images = images;
     }
     // ==================== Getters/Setters ====================
 
@@ -116,14 +113,6 @@ public class Voie {
         this.description = description;
     }
 
-    public ArrayList<String> getImages() {
-        return images;
-    }
-
-    public void setImages(ArrayList<String> images) {
-        this.images = images;
-    }
-
     // ==================== Methodes ====================
 
     @Override
@@ -137,7 +126,6 @@ public class Voie {
                 ", nb_longueur=" + nb_longueur +
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
-                ", images=" + images +
                 '}';
     }
 }

@@ -27,7 +27,7 @@ public interface DepartementManager {
      * @return L'objet Departement correspondant à l'identifiant.
      * @throws NotFoundException
      */
-    Departement getDepartement(Integer pId) throws NotFoundException;
+    Departement getDepartement(Integer pId);
 
     /**
      * Retourne un objet Departement en particulier selon son 'num'.

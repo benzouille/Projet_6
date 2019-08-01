@@ -26,6 +26,12 @@ public class ManagerFactoryImpl implements ManagerFactory {
     private UtilisateurManager utilisateurManager;
     @Inject
     private SexeManager sexeManager;
+    @Inject
+    private SpotManager spotManager;
+    @Inject
+    private SecteurManager secteurManager;
+    @Inject
+    private VoieManager voieManager;
 
     @Override
     public CommentaireManager getCommentaireManager() {
@@ -55,16 +61,6 @@ public class ManagerFactoryImpl implements ManagerFactory {
     @Override
     public void setDifficulteManager(DifficulteManager pVersionManager) {
         this.difficulteManager = pVersionManager;
-    }
-
-    @Override
-    public DureeManager getDureeManager() {
-        return null;
-    }
-
-    @Override
-    public void setDureeManager(DureeManager pVersionManager) {
-
     }
 
     @Override
@@ -99,12 +95,12 @@ public class ManagerFactoryImpl implements ManagerFactory {
 
     @Override
     public SecteurManager getSecteurManager() {
-        return null;
+        return secteurManager;
     }
 
     @Override
     public void setSecteurManager(SecteurManager pVersionManager) {
-
+        this.secteurManager = pVersionManager;
     }
 
     @Override
@@ -119,12 +115,12 @@ public class ManagerFactoryImpl implements ManagerFactory {
 
     @Override
     public SpotManager getSpotManager() {
-        return null;
+        return spotManager;
     }
 
     @Override
     public void setSpotManager(SpotManager pVersionManager) {
-
+        this.spotManager = pVersionManager;
     }
 
     @Override
@@ -149,11 +145,11 @@ public class ManagerFactoryImpl implements ManagerFactory {
 
     @Override
     public VoieManager getVoieManager() {
-        return null;
+        return voieManager;
     }
 
     @Override
     public void setVoieManager(VoieManager pVersionManager) {
-
+        this.voieManager = pVersionManager;
     }
 }

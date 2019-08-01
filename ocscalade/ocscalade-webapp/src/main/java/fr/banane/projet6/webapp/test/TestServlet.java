@@ -30,12 +30,8 @@ public class TestServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if(req.getParameter("_ok_") != null) {
             System.out.println("passé par _ok_");
-            try {
                 req.setAttribute("departements", vDepartementResource.getListDepartement());
                 req.setAttribute("departement", vDepartementResource.getDepartement(Integer.parseInt(req.getParameter("id_departement"))));
-            } catch (NotFoundException e) {
-                e.printStackTrace();
-            }
         }
 
         if(req.getParameter("_ok_connexion_") != null) {

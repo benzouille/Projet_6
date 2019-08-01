@@ -25,7 +25,7 @@ public class SecteurRM implements RowMapper<Secteur> {
     @Override
     public Secteur mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-        ArrayList<Voie> voies = (ArrayList<Voie>) daoVoieImpl.readAll(rs.getInt("id"));
+        ArrayList<Voie> voies = (ArrayList<Voie>) daoVoieImpl.readAllByIdSecteur(rs.getInt("id"));
 
         Secteur vSecteur = new Secteur();
         vSecteur.setId(rs.getInt("id"));

@@ -33,13 +33,13 @@ public class DaoSpotImpl extends AbstractDao implements DaoSpot {
     @Override
     public boolean create(Spot obj) {
 
-        String vSQL = "INSERT INTO spot (nom, id_createur, officiel, id_departement, adresse, description) VALUES (:nom, :id_createur, :officiel, :departement, :adresse, :descrption)";
+        String vSQL = "INSERT INTO spot (nom, id_createur, officiel, id_departement, adresse, description) VALUES (:nom, :id_createur, :officiel, :departement, :adresse, :description)";
 
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("nom", obj.getNom(), Types.VARCHAR);
         vParams.addValue("id_createur", obj.getCreateur().getId(), Types.INTEGER);
         vParams.addValue("officiel", obj.isOfficiel(), Types.BOOLEAN);
-        vParams.addValue("departement", obj.getDepartement(), Types.INTEGER);
+        vParams.addValue("departement", obj.getDepartement().getId(), Types.INTEGER);
         vParams.addValue("adresse", obj.getAdresse(), Types.VARCHAR);
         vParams.addValue("description", obj.getDescription(), Types.VARCHAR);
 
@@ -60,7 +60,7 @@ public class DaoSpotImpl extends AbstractDao implements DaoSpot {
 
     @Override
     public Spot readByName(String name) {
-        String vSQL = "SELECT * FROM spot WHERE nom="+name;
+        String vSQL = "SELECT * FROM spot WHERE nom="+"'"+name+"'";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Spot> vListSpot = vJdbcTemplate.query(vSQL, spotRM);
         Spot vSpot = vListSpot.get(0);

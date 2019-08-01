@@ -15,7 +15,7 @@ public class Spot {
     private ArrayList<Image> images;
     private boolean officiel;
     private String nom;
-    private int departement;
+    private Departement departement;
     private String adresse;
     private String description;
 
@@ -40,7 +40,7 @@ public class Spot {
      * @param adresse -
      * @param description -
      */
-    public Spot(int id, Utilisateur createur, ArrayList<Secteur> secteurs, ArrayList<Image> images, boolean officiel,String nom, int departement, String adresse, String description) {
+    public Spot(int id, Utilisateur createur, ArrayList<Secteur> secteurs, ArrayList<Image> images, boolean officiel,String nom, Departement departement, String adresse, String description) {
         this.id = id;
         this.createur = createur;
         this.secteurs = secteurs;
@@ -101,11 +101,11 @@ public class Spot {
         this.nom = nom;
     }
 
-    public int getDepartement() {
+    public Departement getDepartement() {
         return departement;
     }
 
-    public void setDepartement(int departement) {
+    public void setDepartement(Departement departement) {
         this.departement = departement;
     }
 

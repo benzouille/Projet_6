@@ -28,11 +28,11 @@
     <div class="jumbotron" style="margin-top: 10px;">
         <div>
             <%--TODO ajouter condition d'apparition du tag officiel--%>
-            <h1 class="display-4"><strong>Titre du secteur </strong></h1>
+            <h1 class="display-4"><strong>${vSecteur.nom} </strong></h1>
         </div>
     </div>
     <blockquote class="blockquote text-right">
-        <p class="mb-0">Crée par : NOM</p>
+        <p class="mb-0">Crée par : ${vCreateur}</p>
     </blockquote>
     <div>
         <hr class="my-4">
@@ -42,37 +42,7 @@
             <h3 class="text-center"><strong>Informations</strong></h3>
             <hr class="my-4">
             <p>
-                Description : Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla, eros eget aliquet sodales,
-                nunc justo porta augue, cursus cursus libero massa sit amet tellus. Etiam accumsan aliquam pulvinar.
-                Nulla facilisi. Aliquam a consectetur erat. Aenean efficitur velit ut gravida consequat.
-                Suspendisse convallis sem enim, mattis venenatis magna facilisis eu. Sed vitae consequat urna.
-                In mattis diam id mauris tristique condimentum. In sit amet pretium mauris. In malesuada purus vitae enim convallis ornare.
-                Mauris nibh nisi, elementum eu consequat vitae, egestas at magna. Phasellus eros nisl, fringilla vel auctor nec, vehicula vel felis.
-                Vivamus id lacus fermentum, tempus nisi eu, malesuada metus. Fusce dictum ut est vitae ultrices.
-
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean risus ex, ultrices vitae gravida eget,
-                condimentum quis neque. Etiam feugiat iaculis magna, sit amet gravida odio vulputate sit amet.
-                Pellentesque at rutrum ex, eu congue nisl. Duis eleifend rhoncus libero, at sagittis elit. Morbi congue eu diam at mollis.
-                Aenean venenatis metus ut efficitur blandit. Suspendisse potenti. Nam porttitor lacus sit amet enim pretium iaculis.
-                Fusce interdum aliquet eleifend. Nulla a tempus leo. Phasellus mattis varius nibh ut varius. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. In hac habitasse platea dictumst. Cras vel ante ut erat placerat auctor ac ut tellus. Nullam ac nisi mi.
-
-                Etiam semper pharetra nisi, eu pharetra lorem condimentum ut. Suspendisse placerat auctor leo ac tincidunt.
-                Ut non orci finibus, semper est vitae, dapibus massa. Suspendisse tempor urna eu elit porttitor, vel porttitor ante tempus.
-                Maecenas ut sapien quis sem auctor bibendum nec sed nibh. Fusce tristique nisi vitae turpis molestie, varius rutrum erat tempor.
-                Proin euismod mi quis facilisis congue. Fusce blandit risus eu feugiat hendrerit. Fusce accumsan, leo quis pulvinar luctus,
-                eros mauris ornare nisi, ut porta leo neque at ligula.
-
-                Nam semper est vel iaculis consequat. Nunc lobortis interdum faucibus. Vivamus laoreet, metus et malesuada euismod,
-                erat enim cursus eros, sit amet varius sapien enim aliquet eros. Cras arcu metus, ultricies ac ante ut, imperdiet laoreet elit.
-                Sed risus enim, porta a tellus sit amet, rhoncus faucibus felis. Sed vel velit neque. Phasellus est leo, finibus id ante eget,
-                convallis porttitor elit. Praesent elit augue, blandit in massa ac, placerat placerat mi. Curabitur quis purus consequat,
-                mattis massa eget, eleifend felis. Donec consequat, erat id rutrum pulvinar, eros turpis blandit orci, at vehicula massa lectus sed diam.
-
-                Morbi nec velit est. Donec vel tempus erat. Nullam sit amet ex semper, fermentum quam ut, auctor sem.
-                Etiam eget dui vestibulum, ullamcorper nisl ac, malesuada sapien. Duis quis quam mauris. Praesent luctus mauris ut odio iaculis sodales.
-                Cras non mauris eget eros vehicula eleifend nec id lacus. Cras in leo nulla. Phasellus quis egestas urna, quis cursus tortor.
-                Nunc et cursus nibh. Integer porta maximus tortor, vitae venenatis dolor tristique non.
+                Description : ${vSecteur.description}
             </p>
         </div>
         <div class="voie col-lg-6">
@@ -80,30 +50,38 @@
                 <div class="voie_list col-lg-12">
                     <h3 class="text-center"><strong>Voies</strong></h3>
                     <hr class="my-4">
-                    <div class="accordion" id="accordionExample">
-                        <div class="card">
-                            <div class="card-header" id="headingOne">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link turquoise" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Nom de voie
-                                    </button>
-                                </h2>
-                            </div>
 
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                <div class="card-body padding-0">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Difficulté : DIFF</li>
-                                        <li class="list-group-item ">Equipé : <i class="fa fa-check-square" style="color: green; font-size:25px;"></i> </li>
-                                        <li class="list-group-item ">Nombre de point : NBRE</li>
-                                        <li class="list-group-item ">Equipé : <i class="fa fa-window-close" style="color: red; font-size:25px;"> </i> </li>
-                                        <li class="list-group-item">Nombre de longueur : NBRE_LONG</li>
-                                        <li class="list-group-item"><p>Déscription : </p><p>DESC Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                        </p></li>
-                                    </ul>
+                    <div class="accordion" id="accordionExample">
+                        <c:forEach items="${vSecteur.voies}" var="voie">
+                            <div class="card">
+                                <div class="card-header" id="heading${voie.nom}">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link turquoise" type="button" data-toggle="collapse" data-target="#collapse${voie.nom}" aria-expanded="true" aria-controls="collapse${voie.nom}">
+                                                ${voie.nom}
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div id="collapse${voie.nom}" class="collapse show" aria-labelledby="heading${voie.nom}" data-parent="#accordionExample">
+                                    <div class="card-body padding-0">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Difficulté : ${voie.difficulte.difficulte}</li>
+                                            <c:choose>
+                                                <c:when test="${voie.equipement}">
+                                                    <li class="list-group-item ">Equipé : <i class="fa fa-check-square" style="color: green; font-size:25px;"></i> </li>
+                                                    <li class="list-group-item ">Nombre de point : ${voie.nb_point}</li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <li class="list-group-item ">Equipé : <i class="fa fa-window-close" style="color: red; font-size:25px;"> </i> </li>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <li class="list-group-item">Nombre de longueur : ${voie.nb_longueur}</li>
+                                            <li class="list-group-item"><p>Déscription :</p><p>${voie.description}</p></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </c:forEach>
                         <div class="card">
                             <div class="card-header" id="headingTwo">
                                 <h2 class="mb-0">

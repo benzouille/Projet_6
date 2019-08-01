@@ -27,8 +27,7 @@ public interface DaoSecteur {
     Secteur read(int id);
     Secteur read(String code);
     List<Secteur> readAll();
-    List<Secteur> readAll(int id);
-
+    List<Secteur> readAllByIdSpot(int id_spot);
     /**
      * Méthode de mise à jour
      * @param obj

@@ -10,7 +10,7 @@ public class SpotResource extends AbstractResource {
         return getManagerFactory().getSpotManager().getListSpot();
     }
 
-    public Spot getSpot(Integer pId) throws NotFoundException {
+    public Spot getSpot(Integer pId) {
         return getManagerFactory().getSpotManager().getSpot(pId);
     }
 

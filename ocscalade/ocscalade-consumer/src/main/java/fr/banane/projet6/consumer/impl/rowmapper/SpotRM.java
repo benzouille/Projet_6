@@ -1,13 +1,7 @@
 package fr.banane.projet6.consumer.impl.rowmapper;
 
-import fr.banane.projet6.consumer.contract.dao.DaoImage;
-import fr.banane.projet6.consumer.contract.dao.DaoSecteur;
-import fr.banane.projet6.consumer.contract.dao.DaoUtilisateur;
-import fr.banane.projet6.consumer.contract.dao.DaoVoie;
-import fr.banane.projet6.model.bean.Image;
-import fr.banane.projet6.model.bean.Secteur;
-import fr.banane.projet6.model.bean.Spot;
-import fr.banane.projet6.model.bean.Utilisateur;
+import fr.banane.projet6.consumer.contract.dao.*;
+import fr.banane.projet6.model.bean.*;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
@@ -30,12 +24,14 @@ public class SpotRM implements RowMapper<Spot> {
     DaoUtilisateur daoUtilisateurImpl;
     @Inject
     DaoImage daoImageImpl;
-    
+    @Inject
+    DaoDepartement daoDepartementImpl;
+
     @Override
     public Spot mapRow(ResultSet rs, int rowNum) throws SQLException {
 
         //Liste de secteur
-        ArrayList<Secteur> secteurs = (ArrayList<Secteur>) daoSecteurImpl.readAll(rs.getInt("id"));
+        ArrayList<Secteur> secteurs = (ArrayList<Secteur>) daoSecteurImpl.readAllByIdSpot(rs.getInt("id"));
 
         //Liste d'image
         ArrayList<Image> images = (ArrayList<Image>) daoImageImpl.readAll(rs.getInt("id"));
@@ -43,12 +39,16 @@ public class SpotRM implements RowMapper<Spot> {
         //Le créateur
         Utilisateur createur =daoUtilisateurImpl.read(rs.getInt("id_createur"));
 
+        //Departement
+        Departement departement = daoDepartementImpl.read(rs.getInt("id_departement"));
+
         Spot vSpot = new Spot();
         vSpot.setId(rs.getInt("id"));
         vSpot.setCreateur(createur);
         vSpot.setOfficiel(rs.getBoolean("officiel"));
         vSpot.setNom(rs.getString("nom"));
-        vSpot.setAdresse(rs.getNString("adresse"));
+        vSpot.setDepartement(departement);
+        vSpot.setAdresse(rs.getString("adresse"));
         vSpot.setDescription(rs.getString("description"));
         vSpot.setSecteurs(secteurs);
         vSpot.setImages(images);

@@ -18,7 +18,7 @@ public interface SpotManager {
      *
      * @param vSpot objet à envoyer en bdd
      */
-    public void newSpot(Spot vSpot);
+    void newSpot(Spot vSpot);
     //TODO ajouter les exceptions NotFoundException et DuplicateException
 
     /**
@@ -56,7 +56,7 @@ public interface SpotManager {
      * @return L'objet Spot correspondant à l'identifiant.
      * @throws NotFoundException
      */
-    Spot getSpot(Integer pId) throws NotFoundException;
+    Spot getSpot(Integer pId);
 
     /**
      * Retourne un objet Spot en particulier selon son 'nom'.
@@ -78,7 +78,7 @@ public interface SpotManager {
      * Supprime un spot
      * @param vSpot
      */
-    public void deleteUtilisateur(Spot vSpot);
+    public void deleteSpot(Spot vSpot);
     //TODO ajouter le throws pour l'exceptions NotFoundException
 
 }
