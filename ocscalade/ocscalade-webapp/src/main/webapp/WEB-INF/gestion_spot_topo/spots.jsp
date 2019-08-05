@@ -37,22 +37,22 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-6">
             <c:if test="${ !empty sessionScope.utilisateur}">
-                <form class="form-inline pull-right" action="spots" method="post">
-                    <a href="/ocscalade/spots/nouveau" class="btn btn-outline-success btn-lg" role="button" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Nouveau</a>
+                <form class="form-inline pull-right" action="spots/spot" method="post">
+                    <a href="#" class="btn btn-outline-success btn-lg" role="button" data-toggle="modal" data-target="#nouveauSpotModal"><i class="fa fa-plus"></i> Nouveau</a>
                 </form>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="nouveauSpotModal" tabindex="-1" role="dialog" aria-labelledby="nouveauSpotModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Nouveau spot</h5>
+                                <h5 class="modal-title" id="nouveauSpotModalLabel">Nouveau spot</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <form action="spots" method="post" enctype="multipart/form-data">
+                            <form action="spots/spot" method="post" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="nom">Nom</label>
@@ -91,14 +91,13 @@
                                                 <input type="file" class="form-control-file" name="photo3" id="photo3">
                                             </div>
                                         </div>
-                                        <input type="submit" name="_nouveau_spot_" value="nouveau">
-                                    </form>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                <button type="submit" name="_nouveau_spot_" class="btn btn-primary">Enregistrer</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <input type="submit" name="_nouveau_spot_" value="Enregistrer" class="btn btn-primary"/>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -108,7 +107,7 @@
 
     <hr class="my-4">
 
-    <%-- ajouter id--%>
+    <%-- les differents spots--%>
     <div class="row marginBottom">
         <c:forEach items="${vListSpots}" var="spot">
             <div class="col-lg-3 col-md-4 col-sm-6" >
@@ -127,153 +126,6 @@
                 </div>
             </div>
         </c:forEach>
-
-        <%--<div class="col-lg-3 col-md-4 col-sm-6" >--%>
-            <%--<div class="card">--%>
-                <%--<div class="div_image">--%>
-                    <%--<img href="/ocscalade/spots/spot" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">--%>
-                <%--</div>--%>
-                <%--<div class="card-body">--%>
-                    <%--<h5 class="card-title">Nom du spot</h5>--%>
-                    <%--<p class="card-text">résumé du spot.</p>--%>
-                    <%--<a href="/ocscalade/spots/spot" class="btn btn-primary stretched-link">plus d'information</a>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-        <%--<div class="col-lg-3 col-md-4 col-sm-6" >--%>
-        <%--<div class="card">--%>
-        <%--<div class="div_image">--%>
-        <%--<img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">--%>
-        <%--</div>--%>
-        <%--<div class="card-body">--%>
-        <%--<h5 class="card-title">Nom du spot</h5>--%>
-        <%--<p class="card-text">résumé du spot.</p>--%>
-        <%--<a href="/ocscalade/spots/spot" class="btn btn-primary">plus d'information</a>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--<div class="col-lg-3 col-md-4 col-sm-6" >--%>
-        <%--<div class="card">--%>
-        <%--<div class="div_image">--%>
-        <%--<img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">--%>
-        <%--</div>--%>
-        <%--<div class="card-body">--%>
-        <%--<h5 class="card-title">Nom du spot</h5>--%>
-        <%--<p class="card-text">résumé du spot.</p>--%>
-        <%--<a href="/ocscalade/spots/spot" class="btn btn-primary">plus d'information</a>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--<div class="col-lg-3 col-md-4 col-sm-6" >--%>
-        <%--<div class="card">--%>
-        <%--<div class="div_image">--%>
-        <%--<img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">--%>
-        <%--</div>--%>
-        <%--<div class="card-body">--%>
-        <%--<h5 class="card-title">Nom du spot</h5>--%>
-        <%--<p class="card-text">résumé du spot.</p>--%>
-        <%--<a href="/ocscalade/spots/spot" class="btn btn-primary">plus d'information</a>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-
-        <%--<div class="col-lg-3 col-md-4 col-sm-6" >--%>
-        <%--<div class="card">--%>
-        <%--<div class="div_image">--%>
-        <%--<img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">--%>
-        <%--</div>--%>
-        <%--<div class="card-body">--%>
-        <%--<h5 class="card-title">Nom du spot</h5>--%>
-        <%--<p class="card-text">résumé du spot.</p>--%>
-        <%--<a href="/ocscalade/spots/spot" class="btn btn-primary">plus d'information</a>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--<div class="col-lg-3 col-md-4 col-sm-6" >--%>
-        <%--<div class="card">--%>
-        <%--<div class="div_image">--%>
-        <%--<img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">--%>
-        <%--</div>--%>
-        <%--<div class="card-body">--%>
-        <%--<h5 class="card-title">Nom du spot</h5>--%>
-        <%--<p class="card-text">résumé du spot.</p>--%>
-        <%--<a href="/ocscalade/spots/spot" class="btn btn-primary">plus d'information</a>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--<div class="col-lg-3 col-md-4 col-sm-6" >--%>
-        <%--<div class="card">--%>
-        <%--<div class="div_image">--%>
-        <%--<img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">--%>
-        <%--</div>--%>
-        <%--<div class="card-body">--%>
-        <%--<h5 class="card-title">Nom du spot</h5>--%>
-        <%--<p class="card-text">résumé du spot.</p>--%>
-        <%--<a href="#" class="btn btn-primary">plus d'information</a>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--<div class="col-lg-3 col-md-4 col-sm-6" >--%>
-        <%--<div class="card">--%>
-        <%--<div class="div_image">--%>
-        <%--<img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">--%>
-        <%--</div>--%>
-        <%--<div class="card-body">--%>
-        <%--<h5 class="card-title">Nom du spot</h5>--%>
-        <%--<p class="card-text">résumé du spot.</p>--%>
-        <%--<a href="#" class="btn btn-primary">plus d'information</a>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-
-        <%--<div class="col-lg-3 col-md-4 col-sm-2 col-sm-6" >--%>
-        <%--<div class="card">--%>
-        <%--<div class="div_image">--%>
-        <%--<img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">--%>
-        <%--</div>--%>
-        <%--<div class="card-body">--%>
-        <%--<h5 class="card-title">Nom du spot</h5>--%>
-        <%--<p class="card-text">résumé du spot.</p>--%>
-        <%--<a href="#" class="btn btn-primary">plus d'information</a>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--<div class="col-lg-3 col-md-4 col-sm-6" >--%>
-        <%--<div class="card">--%>
-        <%--<div class="div_image">--%>
-        <%--<img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">--%>
-        <%--</div>--%>
-        <%--<div class="card-body">--%>
-        <%--<h5 class="card-title">Nom du spot</h5>--%>
-        <%--<p class="card-text">résumé du spot.</p>--%>
-        <%--<a href="#" class="btn btn-primary">plus d'information</a>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--<div class="col-lg-3 col-md-4 col-sm-6" >--%>
-        <%--<div class="card">--%>
-        <%--<div class="div_image">--%>
-        <%--<img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">--%>
-        <%--</div>--%>
-        <%--<div class="card-body">--%>
-        <%--<h5 class="card-title">Nom du spot</h5>--%>
-        <%--<p class="card-text">résumé du spot.</p>--%>
-        <%--<a href="#" class="btn btn-primary">plus d'information</a>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--<div class="col-lg-3 col-md-4 col-sm-6" >--%>
-        <%--<div class="card">--%>
-        <%--<div class="div_image">--%>
-        <%--<img href="#" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">--%>
-        <%--</div>--%>
-        <%--<div class="card-body">--%>
-        <%--<h5 class="card-title">Nom du spot</h5>--%>
-        <%--<p class="card-text">résumé du spot.</p>--%>
-        <%--<a href="#" class="btn btn-primary">plus d'information</a>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
     </div>
     <div class="row marginBottom">
         <div class="col">

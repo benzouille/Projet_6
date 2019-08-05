@@ -39,7 +39,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-6">
             <c:if test="${ !empty sessionScope.utilisateur}">
                 <form class="form-inline pull-right" action="topos" method="post">
-                    <a href="/ocscalade/topos/nouveau" class="btn btn-outline-success btn-lg" role="button" data-toggle="modal" data-target="#spotsModal"><i class="fa fa-plus"></i> Nouveau</a>
+                    <a href="#" class="btn btn-outline-success btn-lg" role="button" data-toggle="modal" data-target="#spotsModal"><i class="fa fa-plus"></i> Nouveau</a>
                 </form>
                 <!-- Modal -->
                 <div class="modal fade" id="spotsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -30,6 +30,7 @@ public class VoieRM implements RowMapper<Voie> {
 
         Voie vVoie = new Voie();
         vVoie.setId(rs.getInt("id"));
+        vVoie.setNom(rs.getString("nom"));
         vVoie.setId_secteur(rs.getInt("id_secteur"));
         vVoie.setDifficulte(difficulte);
         vVoie.setEquipement(rs.getBoolean("equipement"));

@@ -25,16 +25,9 @@ public class App
         vManagerFactory = vApplicationContext.getBean("managerFactory", ManagerFactory.class);
     }
 
-    public String test(){
-        String str = vManagerFactory.getDepartementManager().getDepartementByNum(57).toString();
-        return str;
-    }
-
-
 
     public static void main(String[] args )
     {
        App app = new App();
-        System.out.println(app.test());
     }
 }
