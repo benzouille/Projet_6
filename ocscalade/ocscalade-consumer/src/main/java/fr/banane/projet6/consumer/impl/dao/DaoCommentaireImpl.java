@@ -27,12 +27,13 @@ public class DaoCommentaireImpl extends AbstractDao implements DaoCommentaire {
     @Override
     public boolean create(Commentaire obj) {
 
-        String vSQL = "INSERT INTO commentaire (id_user, id_spot, commentaire) VALUES (:id_utilisateur, :id_spot, :commentaire)";
+        String vSQL = "INSERT INTO commentaire (id_user, id_spot, commentaire, date) VALUES (:id_utilisateur, :id_spot, :commentaire, :date)";
 
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("id_utilisateur", obj.getUtilisateur().getId(), Types.INTEGER);
-        vParams.addValue("id_spot", obj.getSpot().getId(), Types.INTEGER);
+        vParams.addValue("id_spot", obj.getIdSpot(), Types.INTEGER);
         vParams.addValue("commentaire", obj.getCommentaire(), Types.VARCHAR);
+        vParams.addValue("date", obj.getDate(), Types.TIMESTAMP);
 
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         vJdbcTemplate.update(vSQL, vParams);
@@ -72,7 +73,7 @@ public class DaoCommentaireImpl extends AbstractDao implements DaoCommentaire {
 
     @Override
     public List<Commentaire> readAllBySpot(int id_spot) {
-        String vSQL = "SELECT * FROM commentaire WHERE id_spot="+id_spot;
+        String vSQL = "SELECT * FROM commentaire WHERE id_spot="+id_spot+"ORDER BY date";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Commentaire> vListCommentaires = vJdbcTemplate.query(vSQL, commentaireRM);
         return vListCommentaires;
@@ -81,13 +82,14 @@ public class DaoCommentaireImpl extends AbstractDao implements DaoCommentaire {
     @Override
     public boolean update(Commentaire obj) {
 
-        String vSQL = "UPDATE commentaire SET id_user=:id_utilisateur, id_spot=:id_spot, commentaire=:commentaire WHERE id=:id";
+        String vSQL = "UPDATE commentaire SET id_user=:id_utilisateur, id_spot=:id_spot, commentaire=:commentaire, date=:date WHERE id=:id";
 
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("id", obj.getId(), Types.INTEGER);
         vParams.addValue("id_utilisateur", obj.getUtilisateur().getId(), Types.INTEGER);
-        vParams.addValue("id_spot", obj.getSpot().getId(), Types.INTEGER);
+        vParams.addValue("id_spot", obj.getIdSpot(), Types.INTEGER);
         vParams.addValue("commentaire", obj.getCommentaire(), Types.VARCHAR);
+        vParams.addValue("date", obj.getDate(), Types.TIMESTAMP);
 
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         vJdbcTemplate.update(vSQL, vParams);

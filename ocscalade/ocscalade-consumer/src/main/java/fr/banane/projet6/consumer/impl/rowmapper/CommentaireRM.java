@@ -23,22 +23,19 @@ public class CommentaireRM implements RowMapper<Commentaire> {
 
     @Inject
     DaoUtilisateur daoUtilisateurImpl;
-    @Inject
-    DaoSpot daoSpotImpl;
 
     @Override
     public Commentaire mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-        //Le spot
-        Spot spot = daoSpotImpl.read(rs.getInt("id_spot"));
         //Le créateur
-        Utilisateur utilisateur =daoUtilisateurImpl.read(rs.getInt("id_utilisateur"));
+        Utilisateur utilisateur =daoUtilisateurImpl.read(rs.getInt("id_user"));
 
         Commentaire vCommentaire = new Commentaire();
         vCommentaire.setId(rs.getInt("id"));
         vCommentaire.setUtilisateur(utilisateur);
-        vCommentaire.setSpot(spot);
+        vCommentaire.setIdSpot(rs.getInt("id_spot"));
         vCommentaire.setCommentaire(rs.getString("commentaire"));
+        vCommentaire.setDate(rs.getTimestamp("date"));
 
         return vCommentaire;
     }

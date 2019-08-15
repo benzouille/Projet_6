@@ -33,7 +33,7 @@ public class DaoDepartementImpl extends AbstractDao implements DaoDepartement {
 
     @Override
     public Departement readNum(String num) {
-        String vSQL = "SELECT * FROM departement WHERE num="+num;
+        String vSQL = "SELECT * FROM departement WHERE num="+"'"+num+"'";
 
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Departement> vListDepartement = vJdbcTemplate.query(vSQL, departementRM);

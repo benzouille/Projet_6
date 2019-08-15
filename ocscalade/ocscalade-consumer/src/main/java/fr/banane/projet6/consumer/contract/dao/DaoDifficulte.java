@@ -11,7 +11,7 @@ public interface DaoDifficulte {
      * @return T
      */
     Difficulte read(int id);
-    Difficulte read(String code);
+    Difficulte readByDifficulte(String difficulte);
     List<Difficulte> readAll();
     List<Difficulte> readAll(int id);
 }

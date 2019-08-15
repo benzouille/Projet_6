@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * RowMapper de la classe "Commentaire"
+ * RowMapper de la classe "Topo"
  *
  * @author Banane
  */
@@ -36,9 +36,12 @@ public class TopoRM implements RowMapper<Topo> {
 
         Topo vTopo = new Topo();
         vTopo.setId(rs.getInt("id"));
+        vTopo.setNom(rs.getString("nom"));
         vTopo.setUtilisateur(utilisateur);
         vTopo.setSpot(spot);
-        vTopo.setDate_creation(rs.getString("date_creation"));
+        vTopo.setDescription(rs.getString("description"));
+        vTopo.setReservable(rs.getBoolean("reservable"));
+        vTopo.setDate_creation(rs.getTimestamp("date_creation"));
 
         return vTopo;
     }

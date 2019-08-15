@@ -26,12 +26,15 @@ public class DaoVoieImpl extends AbstractDao implements DaoVoie {
 
     @Override
     public boolean create(Voie obj) {
-        String vSQL = "INSERT INTO voie (nom, id_secteur, id_difficulte, description) VALUES (:nom, :id_secteur, :id_difficulte, :descrption)";
+        String vSQL = "INSERT INTO voie (nom, id_secteur, id_difficulte, nb_longueur, equipement, nb_point, description) VALUES (:nom, :id_secteur, :id_difficulte, :nb_longueur, :equipement, :nb_point, :description)";
 
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("nom", obj.getNom(), Types.VARCHAR);
         vParams.addValue("id_secteur", obj.getId_secteur(), Types.INTEGER);
         vParams.addValue("id_difficulte", obj.getDifficulte().getId(), Types.INTEGER);
+        vParams.addValue("nb_longueur", obj.getNb_longueur(), Types.INTEGER);
+        vParams.addValue("equipement", obj.isEquipement(), Types.BOOLEAN);
+        vParams.addValue("nb_point", obj.getNb_point(), Types.INTEGER);
         vParams.addValue("description", obj.getDescription(), Types.VARCHAR);
 
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
@@ -72,14 +75,15 @@ public class DaoVoieImpl extends AbstractDao implements DaoVoie {
 
     @Override
     public boolean update(Voie obj) {
-        String vSQL = "UPDATE voie SET nom = :nom, id_secteur = :id_secteur, id_difficulte = :id_difficulte, description = :descrption WHERE id = :id";
+        String vSQL = "UPDATE voie SET nom = :nom, id_secteur = :id_secteur, id_difficulte = :id_difficulte, nb_longueur = :nb_longueur, equipement = :equipement, nb_point = :nb_point, description = :description WHERE id = :id";
 
         MapSqlParameterSource vParams = new MapSqlParameterSource();
-        vParams.addValue("id", obj.getId(), Types.INTEGER);
         vParams.addValue("nom", obj.getNom(), Types.VARCHAR);
         vParams.addValue("id_secteur", obj.getId_secteur(), Types.INTEGER);
         vParams.addValue("id_difficulte", obj.getDifficulte().getId(), Types.INTEGER);
         vParams.addValue("nb_longueur", obj.getNb_longueur(), Types.INTEGER);
+        vParams.addValue("equipement", obj.isEquipement(), Types.BOOLEAN);
+        vParams.addValue("nb_point", obj.getNb_point(), Types.INTEGER);
         vParams.addValue("description", obj.getDescription(), Types.VARCHAR);
 
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());

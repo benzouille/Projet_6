@@ -15,7 +15,7 @@ import javax.inject.Named;
 @Named("managerFactory")
 public class ManagerFactoryImpl implements ManagerFactory {
 
-    //Objet à injecter
+    //--Objet à injecter
     @Inject
     private CommentaireManager commentaireManager;
     @Inject
@@ -32,15 +32,18 @@ public class ManagerFactoryImpl implements ManagerFactory {
     private SecteurManager secteurManager;
     @Inject
     private VoieManager voieManager;
+    @Inject
+    private TopoManager topoManager;
 
+    //--GETTER-SETTER
     @Override
     public CommentaireManager getCommentaireManager() {
         return commentaireManager;
     }
 
     @Override
-    public void setCommentaireManager(CommentaireManager pVersionManager) {
-        this.commentaireManager = pVersionManager;
+    public void setCommentaireManager(CommentaireManager pManager) {
+        this.commentaireManager = pManager;
     }
 
     @Override
@@ -49,8 +52,8 @@ public class ManagerFactoryImpl implements ManagerFactory {
     }
 
     @Override
-    public void setDepartementManager(DepartementManager pVersionManager) {
-        this.departementManager = pVersionManager;
+    public void setDepartementManager(DepartementManager pManager) {
+        this.departementManager = pManager;
     }
 
     @Override
@@ -59,8 +62,8 @@ public class ManagerFactoryImpl implements ManagerFactory {
     }
 
     @Override
-    public void setDifficulteManager(DifficulteManager pVersionManager) {
-        this.difficulteManager = pVersionManager;
+    public void setDifficulteManager(DifficulteManager pManager) {
+        this.difficulteManager = pManager;
     }
 
     @Override
@@ -69,7 +72,7 @@ public class ManagerFactoryImpl implements ManagerFactory {
     }
 
     @Override
-    public void setImageManager(ImageManager pVersionManager) {
+    public void setImageManager(ImageManager pManager) {
 
     }
 
@@ -79,7 +82,7 @@ public class ManagerFactoryImpl implements ManagerFactory {
     }
 
     @Override
-    public void setPrivilegeManager(PrivilegeManager pVersionManager) {
+    public void setPrivilegeManager(PrivilegeManager pManager) {
 
     }
 
@@ -89,7 +92,7 @@ public class ManagerFactoryImpl implements ManagerFactory {
     }
 
     @Override
-    public void setReservationManager(ReservationManager pVersionManager) {
+    public void setReservationManager(ReservationManager pManager) {
 
     }
 
@@ -99,8 +102,8 @@ public class ManagerFactoryImpl implements ManagerFactory {
     }
 
     @Override
-    public void setSecteurManager(SecteurManager pVersionManager) {
-        this.secteurManager = pVersionManager;
+    public void setSecteurManager(SecteurManager pManager) {
+        this.secteurManager = pManager;
     }
 
     @Override
@@ -109,8 +112,8 @@ public class ManagerFactoryImpl implements ManagerFactory {
     }
 
     @Override
-    public void setSexeManager(SexeManager pVersionManager) {
-        this.sexeManager = pVersionManager;
+    public void setSexeManager(SexeManager pManager) {
+        this.sexeManager = pManager;
     }
 
     @Override
@@ -119,18 +122,18 @@ public class ManagerFactoryImpl implements ManagerFactory {
     }
 
     @Override
-    public void setSpotManager(SpotManager pVersionManager) {
-        this.spotManager = pVersionManager;
+    public void setSpotManager(SpotManager pManager) {
+        this.spotManager = pManager;
     }
 
     @Override
     public TopoManager getTopoManager() {
-        return null;
+        return topoManager;
     }
 
     @Override
-    public void setTopoManager(TopoManager pVersionManager) {
-
+    public void setTopoManager(TopoManager pManager) {
+        this.topoManager = pManager;
     }
 
     @Override
@@ -139,8 +142,8 @@ public class ManagerFactoryImpl implements ManagerFactory {
     }
 
     @Override
-    public void setUtilisateurManager(UtilisateurManager pVersionManager) {
-        this.utilisateurManager = pVersionManager;
+    public void setUtilisateurManager(UtilisateurManager pManager) {
+        this.utilisateurManager = pManager;
     }
 
     @Override
@@ -149,7 +152,7 @@ public class ManagerFactoryImpl implements ManagerFactory {
     }
 
     @Override
-    public void setVoieManager(VoieManager pVersionManager) {
-        this.voieManager = pVersionManager;
+    public void setVoieManager(VoieManager pManager) {
+        this.voieManager = pManager;
     }
 }

@@ -51,17 +51,41 @@ public class VoieManagerImpl extends AbstractManager implements VoieManager {
 
     @Override
     public List<Voie> getListVoieByIdSecteur(int id_secteur) {
-        return null;
+        return getDaoFactory().getDaoVoie().readAllByIdSecteur(id_secteur);
     }
 
     @Override
     public void updateSpot(Voie vVoie) {
+        //TODO ajouter les exceptions NotFoundException
+        TransactionStatus vTransactionStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
+        try{
+        getDaoFactory().getDaoVoie().update(vVoie);
 
+            TransactionStatus vTScommit = vTransactionStatus;
+            vTransactionStatus = null;
+            platformTransactionManager.commit(vTScommit);
+        }finally {
+            if(vTransactionStatus != null) {
+                platformTransactionManager.rollback(vTransactionStatus);
+            }
+        }
     }
 
     @Override
     public void deleteVoie(Voie vVoie) {
+        //TODO ajouter les exceptions NotFoundException
+        TransactionStatus vTransactionStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
+        try{
+        getDaoFactory().getDaoVoie().delete(vVoie);
 
+        TransactionStatus vTScommit = vTransactionStatus;
+        vTransactionStatus = null;
+        platformTransactionManager.commit(vTScommit);
+    }finally {
+        if(vTransactionStatus != null) {
+            platformTransactionManager.rollback(vTransactionStatus);
+        }
+    }
     }
 
     @Override

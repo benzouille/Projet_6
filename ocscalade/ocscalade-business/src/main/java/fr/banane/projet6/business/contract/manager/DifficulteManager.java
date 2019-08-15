@@ -22,9 +22,18 @@ public interface DifficulteManager {
     /**
      * Retourne un objet Difficulte en particulier selon son 'id'.
      *
-     * @param pId L'identifiant du Difficulte
+     * @param pId L'identifiant de la Difficulte
      * @return L'objet Difficulte correspondant à l'identifiant.
      * @throws NotFoundException
      */
-    public Difficulte getDifficulte(Integer pId) throws NotFoundException;
+    public Difficulte getDifficulteById(Integer pId) throws NotFoundException;
+
+    /**
+     * Retourne un objet Difficulte en particulier selon sa 'difficulte'.
+     *
+     * @param difficulte L'identifiant de la Difficulte
+     * @return L'objet Difficulte correspondant à la difficulte.
+     * @throws NotFoundException
+     */
+    public Difficulte getDifficulte(String difficulte);
 }

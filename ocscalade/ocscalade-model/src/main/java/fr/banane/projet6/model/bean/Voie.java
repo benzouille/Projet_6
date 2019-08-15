@@ -22,6 +22,7 @@ public class Voie {
      * Constructeur par défaut
      */
     public Voie(){
+        equipement = false;
         nb_point = 0;
         nb_longueur = 1;
     }

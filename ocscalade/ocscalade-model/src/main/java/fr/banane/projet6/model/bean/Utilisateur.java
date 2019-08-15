@@ -126,7 +126,6 @@ public class Utilisateur {
                 ", privilege=" + privilege +
                 ", pseudo='" + pseudo + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", departement=" + departement +
                 ", date_naissance='" + date_naissance + '\'' +
                 '}';

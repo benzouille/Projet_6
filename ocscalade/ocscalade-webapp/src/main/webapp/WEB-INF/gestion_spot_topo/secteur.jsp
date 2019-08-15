@@ -85,9 +85,9 @@
 
                         <div class="voie">
                             <c:if test="${ !empty sessionScope.utilisateur}">
-                                <form class="form-inline pull-right" action="spot" method="post">
-                                    <a href="/ocscalade/spots/spot/voie/nouveau" class="btn btn-outline-success" role="button" style="margin-top: 10px" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Nouvelle voie</a>
-                                </form>
+                                <div class="form-inline pull-right">
+                                    <a href="#" class="btn btn-outline-success" role="button" style="margin-top: 10px" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Nouvelle voie</a>
+                                </div>
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -98,17 +98,17 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
-                                                <div class="container-fluid">
-                                                    <form>
+                                            <form action="secteur" method="post">
+                                                <div class="modal-body">
+                                                    <div class="container-fluid">
                                                         <div class="form-row">
                                                             <div class="form-group col-md-9">
                                                                 <label for="nom">Nom</label>
-                                                                <input type="text" class="form-control" id="nom" placeholder="nom">
+                                                                <input type="text" class="form-control" name="nom" id="nom" placeholder="nom">
                                                             </div>
                                                             <div class="form-group col-md-3">
                                                                 <label for="difficulte">Difficulté</label>
-                                                                <select id="difficulte" class="form-control">
+                                                                <select id="difficulte" name="difficulte" class="form-control">
                                                                     <option selected>Séléctionnez</option>
                                                                     <c:forEach items="${vListDifficultes}" var="difficulte">
                                                                         <option><c:out value="${difficulte.difficulte}"/></option>
@@ -116,35 +116,30 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="input-group mb-3">
+                                                        <label class="form-check-label" style="margin-bottom: 8px">Equipement</label>
+                                                        <div class="input-group mb-3 ">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text">
-                                                                    <input type="checkbox" aria-label="Checkbox for following text input">
+                                                                    <input type="checkbox" name="equipement" aria-label="Checkbox for following text input">
                                                                 </div>
                                                             </div>
-                                                            <input type="text" class="form-control" aria-label="Text input with checkbox">
+                                                            <input type="number" class="form-control" name="nb_point" aria-label="Text input with checkbox">
                                                         </div>
-
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-6">
-                                                                <div class="form-check">
-                                                                    <label class="form-check-label" for="equipementCheck">Equipement</label>
-                                                                    <input class="form-check-input" type="checkbox" id="equipementCheck">
-                                                                </div>
-                                                            </div>
-
+                                                        <div class="form-group">
+                                                            <label for="nb_longueur">Nombre de longueur</label>
+                                                            <input type="number" class="form-control" name="nb_longueur" id="nb_longueur">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputDescription">Description</label>
-                                                            <textarea class="form-control" id="inputDescription" rows="6" placeholder="400 caractères maxi."></textarea>
+                                                            <textarea class="form-control" name="description" id="inputDescription" rows="6" placeholder="400 caractères maxi."></textarea>
                                                         </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                    <input type="submit" name="_nouvelle_voie_" class="btn btn-primary" value="Enregistrer"/>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

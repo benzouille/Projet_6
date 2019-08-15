@@ -26,7 +26,7 @@ public class VoieRM implements RowMapper<Voie> {
     @Override
     public Voie mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-        Difficulte difficulte = daoDifficulteImpl.read(rs.getInt("id"));
+        Difficulte difficulte = daoDifficulteImpl.read(rs.getInt("id_difficulte"));
 
         Voie vVoie = new Voie();
         vVoie.setId(rs.getInt("id"));

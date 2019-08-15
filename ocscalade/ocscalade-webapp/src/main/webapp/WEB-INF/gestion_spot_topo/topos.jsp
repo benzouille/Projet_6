@@ -61,19 +61,12 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-md-9">
+                                            <div class="form-group col-md-6">
                                                 <label for="spot">Spot</label>
                                                 <select id="spot" class="form-control">
                                                     <option selected>Choose...</option>
-                                                    <option>...</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-3">
-                                                <label for="departement">Département</label>
-                                                <select id="departement" class="form-control">
-                                                    <option selected>Séléctionnez</option>
-                                                    <c:forEach items="${vListDepartements}" var="departement">
-                                                        <option><c:out value="${departement.num}"/></option>
+                                                    <c:forEach items="${vListSpots}" var="spot">
+                                                        <option><c:out value="${spot.nom}"/></option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -110,46 +103,38 @@
         <table class="table table-hover">
             <thead class="thead-dark">
             <tr>
-                <th scope="col"></th>
                 <th scope="col">Nom</th>
                 <th scope="col">Auteur</th>
                 <th scope="col">Spot</th>
                 <th scope="col">Département</th>
+                <th scope="col">Disponible</th>
                 <th scope="col">Date de création</th>
             </tr>
             </thead>
             <tbody>
+            <c:forEach items="${vListTopos}" var="topo">
             <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td><a class="link" href="/ocscalade/spots/spot">Le pic</a></td>
-                <td>69</td>
-                <td>01/01/2001</td>
+                <form action="topos/topo" method="post">
+                    <input type="hidden" name="idTopo" value="${topo.id}"/>
+                    <td><input class="link link-btn" type="submit" value="${topo.nom}"/></td>
+                </form>
+                <td>${topo.utilisateur.pseudo}</td>
+                <form action="spots/spot" method="post">
+                    <input type="hidden" name="idSpot" value="${topo.spot.id}"/>
+                <td><input class="link link-btn" type="submit" value="${topo.spot.nom}"/> <a class="link" type="submit" href="#">${topo.spot.nom}</a></td>
+                </form>
+                <td>${topo.spot.departement.nom}</td>
+                <td>${topo.reservable}</td>
+                <td>${topo.date_creation}</td>
             </tr>
+            </c:forEach>
             <tr>
-                <th scope="row">2</th>
                 <td><a class="link" href="/ocscalade/topos/topo">Fin de la galère</a></td>
                 <td>Coincoin</td>
                 <td><a class="link" href="/ocscalade/spots/spot">Le trou</a></td>
                 <td>83</td>
+                <td>non</td>
                 <td>01/01/2001</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Mal débuter</a></td>
-                <td>Bouh</td>
-                <td><a class="link" href="/ocscalade/spots/spot">Le pic</a></td>
-                <td>69</td>
-                <td>01/01/2001</td>
-            </tr>
-            <tr>
-                <th scope="row">4</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Confirmé</a></td>
-                <td>Admin</td>
-                <td><a class="link" href="/ocscalade/spots/spot">Le pic</a></td>
-                <td>69</td>
-                <td>01/03/2001</td>
             </tr>
             </tbody>
         </table>

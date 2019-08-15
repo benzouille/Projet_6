@@ -10,7 +10,11 @@ public class DifficulteResource extends AbstractResource {
         return getManagerFactory().getDifficulteManager().getListDifficulte();
     }
 
-    public Difficulte getDifficulte(Integer pId) throws NotFoundException {
-        return getManagerFactory().getDifficulteManager().getDifficulte(pId);
+    public Difficulte getDifficulteById(Integer pId) throws NotFoundException {
+        return getManagerFactory().getDifficulteManager().getDifficulteById(pId);
+    }
+
+    public Difficulte getDifficulte(String difficulte) {
+        return getManagerFactory().getDifficulteManager().getDifficulte(difficulte);
     }
 }

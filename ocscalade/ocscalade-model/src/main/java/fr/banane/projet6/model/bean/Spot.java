@@ -18,6 +18,7 @@ public class Spot {
     private Departement departement;
     private String adresse;
     private String description;
+    private ArrayList<Commentaire> commentaires;
 
     // ==================== Contructeurs ====================
 
@@ -40,7 +41,7 @@ public class Spot {
      * @param adresse -
      * @param description -
      */
-    public Spot(int id, Utilisateur createur, ArrayList<Secteur> secteurs, ArrayList<Image> images, boolean officiel,String nom, Departement departement, String adresse, String description) {
+    public Spot(int id, Utilisateur createur, ArrayList<Secteur> secteurs, ArrayList<Image> images, boolean officiel,String nom, Departement departement, String adresse, String description, ArrayList<Commentaire> commentaires) {
         this.id = id;
         this.createur = createur;
         this.secteurs = secteurs;
@@ -50,6 +51,7 @@ public class Spot {
         this.departement = departement;
         this.adresse = adresse;
         this.description = description;
+        this.commentaires = commentaires;
     }
     // ==================== Getters/Setters ====================
 
@@ -123,6 +125,14 @@ public class Spot {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public ArrayList<Commentaire> getCommentaires() {
+        return commentaires;
+    }
+
+    public void setCommentaires(ArrayList<Commentaire> commentaires) {
+        this.commentaires = commentaires;
     }
 
     // ==================== Methodes ====================

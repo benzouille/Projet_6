@@ -16,19 +16,19 @@ import java.util.List;
 
 public class SpotsServlet extends HttpServlet {
 
-    private Spot vSpot;
     private SpotResource vSpotResource = new SpotResource();
     private List<Spot> vListSpots;
-    private List<Secteur> vListSecteurs;
 
     private DepartementResource vDepartementResource = new DepartementResource();
     private List<Departement> vListDepartements;
-
 
     private SubStringDescription subStringDescription = new SubStringDescription();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
 
         //--INIT
         HttpSession session = req.getSession();
@@ -45,9 +45,14 @@ public class SpotsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+
         HttpSession session = req.getSession();
         Utilisateur  vUtilisateur = (Utilisateur)session.getAttribute("utilisateur");
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/spots.jsp").forward(req, resp);
+
+        this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/spot.jsp").forward(req, resp);
     }
 }
+

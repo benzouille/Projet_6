@@ -1,6 +1,7 @@
 package fr.banane.projet6.model.bean;
 
-import java.util.Date;
+import java.sql.Timestamp;
+
 
 /**
  * Objet metier représentant une Reservation
@@ -13,7 +14,8 @@ public class Reservation {
     private int id;
     private int id_topo;
     private int id_user_locataire;
-    private Date date;
+    private Timestamp date_debut;
+    private Timestamp date_fin;
 
     // ==================== Constructeurs ====================
     /**
@@ -27,13 +29,15 @@ public class Reservation {
      * @param id -
      * @param id_topo -
      * @param id_user_locataire -
-     * @param date -
+     * @param date_debut -
+     * @param date_fin -
      */
-    public Reservation(int id, int id_topo, int id_user_locataire, Date date) {
+    public Reservation(int id, int id_topo, int id_user_locataire, Timestamp date_debut, Timestamp date_fin) {
         this.id = id;
         this.id_topo = id_topo;
         this.id_user_locataire = id_user_locataire;
-        this.date = date;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
     }
 
 // ==================== Getters/Setters ====================
@@ -62,14 +66,21 @@ public class Reservation {
         this.id_user_locataire = id_user_locataire;
     }
 
-    public Date getDate() {
-        return date;
+    public Timestamp getDate_debut() {
+        return date_debut;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate_debut(Timestamp date_debut) {
+        this.date_debut = date_debut;
     }
 
+    public Timestamp getDate_fin() {
+        return date_fin;
+    }
+
+    public void setDate_fin(Timestamp date_fin) {
+        this.date_fin = date_fin;
+    }
 
     // ==================== Methodes ====================
 
@@ -79,7 +90,8 @@ public class Reservation {
                 "id=" + id +
                 ", id_topo=" + id_topo +
                 ", id_user_locataire=" + id_user_locataire +
-                ", date=" + date +
+                ", date_debut=" + date_debut +
+                ", date_fin=" + date_fin +
                 '}';
     }
 }

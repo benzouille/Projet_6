@@ -1,5 +1,8 @@
 package fr.banane.projet6.model.bean;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 /**
  * Objet metier représentant un Commentaire
  *
@@ -10,8 +13,9 @@ public class Commentaire {
     // ==================== Attributs ====================
     private int id;
     private Utilisateur utilisateur;
-    private  Spot spot;
+    private  int id_spot;
     private String commentaire;
+    private Timestamp date;
 
     // ==================== Constructeurs ====================
 
@@ -19,20 +23,22 @@ public class Commentaire {
      * Constructeur par défaut
      */
     public Commentaire(){
+        date = new Timestamp(System.currentTimeMillis());
     }
 
     /**
      * Constructeur
      * @param id
      * @param utilisateur
-     * @param spot
+     * @param id_spot
      * @param commentaire
      */
-    public Commentaire(int id, Utilisateur utilisateur, Spot spot, String commentaire){
+    public Commentaire(int id, Utilisateur utilisateur, int id_spot, String commentaire, Timestamp date){
         this.id = id;
         this.utilisateur = utilisateur;
-        this.spot = spot;
+        this.id_spot = id_spot;
         this.commentaire = commentaire;
+        this.date = date;
     }
 
     // ==================== Getters/Setters ====================
@@ -53,12 +59,12 @@ public class Commentaire {
         this.utilisateur = utilisateur;
     }
 
-    public Spot getSpot() {
-        return spot;
+    public int getIdSpot() {
+        return id_spot;
     }
 
-    public void setSpot(Spot spot) {
-        this.spot = spot;
+    public void setIdSpot(int id_spot) {
+        this.id_spot = id_spot;
     }
 
     public String getCommentaire() {
@@ -69,6 +75,14 @@ public class Commentaire {
         this.commentaire = commentaire;
     }
 
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
+    }
+
     // ==================== Methodes ====================
 
 
@@ -76,9 +90,10 @@ public class Commentaire {
     public String toString() {
         return "Commentaire{" +
                 "id=" + id +
-                ", user=" + utilisateur +
-                ", spot=" + spot +
+                ", utilisateur=" + utilisateur +
+                ", id_spot=" + id_spot +
                 ", commentaire='" + commentaire + '\'' +
+                ", date=" + date +
                 '}';
     }
 }

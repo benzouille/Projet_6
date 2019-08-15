@@ -26,6 +26,8 @@ public class SpotRM implements RowMapper<Spot> {
     DaoImage daoImageImpl;
     @Inject
     DaoDepartement daoDepartementImpl;
+    @Inject
+    DaoCommentaire daoCommentaireImpl;
 
     @Override
     public Spot mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -42,6 +44,9 @@ public class SpotRM implements RowMapper<Spot> {
         //Departement
         Departement departement = daoDepartementImpl.read(rs.getInt("id_departement"));
 
+        //Commentaires
+        ArrayList<Commentaire> commentaires = (ArrayList<Commentaire>) daoCommentaireImpl.readAllBySpot(rs.getInt("id"));
+
         Spot vSpot = new Spot();
         vSpot.setId(rs.getInt("id"));
         vSpot.setCreateur(createur);
@@ -52,6 +57,7 @@ public class SpotRM implements RowMapper<Spot> {
         vSpot.setDescription(rs.getString("description"));
         vSpot.setSecteurs(secteurs);
         vSpot.setImages(images);
+        vSpot.setCommentaires(commentaires);
         return vSpot;
 
     }

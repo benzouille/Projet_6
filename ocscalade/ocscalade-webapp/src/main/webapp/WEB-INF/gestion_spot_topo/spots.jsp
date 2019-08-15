@@ -37,9 +37,9 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-6">
             <c:if test="${ !empty sessionScope.utilisateur}">
-                <form class="form-inline pull-right" action="spots/spot" method="post">
+                <div class="form-inline pull-right">
                     <a href="#" class="btn btn-outline-success btn-lg" role="button" data-toggle="modal" data-target="#nouveauSpotModal"><i class="fa fa-plus"></i> Nouveau</a>
-                </form>
+                </div>
                 <!-- Modal -->
                 <div class="modal fade" id="nouveauSpotModal" tabindex="-1" role="dialog" aria-labelledby="nouveauSpotModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -50,7 +50,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="spots/spot" method="post" enctype="multipart/form-data">
+                            <form action="spots/spot" method="post">
                                 <div class="modal-body">
                                     <div class="container-fluid">
                                         <div class="form-row">

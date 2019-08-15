@@ -27,13 +27,17 @@ public class DaoDifficulteImpl extends AbstractDao implements DaoDifficulte {
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Difficulte> vListDifficulte = vJdbcTemplate.query(vSQL, difficulteRM);
         Difficulte vDifficulte = vListDifficulte.get(0);
-
         return vDifficulte;
     }
 
     @Override
-    public Difficulte read(String code) {
-        return null;
+    public Difficulte readByDifficulte(String difficulte) {
+        String vSQL = "SELECT * FROM difficulte WHERE difficulte="+"'"+difficulte+"'";
+
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Difficulte> vListDifficulte = vJdbcTemplate.query(vSQL, difficulteRM);
+        Difficulte vDifficulte = vListDifficulte.get(0);
+        return vDifficulte;
     }
 
     @Override

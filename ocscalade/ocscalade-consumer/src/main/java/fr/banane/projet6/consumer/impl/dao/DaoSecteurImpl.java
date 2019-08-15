@@ -30,7 +30,7 @@ public class DaoSecteurImpl extends AbstractDao implements DaoSecteur {
 
     @Override
     public boolean create(Secteur obj) {
-        String vSQL = "INSERT INTO secteur (nom, id_spot, description) VALUES (:nom, :id_secteur, :descrption)";
+        String vSQL = "INSERT INTO secteur (nom, id_spot, description) VALUES (:nom, :id_spot, :description)";
 
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("nom", obj.getNom(), Types.VARCHAR);
@@ -54,7 +54,11 @@ public class DaoSecteurImpl extends AbstractDao implements DaoSecteur {
 
     @Override
     public Secteur read(String code) {
-        return null;
+        String vSQL = "SELECT * FROM secteur WHERE nom="+"'"+code+"'";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Secteur> vListSecteur = vJdbcTemplate.query(vSQL, secteurRM);
+        Secteur vSecteur = vListSecteur.get(0);
+        return vSecteur;
     }
 
     @Override

@@ -51,7 +51,7 @@ public class SecteurManagerImpl extends AbstractManager implements SecteurManage
 
     @Override
     public Secteur getSecteurByName(String name) {
-        return null;
+        return getDaoFactory().getDaoSecteur().read(name);
     }
 
     @Override

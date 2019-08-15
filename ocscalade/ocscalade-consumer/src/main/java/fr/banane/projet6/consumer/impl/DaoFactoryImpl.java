@@ -139,13 +139,12 @@ public class DaoFactoryImpl implements DaoFactory {
 
     @Override
     public DaoTopo getDaoTopo() {
-        //return daoTopoImpl;
-        return null;
+        return daoTopoImpl;
     }
 
     @Override
     public void setDaoTopo(DaoTopo pDaoTopo) {
-        //this.daoTopoImpl = pDaoTopo;
+        this.daoTopoImpl = pDaoTopo;
     }
 
     @Override

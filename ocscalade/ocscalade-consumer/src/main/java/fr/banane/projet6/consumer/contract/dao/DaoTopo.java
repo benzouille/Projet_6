@@ -25,9 +25,11 @@ public interface DaoTopo {
      * @return T
      */
     Topo read(int id);
-    Topo read(String code);
+    Topo read(String name);
     List<Topo> readAll();
-    List<Topo> readAll(int id);
+    List<Topo> readAllByCreateur(int id_utilisateur);
+    List<Topo> readAllByDepartementSpot(int id_dep);
+    List<Topo> readAllByReservable();
 
     /**
      * Méthode de mise à jour

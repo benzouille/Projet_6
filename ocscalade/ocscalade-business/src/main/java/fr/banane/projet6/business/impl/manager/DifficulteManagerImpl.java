@@ -20,7 +20,12 @@ public class DifficulteManagerImpl extends AbstractManager implements Difficulte
     }
 
     @Override
-    public Difficulte getDifficulte(Integer pId) throws NotFoundException {
+    public Difficulte getDifficulteById(Integer pId) throws NotFoundException {
         return getDaoFactory().getDaoDifficulte().read(pId);
+    }
+
+    @Override
+    public Difficulte getDifficulte(String difficulte) {
+        return getDaoFactory().getDaoDifficulte().readByDifficulte(difficulte);
     }
 }

@@ -1,6 +1,6 @@
 package fr.banane.projet6.model.bean;
 
-import java.util.ArrayList;
+import java.sql.Timestamp;
 
 /**
  * Objet metier représentant un Topo
@@ -13,8 +13,9 @@ public class Topo {
     private Utilisateur utilisateur;
     private String nom;
     private String description;
-    private String date_creation;
+    private Timestamp date_creation;
     private Spot spot;
+    private Boolean reservable;
 
     // ==================== Constructeurs ====================
 
@@ -22,6 +23,7 @@ public class Topo {
      * Constructeur par défaut
      */
     public Topo(){
+        reservable = false;
     }
 
     /**
@@ -33,13 +35,14 @@ public class Topo {
      * @param date_creation -
      * @param spot -
      */
-    public Topo(int id, Utilisateur utilisateur,String nom, String description, String date_creation, Spot spot) {
+    public Topo(int id, Utilisateur utilisateur,String nom, String description, Timestamp date_creation, Spot spot, Boolean reservable) {
         this.id = id;
         this.utilisateur = utilisateur;
         this.nom =nom;
         this.description = description;
         this.date_creation = date_creation;
         this.spot = spot;
+        this.reservable = reservable;
     }
 
     // ==================== Getters/Setters ====================
@@ -76,11 +79,11 @@ public class Topo {
         this.description = description;
     }
 
-    public String getDate_creation() {
+    public Timestamp getDate_creation() {
         return date_creation;
     }
 
-    public void setDate_creation(String date_creation) {
+    public void setDate_creation(Timestamp date_creation) {
         this.date_creation = date_creation;
     }
 
@@ -88,8 +91,16 @@ public class Topo {
         return spot;
     }
 
-    public void setSpot(Spot spots) {
+    public void setSpot(Spot spot) {
         this.spot = spot;
+    }
+
+    public Boolean getReservable() {
+        return reservable;
+    }
+
+    public void setReservable(Boolean reservable) {
+        this.reservable = reservable;
     }
 
     // ==================== Methodes ====================
@@ -98,11 +109,12 @@ public class Topo {
     public String toString() {
         return "Topo{" +
                 "id=" + id +
-                ", Utilisateur=" + utilisateur +
+                ", utilisateur=" + utilisateur +
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
-                ", date_creation='" + date_creation + '\'' +
+                ", date_creation=" + date_creation +
                 ", spot=" + spot +
+                ", reservable=" + reservable +
                 '}';
     }
 }
