@@ -48,7 +48,7 @@
                         <a class="nav-link" href="/ocscalade/profil"><i class="fa fa-user" style="font-size:25px"></i> Profil</a>
                     </li>
                     <li style="margin-top: 5px">
-                        <form class="form-inline" action="index" method="post">
+                        <form class="form-inline" action="index" method="post" style="margin-bottom: 0px;">
                             <button class="btn btn-outline-secondary btn-outline-danger " type="submit" name="_disconnect_"><i class="fa fa-power-off"></i> Deconnexion</button>
                         </form>
                     </li>

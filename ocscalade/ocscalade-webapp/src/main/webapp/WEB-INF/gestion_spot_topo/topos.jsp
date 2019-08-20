@@ -39,57 +39,57 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-6">
             <c:if test="${ !empty sessionScope.utilisateur}">
                 <form class="form-inline pull-right" action="topos" method="post">
-                    <a href="#" class="btn btn-outline-success btn-lg" role="button" data-toggle="modal" data-target="#spotsModal"><i class="fa fa-plus"></i> Nouveau</a>
+                    <a href="#" class="btn btn-outline-success btn-lg" role="button" data-toggle="modal" data-target="#toposModal"><i class="fa fa-plus"></i> Nouveau</a>
                 </form>
                 <!-- Modal -->
-                <div class="modal fade" id="spotsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="toposModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Nouveau topo</h5>
+                                <h5 class="modal-title" id="ModalLabel">Nouveau topo</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <form>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="nom">Nom</label>
-                                                <input type="text" class="form-control" id="nom" placeholder="nom">
+                            <form action="topos/topo" method="post">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="nom">Nom</label>
+                                                    <input type="text" class="form-control" name="nom" id="nom" placeholder="nom">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="spot">Spot</label>
-                                                <select id="spot" class="form-control">
-                                                    <option selected>Choose...</option>
-                                                    <c:forEach items="${vListSpots}" var="spot">
-                                                        <option><c:out value="${spot.nom}"/></option>
-                                                    </c:forEach>
-                                                </select>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="spot">Spot</label>
+                                                    <select id="spot" name="spot" class="form-control">
+                                                        <option selected>Choose...</option>
+                                                        <c:forEach items="${vListSpots}" var="spot">
+                                                            <option><c:out value="${spot.nom}"/></option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="gridCheck">
-                                                <label class="form-check-label" for="gridCheck">
-                                                    Mettre à disposition des utilisateurs
-                                                </label>
+                                            <div class="form-group">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="reservable" id="gridCheck">
+                                                    <label class="form-check-label" for="gridCheck">
+                                                        Mettre à disposition des utilisateurs
+                                                    </label>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputDescription">Description</label>
-                                            <textarea class="form-control" id="inputDescription" rows="6" placeholder="400 caractères maxi."></textarea>
-                                        </div>
-                                    </form>
+                                            <div class="form-group">
+                                                <label for="inputDescription">Description</label>
+                                                <textarea class="form-control" name="description" id="inputDescription" rows="6" placeholder="400 caractères maxi."></textarea>
+                                            </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                <button type="button" class="btn btn-primary">Enregistrer</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <input type="submit" name="_nouveau_topo_" value="Enregistrer" class="btn btn-primary"/>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -113,20 +113,20 @@
             </thead>
             <tbody>
             <c:forEach items="${vListTopos}" var="topo">
-            <tr>
-                <form action="topos/topo" method="post">
-                    <input type="hidden" name="idTopo" value="${topo.id}"/>
-                    <td><input class="link link-btn" type="submit" value="${topo.nom}"/></td>
-                </form>
-                <td>${topo.utilisateur.pseudo}</td>
-                <form action="spots/spot" method="post">
-                    <input type="hidden" name="idSpot" value="${topo.spot.id}"/>
-                <td><input class="link link-btn" type="submit" value="${topo.spot.nom}"/> <a class="link" type="submit" href="#">${topo.spot.nom}</a></td>
-                </form>
-                <td>${topo.spot.departement.nom}</td>
-                <td>${topo.reservable}</td>
-                <td>${topo.date_creation}</td>
-            </tr>
+                <tr>
+                    <form action="topos/topo" method="post">
+                        <input type="hidden" name="idTopo" value="${topo.id}"/>
+                        <td class="link-td-btn"><input class="link link-btn" type="submit" value="${topo.nom}"/></td>
+                    </form>
+                    <td>${topo.utilisateur.pseudo}</td>
+                    <form action="spots/spot" method="post">
+                        <input type="hidden" name="idSpot" value="${topo.spot.id}"/>
+                        <td class="link-td-btn"><input class="link link-btn" type="submit" value="${topo.spot.nom}"/></td>
+                    </form>
+                    <td>${topo.spot.departement.nom}</td>
+                    <td>${topo.reservable}</td>
+                    <td>${topo.date_creation}</td>
+                </tr>
             </c:forEach>
             <tr>
                 <td><a class="link" href="/ocscalade/topos/topo">Fin de la galère</a></td>

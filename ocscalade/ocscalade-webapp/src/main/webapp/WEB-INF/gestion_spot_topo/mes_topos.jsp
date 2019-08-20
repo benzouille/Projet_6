@@ -39,59 +39,50 @@
         <table class="table table-hover  table-sm">
             <thead class="thead-dark">
             <tr>
-                <th scope="col"></th>
                 <th scope="col">Nom</th>
-                <th scope="col">Département</th>
                 <th scope="col">Disponible</th>
             </tr>
             </thead>
             <tbody>
+            <c:forEach items="${vListMesTopos}" var="topo">
+                <tr>
+                    <form action="topo" method="post">
+                        <input type="hidden" name="idTopo" value="${topo.id}"/>
+                        <td class="link-td-btn"><input class="link link-btn" type="submit" value="${topo.nom}"/></td>
+                    </form>
+                    <td>
+                        <div class="custom-control custom-switch">
+                            <form action="topos/topo" method="post">
+                                <c:choose>
+                                    <c:when test="${topo.reservable}">
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch${topo.id}" checked>
+                                        <label class="custom-control-label" for="customSwitch${topo.id}"></label>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch${topo.id}">
+                                        <label class="custom-control-label" for="customSwitch${topo.id}"></label>
+                                    </c:otherwise>
+                                </c:choose>
+                                <input type="hidden" name="idTopo" value="${topo.id}"/>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </c:forEach>
             <tr>
-                <th scope="row">1</th>
                 <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
                 <td>
                     <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                        <label class="custom-control-label" for="customSwitch1"></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch2" checked>
                         <label class="custom-control-label" for="customSwitch2"></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch3">
-                        <label class="custom-control-label" for="customSwitch3"></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch4">
-                        <label class="custom-control-label" for="customSwitch4"></label>
                     </div>
                 </td>
             </tr>
             </tbody>
         </table>
+        <div class="form-inline pull-right">
+            <a href="#" class="btn btn-outline-success" role="button"><i class="fa fa-save"></i> Enregistrer</a>
+        </div>
     </div>
 
     <hr class="my-4">
@@ -101,60 +92,52 @@
         <table class="table table-hover table-sm">
             <thead class="thead-dark">
             <tr>
-                <th scope="col"></th>
                 <th scope="col">Nom</th>
                 <th scope="col">Demandeur</th>
                 <th scope="col">Date début</th>
                 <th scope="col">Date fin</th>
+                <th scope="col">Message</th>
                 <th scope="col">Prêter</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>01/01/2001</td>
-                <td>02/02/2001</td>
-                <td>
-                    <button type="button" class="btn btn-success"><i class="fa fa-check-square"></i> Accepter</button>
-                    <button type="button" class="btn btn-danger"><i class="fa fa-window-close"> </i> Refuser</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>01/01/2001</td>
-                <td>02/02/2001</td>
-                <td>
-                    <button type="button" class="btn btn-success"><i class="fa fa-check-square"></i> Accepter</button>
-                    <button type="button" class="btn btn-danger"><i class="fa fa-window-close"> </i> Refuser</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>01/01/2001</td>
-                <td>02/02/2001</td>
-                <td>
-                    <button type="button" class="btn btn-success"><i class="fa fa-check-square"></i> Accepter</button>
-                    <button type="button" class="btn btn-danger"><i class="fa fa-window-close"> </i> Refuser</button>
-                </td>
+            <c:set var="i" value="0" scope="page"/>
+            <c:forEach items="${vListDemandeReservations}" var="reservation">
+                <tr>
+                    <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
+                    <td>${reservation.locataire.pseudo}</td>
+                    <td>${reservation.date_debut}</td>
+                    <td>${reservation.date_fin}</td>
+                    <td>${reservation.message}</td>
+                    <td>
+                        <div class="row" style="margin-bottom: 2px">
+                            <div class="col-xl-6 col-md-12" style="padding: 0px">
+                                <form action="mes_topos" method="post" style="margin-bottom: 0px">
+                                    <input type="hidden" name="id_reservation_accepte" value="${reservation.id}">
+                                    <input type="submit" name="_accepte_" id="_accepte_${reservation.id}_" class="btn btn-success btn-sm" value="Accepter"/>
+                                </form>
+                            </div>
+                            <div class="col-xl-6 col-md-12" style="padding: 0px">
+                                <form action="mes_topos" method="post" style="margin-bottom: 0px">
+                                    <input type="hidden" name="id_reservation_refus" value="${reservation.id}">
+                                    <input type="submit" name="_accepte_" id="_accepte_${reservation.id}_" class="btn btn-danger btn-sm" value="Refuser" style="padding-left: 12px; padding-right: 12px"/>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
 
-            </tr>
+                </tr>
+            </c:forEach>
             <tr>
-                <th scope="row">1</th>
                 <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
                 <td>Admin</td>
                 <td>01/01/2001</td>
                 <td>02/02/2001</td>
+                <td>message</td>
                 <td>
                     <button type="button" class="btn btn-success"><i class="fa fa-check-square"></i> Accepter</button>
-                    <button type="button" class="btn btn-danger"><i class="fa fa-window-close"> </i> Refuser</button>
+                    <button type="button" class="btn btn-danger"><i class="fa fa-window-close" > </i> Refuser</button>
                 </td>
-
             </tr>
             </tbody>
         </table>

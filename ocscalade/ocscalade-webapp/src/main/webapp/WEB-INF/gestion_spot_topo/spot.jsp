@@ -83,43 +83,46 @@
                         </c:forEach>
                     </ul>
                     <div>
-                        <div class="form-inline pull-right">
-                            <a href="#" class="btn btn-outline-success" role="button" style="margin-top: 10px" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Nouveau secteur</a>
-                        </div>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Nouveau secteur</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form action="spot/secteur" method="post">
-                                        <div class="modal-body">
-                                            <div class="container-fluid">
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6">
-                                                        <label for="nom">Nom</label>
-                                                        <input type="text" class="form-control" name="nom" id="nom" placeholder="nom"/>
+                        <c:if test="${ !empty sessionScope.utilisateur && sessionScope.utilisateur.pseudo == spot.createur.pseudo}">
+                            <div class="form-inline pull-right">
+                                <a href="#" class="btn btn-outline-success" role="button" style="margin-top: 10px" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Nouveau secteur</a>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Nouveau secteur</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="spot/secteur" method="post">
+                                            <div class="modal-body">
+                                                <div class="container-fluid">
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label for="nom">Nom</label>
+                                                            <input type="text" class="form-control" name="nom" id="nom" placeholder="nom"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputDescription">Description</label>
+                                                        <textarea class="form-control" id="inputDescription" name="description" rows="6" placeholder="1000 caractères maxi."></textarea>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="inputDescription">Description</label>
-                                                    <textarea class="form-control" id="inputDescription" name="description" rows="6" placeholder="1000 caractères maxi."></textarea>
-                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <input type="hidden" name="id_spot" value="${spot.id}"/>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                            <input type="submit" name="_nouveau_secteur_" value="Enregistrer" class="btn btn-primary"/>
-                                        </div>
-                                    </form>
+                                            <div class="modal-footer">
+                                                <input type="hidden" name="id_spot" value="${spot.id}"/>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                <input type="submit" name="_nouveau_secteur_" value="Enregistrer" class="btn btn-primary"/>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </c:if>
                     </div>
                 </div>
             </div>
@@ -172,75 +175,66 @@
             </div>
         </div>
         <c:forEach items="${spot.commentaires}" var="commentaire">
-        <div class="card border-light mb-3">
-            <div class="row no-gutters">
-                <div class="card-header row col-md-3" style="margin-left: 0px">
-                    <div class="col-6 col-md-12 col-lg-12">
-                        <h6>${commentaire.utilisateur.pseudo}</h6>
+            <div class="card border-light mb-3">
+                <div class="row no-gutters">
+                    <div class="card-header row col-md-3" style="margin-left: 0px">
+                        <div class="col-6 col-md-12 col-lg-12">
+                            <h6>${commentaire.utilisateur.pseudo}</h6>
+                        </div>
+                        <div class="col-6 col-md-12 col-lg-12">
+                            <div class="pull-right pull-bottom">
+                                <p class="card-text"><small class="text-muted"> Le ${commentaire.date}</small></p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-12 col-lg-12">
-                        <div class="pull-right pull-bottom">
-                            <p class="card-text"><small class="text-muted"> Le ${commentaire.date}</small></p>
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <p class="card-text">${commentaire.commentaire}</p>
+                            <c:if test="${sessionScope.utilisateur.pseudo == commentaire.utilisateur.pseudo || sessionScope.utilisateur.privilege.id==2 || sessionScope.utilisateur.privilege.id==3}">
+                                <div class="row pull-right" style="margin-bottom: 5px">
+                                    <form action="spots/spot" method="post" style="margin-right: 5px">
+                                        <a href="#" class="btn btn-outline-secondary btn-sm" role="button" data-toggle="modal" data-target="#modalEdit${commentaire.id}">Editer</a>
+                                    </form>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modalEdit${commentaire.id}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalLabel">Modifier commentaire</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="spot" method="post">
+                                                    <div class="modal-body">
+                                                        <div class="container-fluid">
+                                                            <div class="form-group">
+                                                                <label for="inputDescription">Commentaire</label>
+                                                                <textarea class="form-control" id="modifier_commentaire" name="modifier_commentaire" rows="6" >${commentaire.commentaire}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                        <input type="hidden" name="id_modifier_commentaire" value="${commentaire.id}">
+                                                        <input type="submit" name="_modifier_commentaire_" value="Modifier" class="btn btn-primary"/>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <form action="spot" method="post">
+                                        <input type="hidden" name="id_commentaire" value="${commentaire.id}">
+                                        <input type="submit" name="_supprimer_commentaire_" class="btn btn-outline-secondary btn-sm" value="Supprimer"/>
+                                    </form>
+                                </div>
+                            </c:if>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9">
-                    <div class="card-body">
-                        <p class="card-text">${commentaire.commentaire}</p>
-                        <c:if test="${sessionScope.utilisateur==commentaire.utilisateur || sessionScope.utilisateur.privilege.id==2 || sessionScope.utilisateur.privilege.id==3}">
-                            <div class="pull-right" style="margin-bottom: 5px">
-                                <%--<button type="button" class="btn btn-outline-secondary btn-sm">Editer</button>--%>
-
-                                <form action="spots/spot" method="post">
-                                    <a href="#" class="btn btn-outline-secondary btn-sm" role="button" data-toggle="modal" data-target="#modalEdit${commentaire.id}">Editer</a>
-                                </form>
-                                <!-- Modal -->
-                                <div class="modal fade" id="modalEdit${commentaire.id}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalLabel">Modifier commentaire</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form action="spot" method="post">
-                                                <div class="modal-body">
-                                                    <div class="container-fluid">
-                                                        <div class="form-group">
-                                                            <label for="inputDescription">Commentaire</label>
-                                                            <textarea class="form-control" id="modifier_commentaire" name="modifier_commentaire" rows="6" >${commentaire.commentaire}</textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                    <input type="hidden" name="id_modifier_commentaire" value="${commentaire.id}">
-                                                    <input type="submit" name="_modifier_commentaire_" value="Modifier" class="btn btn-primary"/>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <form action="spot" method="post">
-                                    <input type="hidden" name="id_commentaire" value="${commentaire.id}">
-                                    <input type="submit" name="_supprimer_commentaire_" class="btn btn-outline-secondary btn-sm" value="Supprimer"/>
-                                </form>
-
-                            </div>
-                        </c:if>
-                    </div>
-                </div>
             </div>
-        </div>
         </c:forEach>
-<%--<c:forEach items="${spot.commentaires}" var="commentaire">--%>
-    <%--<p class="Banane">${commentaire.utilisateur.pseudo}</p>--%>
-    <%--<p class="Banane1">${commentaire.commentaire}</p>--%>
-<%--</c:forEach>--%>
-
-
     </div>
 </div>
 

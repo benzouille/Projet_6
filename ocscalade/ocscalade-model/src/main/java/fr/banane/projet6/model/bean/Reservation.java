@@ -12,10 +12,13 @@ public class Reservation {
 
     // ==================== Attributs ====================
     private int id;
-    private int id_topo;
-    private int id_user_locataire;
+    private Topo topo;
+    private Utilisateur locataire;
     private Timestamp date_debut;
     private Timestamp date_fin;
+    private String message;
+    private boolean accepte;
+    private boolean traite;
 
     // ==================== Constructeurs ====================
     /**
@@ -27,17 +30,23 @@ public class Reservation {
     /**
      * Constructeur
      * @param id -
-     * @param id_topo -
-     * @param id_user_locataire -
+     * @param topo -
+     * @param locataire -
      * @param date_debut -
      * @param date_fin -
+     * @param message -
+     * @param accepte -
+     * @param traite -
      */
-    public Reservation(int id, int id_topo, int id_user_locataire, Timestamp date_debut, Timestamp date_fin) {
+    public Reservation(int id, Topo topo, Utilisateur locataire, Timestamp date_debut, Timestamp date_fin, String message, boolean accepte, boolean traite) {
         this.id = id;
-        this.id_topo = id_topo;
-        this.id_user_locataire = id_user_locataire;
+        this.topo = topo;
+        this.locataire = locataire;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
+        this.message = message;
+        this.accepte = accepte;
+        this.traite = traite;
     }
 
 // ==================== Getters/Setters ====================
@@ -50,20 +59,20 @@ public class Reservation {
         this.id = id;
     }
 
-    public int getId_topo() {
-        return id_topo;
+    public Topo getTopo() {
+        return topo;
     }
 
-    public void setId_topo(int id_topo) {
-        this.id_topo = id_topo;
+    public void setTopo(Topo topo) {
+        this.topo = topo;
     }
 
-    public int getId_user_locataire() {
-        return id_user_locataire;
+    public Utilisateur getLocataire() {
+        return locataire;
     }
 
-    public void setId_user_locataire(int id_user_locataire) {
-        this.id_user_locataire = id_user_locataire;
+    public void setLocataire(Utilisateur locataire) {
+        this.locataire = locataire;
     }
 
     public Timestamp getDate_debut() {
@@ -82,16 +91,43 @@ public class Reservation {
         this.date_fin = date_fin;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public boolean isAccepte() {
+        return accepte;
+    }
+
+    public void setAccepte(boolean accepte) {
+        this.accepte = accepte;
+    }
+
+    public boolean isTraite() {
+        return traite;
+    }
+
+    public void setTraite(boolean traite) {
+        this.traite = traite;
+    }
+
     // ==================== Methodes ====================
 
     @Override
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-                ", id_topo=" + id_topo +
-                ", id_user_locataire=" + id_user_locataire +
+                ", topo=" + topo.getNom() +
+                ", locataire=" + locataire.getPseudo() +
                 ", date_debut=" + date_debut +
                 ", date_fin=" + date_fin +
+                ", message=" + message +
+                ", accepte=" + accepte +
+                ", traite=" + traite +
                 '}';
     }
 }

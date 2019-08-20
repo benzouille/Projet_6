@@ -34,6 +34,8 @@ public class ManagerFactoryImpl implements ManagerFactory {
     private VoieManager voieManager;
     @Inject
     private TopoManager topoManager;
+    @Inject
+    private ReservationManager reservationManager;
 
     //--GETTER-SETTER
     @Override
@@ -73,7 +75,7 @@ public class ManagerFactoryImpl implements ManagerFactory {
 
     @Override
     public void setImageManager(ImageManager pManager) {
-
+        //TODO a remplir
     }
 
     @Override
@@ -88,12 +90,12 @@ public class ManagerFactoryImpl implements ManagerFactory {
 
     @Override
     public ReservationManager getReservationManager() {
-        return null;
+        return reservationManager;
     }
 
     @Override
     public void setReservationManager(ReservationManager pManager) {
-
+        this.reservationManager = pManager;
     }
 
     @Override

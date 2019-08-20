@@ -82,9 +82,8 @@
                                 </div>
                             </div>
                         </c:forEach>
-
                         <div class="voie">
-                            <c:if test="${ !empty sessionScope.utilisateur}">
+                            <c:if test="${ !empty sessionScope.utilisateur && sessionScope.utilisateur.pseudo == spot.utilisateur.pseudo}">
                                 <div class="form-inline pull-right">
                                     <a href="#" class="btn btn-outline-success" role="button" style="margin-top: 10px" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Nouvelle voie</a>
                                 </div>

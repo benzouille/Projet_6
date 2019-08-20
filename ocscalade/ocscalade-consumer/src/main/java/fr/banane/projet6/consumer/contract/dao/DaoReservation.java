@@ -20,14 +20,15 @@ public interface DaoReservation {
     boolean create(Reservation obj);
 
     /**
-     * Méthode de recherche des informations
+     * Méthodes de recherche des informations
      * @param id
      * @return T
      */
     Reservation read(int id);
-    Reservation read(String code);
     List<Reservation> readAll();
-    List<Reservation> readAll(int id);
+    List<Reservation> readAllByTopo(int id_topo);
+    List<Reservation> readAllByProprietaireTopo(int id_proprietaire);
+    List<Reservation> readAllByLocataire(int id_locataire);
 
     /**
      * Méthode de mise à jour

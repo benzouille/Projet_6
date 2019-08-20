@@ -116,7 +116,7 @@
             </tr>
             <tr>
                 <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Lés Difficultés des pics vogien</a></td>
+                <td><a class="link" href="/ocscalade/topos/topo">Les Difficultés des pics vogien</a></td>
                 <td>88</td>
                 <td><a class="link" href="/ocscalade/spots/spot">Les pics</a></td>
                 <td>Admin</td>
@@ -125,7 +125,7 @@
             </tr>
             <tr>
                 <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Lés Difficultés des pics vogien</a></td>
+                <td><a class="link" href="/ocscalade/topos/topo">Les Difficultés des pics vogien</a></td>
                 <td>88</td>
                 <td><a class="link" href="/ocscalade/spots/spot">Les pics</a></td>
                 <td>Admin</td>
@@ -134,7 +134,7 @@
             </tr>
             <tr>
                 <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Lés Difficultés des pics vogien</a></td>
+                <td><a class="link" href="/ocscalade/topos/topo">Les Difficultés des pics vogien</a></td>
                 <td>88</td>
                 <td><a class="link" href="/ocscalade/spots/spot">Les pics</a></td>
                 <td>Admin</td>
@@ -143,7 +143,7 @@
             </tr>
             <tr>
                 <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Lés Difficultés des pics vogien</a></td>
+                <td><a class="link" href="/ocscalade/topos/topo">Les Difficultés des pics vogien</a></td>
                 <td>88</td>
                 <td><a class="link" href="/ocscalade/spots/spot">Les pics</a></td>
                 <td>Admin</td>

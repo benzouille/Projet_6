@@ -98,13 +98,12 @@ public class DaoFactoryImpl implements DaoFactory {
 
     @Override
     public DaoReservation getDaoReservation() {
-        //return daoReservationImpl;
-        return  null;
+        return daoReservationImpl;
     }
 
     @Override
     public void setDaoReservation(DaoReservation pDaoReservation) {
-        //this.daoReservationImpl = pDaoReservation;
+        this.daoReservationImpl = pDaoReservation;
     }
 
     @Override

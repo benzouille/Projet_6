@@ -50,7 +50,7 @@
                             </c:otherwise>
                         </c:choose>
                         <li class="list-group-item list-group-item-action" style="text-align: center">
-                            <form action="../spots/spot" method="post">
+                            <form class="link-td-btn" action="../spots/spot" method="post">
                                 <input type="hidden" name="idSpot" value="${topo.spot.id}"/>
                                 <input class="link link-btn" type="submit" value="${topo.spot.nom}"/>
                             </form>
@@ -108,13 +108,58 @@
                 </tbody>
             </table>
         </div>
+        <p>le scope ${sessionScope.utilisateur.pseudo}</p>
+        <p>le topo ${topo.utilisateur.pseudo}</p>
+        <p>boolean ${topo.reservable}</p>
+
         <div class="row">
             <div  class="col-lg-12">
-                <c:if test="${ !empty sessionScope.utilisateur}">
+                <c:if test="${ !empty sessionScope.utilisateur && sessionScope.utilisateur.pseudo != topo.utilisateur.pseudo && topo.reservable}">
                     <form class="form-inline pull-right" action="spot" method="post">
-                        <a href="#" class="btn btn-outline-success" role="button"><i class="fa fa-plus"></i> Réserver</a>
+                        <a href="#" class="btn btn-outline-success" role="button" data-toggle="modal" data-target="#topoModal"><i class="fa fa-plus"></i> Réserver</a>
                     </form>
                 </c:if>
+                <!-- Modal -->
+                <div class="modal fade" id="topoModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="ModalLabel">Réserver topo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="topo" method="post">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Date de debut</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="date" name="date_debut" class="form-control" id="date_debut">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Date de fin</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="date" name="date_fin" class="form-control" id="date_fin">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputMessage">Laissez un petit message...</label>
+                                            <textarea class="form-control" name="message" id="inputMessage" rows="6" placeholder="400 caractères maxi."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <input type="submit" name="_reserver_" value="Enregistrer" class="btn btn-primary"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

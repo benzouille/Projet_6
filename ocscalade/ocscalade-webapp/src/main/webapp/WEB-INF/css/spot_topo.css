@@ -46,7 +46,7 @@
     background-color: #60a3bc;
     border-color: #60a3bc;
 }
-.btn-primary a:hover{
+.btn-primary :hover{
     border-color: #60a3bc;
 }
 .cover{
@@ -59,8 +59,10 @@
     background-color: rgba(0,0,0,0);
     border-color: rgb(0, 0, 238);
     border-style: none;
+    padding-right: 0px;
+    padding-left: 0px;
 }
-.link a:hover{
+.link-td-btn input:hover{
     color: #007bff;
 }
 .red{
