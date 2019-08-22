@@ -124,18 +124,10 @@
                         <td class="link-td-btn"><input class="link link-btn" type="submit" value="${topo.spot.nom}"/></td>
                     </form>
                     <td>${topo.spot.departement.nom}</td>
-                    <td>${topo.reservable}</td>
-                    <td>${topo.date_creation}</td>
+                    <td class="disponible">${topo.reservable}</td>
+                    <td class="date">${topo.date_creation}</td>
                 </tr>
             </c:forEach>
-            <tr>
-                <td><a class="link" href="/ocscalade/topos/topo">Fin de la galère</a></td>
-                <td>Coincoin</td>
-                <td><a class="link" href="/ocscalade/spots/spot">Le trou</a></td>
-                <td>83</td>
-                <td>non</td>
-                <td>01/01/2001</td>
-            </tr>
             </tbody>
         </table>
     </div>
@@ -151,6 +143,23 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous">
+</script>
+
+<script type="application/javascript">
+    $(".date").each(function() {
+        gooddate = this.innerText.split(' ')[0].split('-');
+        $(this).text(gooddate[2]+"/"+gooddate[1]+"/"+gooddate[0]);
+    });
+
+    $(".disponible").each(function() {
+        gooddispo = this.innerText;
+        if (gooddispo == 'true') {
+            $(this).text('disponible');
+        }
+        else{
+            $(this).text('indisponible');
+        }
+    });
 </script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"

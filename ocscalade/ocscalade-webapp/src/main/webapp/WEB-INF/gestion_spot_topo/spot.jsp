@@ -183,7 +183,7 @@
                         </div>
                         <div class="col-6 col-md-12 col-lg-12">
                             <div class="pull-right pull-bottom">
-                                <p class="card-text"><small class="text-muted"> Le ${commentaire.date}</small></p>
+                                <p class="card-text"><small class="text-muted date_heure">${commentaire.date}</small></p>
                             </div>
                         </div>
                     </div>
@@ -242,6 +242,14 @@
 <%@ include file="/WEB-INF/header_footer/footer.jsp" %>
 
 <!-- SCRIPTS -->
+<script type="application/javascript">
+    $(".date_heure").each(function() {console.debug(this);gooddate = this.innerText.split(' ')[0].split('-');
+        var goodtime = this.innerText.split(' ')[1]
+        console.debug(goodtime);goodtime = goodtime.split(':')
+        $(this).text(gooddate[2]+"/"+gooddate[1]+"/"+gooddate[0]+" "+goodtime[0]+":"+goodtime[1]
+        );
+    });
+</script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

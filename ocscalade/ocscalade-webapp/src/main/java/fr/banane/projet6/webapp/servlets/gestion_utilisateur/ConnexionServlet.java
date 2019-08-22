@@ -34,12 +34,11 @@ public class ConnexionServlet extends HttpServlet {
                 vUtilisateur = vUtilisateurResource.getUtilisateurByPseudo(pseudo);
                 if(password.equals(vUtilisateur.getPassword())){
                     session.setAttribute("utilisateur", vUtilisateur);
-                    this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+                    this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
                 }
                 else {
                     this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_utilisateur/connexion.jsp").forward(req, resp);
                 }
-                //System.out.println("pseudo : "+pseudo+", password : "+password+".");
         }
     }
 }

@@ -3,8 +3,8 @@ package fr.banane.projet6.webapp.servlets.gestion_spot_topo;
 import fr.banane.projet6.model.bean.*;
 import fr.banane.projet6.webapp.resource.CommentaireResource;
 import fr.banane.projet6.webapp.resource.DepartementResource;
-import fr.banane.projet6.webapp.resource.SecteurResource;
 import fr.banane.projet6.webapp.resource.SpotResource;
+import fr.banane.projet6.webapp.technical.FormatDate;
 import fr.banane.projet6.webapp.technical.TransfertImage;
 
 import javax.servlet.ServletException;
@@ -12,7 +12,6 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Servlet d'un spot liée à la jsp spot corespondante, permet la consultation d'un spot, la création de nouveaux spot, commentaires, ajout d'image.
@@ -30,6 +29,8 @@ public class SpotServlet extends HttpServlet {
 
     private ArrayList<Image> vImages;
     private TransfertImage transfertImage = new TransfertImage();
+
+    private FormatDate formatDate = new FormatDate();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -135,6 +136,7 @@ public class SpotServlet extends HttpServlet {
             vSpot = vSpotResource.getSpot(id_spot);
             //renvoi à la vue
             req.setAttribute("spot", vSpot);
+            req.setAttribute("Temps", formatDate.changeFormatDateHeure(vSpot));
 
             //mise a null de l'objet et des parametres
             vCommentaire = null;
@@ -153,6 +155,7 @@ public class SpotServlet extends HttpServlet {
             vSpot = vSpotResource.getSpot(id_spot);
             //renvoi à la vue
             req.setAttribute("spot", vSpot);
+            req.setAttribute("Temps", formatDate.changeFormatDateHeure(vSpot));
 
             //mise a null de l'objet et des parametres
             vCommentaire = null;
@@ -172,6 +175,7 @@ public class SpotServlet extends HttpServlet {
             vSpot = vSpotResource.getSpot(id_spot);
             //renvoi à la vue
             req.setAttribute("spot", vSpot);
+            req.setAttribute("Temps", formatDate.changeFormatDateHeure(vSpot));
 
             //mise a null de l'objet et des parametres
             vCommentaire = null;
@@ -187,8 +191,12 @@ public class SpotServlet extends HttpServlet {
             vSpot = vSpotResource.getSpot(id_spot);
 
             req.setAttribute("spot", vSpot);
+            req.setAttribute("Temps", formatDate.changeFormatDateHeure(vSpot));
         }
+
+
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/spot.jsp").forward(req, resp);
     }
+
 }

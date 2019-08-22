@@ -66,10 +66,29 @@
     <hr class="my-4">
 
     <div class="row marginBottom">
+        <c:forEach items="${vListSpots}" var="spot">
+            <div class="col-lg-3 col-md-4 col-sm-6" >
+                <div class="card">
+                    <div class="div_image">
+                        <img href="/ocscalade/spots/spot" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <form action="spots/spot" method="post">
+                            <h5 class="card-title">${spot.nom}</h5>
+                            <p class="card-text">${spot.description}</p>
+                            <input type="hidden" name="idSpot" value="${spot.id}"/>
+                            <input type="submit" name="_spot_" id="${spot.id}" class="btn btn-primary stretched-link" value="plus d'information"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+    <div class="row marginBottom">
         <div class="col-lg-3 col-md-4 col-sm-6" >
             <div class="card">
                 <div class="div_image">
-                    <img href="#" src="./images/website/connexion2.jpg" class="card-img-top" alt="...">
+                    <img href="#" src="../images/website/connexion2.jpg" class="card-img-top" alt="...">
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Nom du spot</h5>

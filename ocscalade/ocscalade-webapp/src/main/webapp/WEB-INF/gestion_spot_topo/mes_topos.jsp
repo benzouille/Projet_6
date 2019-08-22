@@ -41,6 +41,7 @@
             <tr>
                 <th scope="col">Nom</th>
                 <th scope="col">Disponible</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -48,41 +49,37 @@
                 <tr>
                     <form action="topo" method="post">
                         <input type="hidden" name="idTopo" value="${topo.id}"/>
-                        <td class="link-td-btn"><input class="link link-btn" type="submit" value="${topo.nom}"/></td>
+                        <td class="link-td-btn"><input class="link link-btn" type="submit" name="idtopo" value="${topo.nom}"/></td>
                     </form>
-                    <td>
-                        <div class="custom-control custom-switch">
-                            <form action="topos/topo" method="post">
+                    <form action="mes_topos" method="post">
+                        <td>
+                            <div class="custom-control custom-switch">
+
                                 <c:choose>
                                     <c:when test="${topo.reservable}">
-                                        <input type="checkbox" class="custom-control-input" id="customSwitch${topo.id}" checked>
+                                        <input type="checkbox" class="custom-control-input" name="topo_dispo" id="customSwitch${topo.id}" checked>
                                         <label class="custom-control-label" for="customSwitch${topo.id}"></label>
                                     </c:when>
                                     <c:otherwise>
-                                        <input type="checkbox" class="custom-control-input" id="customSwitch${topo.id}">
+                                        <input type="checkbox" class="custom-control-input" name="topo_dispo" id="customSwitch${topo.id}">
                                         <label class="custom-control-label" for="customSwitch${topo.id}"></label>
                                     </c:otherwise>
                                 </c:choose>
                                 <input type="hidden" name="idTopo" value="${topo.id}"/>
-                            </form>
-                        </div>
-                    </td>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-inline pull-right">
+                                <input type="submit" class="btn_form btn btn-outline-success btn-sm" name="_topo_dispo_" role="button" value="Enregistrer">
+                            </div>
+                        </td>
+                    </form>
                 </tr>
             </c:forEach>
-            <tr>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch2" checked>
-                        <label class="custom-control-label" for="customSwitch2"></label>
-                    </div>
-                </td>
-            </tr>
             </tbody>
         </table>
-        <div class="form-inline pull-right">
-            <a href="#" class="btn btn-outline-success" role="button"><i class="fa fa-save"></i> Enregistrer</a>
-        </div>
+
+
     </div>
 
     <hr class="my-4">
@@ -98,47 +95,34 @@
                 <th scope="col">Date fin</th>
                 <th scope="col">Message</th>
                 <th scope="col">Prêter</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-            <c:set var="i" value="0" scope="page"/>
             <c:forEach items="${vListDemandeReservations}" var="reservation">
                 <tr>
-                    <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
+                    <form action="topo" method="post">
+                        <input type="hidden" name="idTopo" value="${reservation.topo.id}"/>
+                        <td class="link-td-btn"><input class="link link-btn" type="submit" name="idtopo${reservation.topo.id}" value="${reservation.topo.nom}"/></td>
+                    </form>
                     <td>${reservation.locataire.pseudo}</td>
-                    <td>${reservation.date_debut}</td>
-                    <td>${reservation.date_fin}</td>
+                    <td class="date_debut">${reservation.date_debut}</td>
+                    <td class="date_fin">${reservation.date_fin}</td>
                     <td>${reservation.message}</td>
                     <td>
-                        <div class="row" style="margin-bottom: 2px">
-                            <div class="col-xl-6 col-md-12" style="padding: 0px">
-                                <form action="mes_topos" method="post" style="margin-bottom: 0px">
-                                    <input type="hidden" name="id_reservation_accepte" value="${reservation.id}">
-                                    <input type="submit" name="_accepte_" id="_accepte_${reservation.id}_" class="btn btn-success btn-sm" value="Accepter"/>
-                                </form>
-                            </div>
-                            <div class="col-xl-6 col-md-12" style="padding: 0px">
-                                <form action="mes_topos" method="post" style="margin-bottom: 0px">
-                                    <input type="hidden" name="id_reservation_refus" value="${reservation.id}">
-                                    <input type="submit" name="_accepte_" id="_accepte_${reservation.id}_" class="btn btn-danger btn-sm" value="Refuser" style="padding-left: 12px; padding-right: 12px"/>
-                                </form>
-                            </div>
-                        </div>
+                        <form action="mes_topos" method="post" style="margin-bottom: 3px">
+                            <input type="hidden" name="id_reservation_accepte" value="${reservation.id}">
+                            <input type="submit" name="_accepte_" id="_accepte_${reservation.id}_" class="btn btn-outline-success btn-sm" value="Accepter"/>
+                        </form>
                     </td>
-
+                    <td>
+                        <form action="mes_topos" method="post" style="margin-bottom: 3px">
+                            <input type="hidden" name="id_reservation_refus" value="${reservation.id}">
+                            <input type="submit" name="_accepte_" id="_accepte_${reservation.id}_" class="btn btn-outline-danger btn-sm" value="Refuser" style="padding-left: 12px; padding-right: 12px"/>
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
-            <tr>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>01/01/2001</td>
-                <td>02/02/2001</td>
-                <td>message</td>
-                <td>
-                    <button type="button" class="btn btn-success"><i class="fa fa-check-square"></i> Accepter</button>
-                    <button type="button" class="btn btn-danger"><i class="fa fa-window-close" > </i> Refuser</button>
-                </td>
-            </tr>
             </tbody>
         </table>
     </div>
@@ -150,42 +134,25 @@
         <table class="table table-hover table-sm">
             <thead class="thead-dark">
             <tr>
-                <th scope="col"></th>
                 <th scope="col">Nom</th>
                 <th scope="col">Créateur</th>
                 <th scope="col">Date début</th>
                 <th scope="col">Date fin</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>01/01/2001</td>
-                <td>02/02/2001</td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>01/01/2001</td>
-                <td>02/02/2001</td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>01/01/2001</td>
-                <td>02/02/2001</td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>01/01/2001</td>
-                <td>02/02/2001</td>
-            </tr>
+            <c:forEach items="${vListPrete}" var="pret">
+                <tr>
+                    <form action="topo" method="post">
+                        <input type="hidden" name="idTopo" value="${pret.topo.id}"/>
+                        <td class="link-td-btn"><input class="link link-btn" type="submit" name="idtopo${pret.topo.id}" value="${pret.topo.nom}"/></td>
+                    </form>
+                    <td>${pret.topo.utilisateur.pseudo}</td>
+                    <td class="date_debut">${pret.date_debut}</td>
+                    <td class="date_fin_affichage">${pret.date_fin}</td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
@@ -195,6 +162,25 @@
 <%@ include file="/WEB-INF/header_footer/footer.jsp" %>
 
 <!-- SCRIPTS -->
+<script type="application/javascript">
+    $(".date_fin_affichage").each(function() {
+        var input_date = new Date(this.innerText).getTime();
+        console.debug(input_date);
+        var curr_date = new Date().getTime();
+        console.debug(curr_date);
+        if (input_date <= curr_date) {
+            $(this).after('<td>EXPIRE</td>');
+        }
+    });
+
+    $("[class^=date_]").each(function() {
+        gooddate = this.innerText.split(' ')[0].split('-');
+        $(this).text(gooddate[2]+"/"+gooddate[1]+"/"+gooddate[0]);
+    });
+
+    $(".btn_form").submit()
+</script>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous">

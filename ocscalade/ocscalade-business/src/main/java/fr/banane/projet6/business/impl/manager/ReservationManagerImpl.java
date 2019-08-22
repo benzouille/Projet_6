@@ -64,7 +64,7 @@ public class ReservationManagerImpl extends AbstractManager implements Reservati
         //TODO ajouter les exceptions NotFoundException et DuplicateException
         TransactionStatus vTransactionStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
         try{
-            getDaoFactory().getDaoReservation().equals(vReservation);
+            getDaoFactory().getDaoReservation().update(vReservation);
 
             TransactionStatus vTScommit = vTransactionStatus;
             vTransactionStatus = null;

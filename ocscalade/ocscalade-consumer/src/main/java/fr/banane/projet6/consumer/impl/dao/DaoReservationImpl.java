@@ -65,7 +65,7 @@ public class DaoReservationImpl extends AbstractDao implements DaoReservation {
 
     @Override
     public List<Reservation> readAllByProprietaireTopo(int id_proprietaire) {
-        String vSQL = "SELECT * FROM reservation WHERE traite = false AND id_topo IN (SELECT id_topo FROM topo WHERE id_utilisateur ="+ id_proprietaire +")";
+        String vSQL = "SELECT * FROM reservation WHERE traite = false AND id_topo IN (SELECT topo.id FROM topo WHERE id_utilisateur ="+ id_proprietaire +")";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Reservation> vListReservations = vJdbcTemplate.query(vSQL, reservationRM);
         return vListReservations;

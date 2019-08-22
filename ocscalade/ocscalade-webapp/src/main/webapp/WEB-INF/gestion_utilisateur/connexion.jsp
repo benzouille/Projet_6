@@ -27,7 +27,7 @@
     <div class="row">
         <div class="col-xl-4 col-lg-4 col-md-3"></div>
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-            <form class="box" action="connexion" method="post">
+            <form class="box" action="index" method="post">
                 <h1>Connexion</h1>
                 <input type="text" name="pseudo" placeholder="Pseudo">
                 <input type="password" name="password" placeholder="Mot de passe">

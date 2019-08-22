@@ -3,6 +3,7 @@ package fr.banane.projet6.webapp.servlets;
 import fr.banane.projet6.model.bean.Spot;
 import fr.banane.projet6.model.bean.Utilisateur;
 import fr.banane.projet6.webapp.resource.SpotResource;
+import fr.banane.projet6.webapp.resource.UtilisateurResource;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,8 +16,8 @@ import java.util.List;
 public class IndexServlet extends HttpServlet {
 
     private Utilisateur vUtilisateur;
+    private UtilisateurResource vUtilisateurResource = new UtilisateurResource();
 
-    private Spot vSpot;
     private SpotResource vSpotResource = new SpotResource();
     private List<Spot> vListSpots;
 
@@ -39,7 +40,7 @@ public class IndexServlet extends HttpServlet {
         }
         req.setAttribute("vListSpots", vListSpots);
 
-        this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
 
     @Override
@@ -48,6 +49,33 @@ public class IndexServlet extends HttpServlet {
         if(req.getParameter("_disconnect_") != null) {
             session.invalidate();
         }
-        this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+
+        if(req.getParameter("_ok_") != null) {
+
+            String pseudo = req.getParameter("pseudo");
+            String password = req.getParameter("password");
+
+            vUtilisateur = vUtilisateurResource.getUtilisateurByPseudo(pseudo);
+            if (password.equals(vUtilisateur.getPassword())) {
+                session.setAttribute("utilisateur", vUtilisateur);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+            } else {
+                this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_utilisateur/connexion.jsp").forward(req, resp);
+            }
+        }
+
+        vListSpots = vSpotResource.getListSpot();
+
+        //reduction des déscriptions
+        for (int i = 0; i < vListSpots.size(); i++) {
+            String str;
+            if(vListSpots.get(i).getDescription().length()>31){
+                str = vListSpots.get(i).getDescription().substring(0, 30)+"...";
+                vListSpots.get(i).setDescription(str);
+            }
+        }
+        req.setAttribute("vListSpots", vListSpots);
+
+        this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
 }

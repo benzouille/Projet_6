@@ -7,6 +7,7 @@ import fr.banane.projet6.model.bean.Utilisateur;
 import fr.banane.projet6.webapp.resource.ReservationResource;
 import fr.banane.projet6.webapp.resource.SpotResource;
 import fr.banane.projet6.webapp.resource.TopoResource;
+import fr.banane.projet6.webapp.technical.FormatDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +36,8 @@ public class TopoServlet extends HttpServlet {
     private Reservation vReservation;
     private ReservationResource vReservationResource = new ReservationResource();
     private List<Reservation> vListReservations;
+
+    private FormatDate formatDate = new FormatDate();
 
     String patternFr ="dd-MM-yyyy";
     String patternEn ="yyyy-MM-dd";
@@ -99,19 +102,21 @@ public class TopoServlet extends HttpServlet {
         //--RESERVATION D'UN SPOT
         if(req.getParameter("_reserver_") != null) {
 
-            SimpleDateFormat simpleDateFormatEn = new SimpleDateFormat(patternEn);
 
-            Date date_debut = simpleDateFormatEn.parse(req.getParameter("date_debut"), new ParsePosition(0));
-            Date date_fin = simpleDateFormatEn.parse(req.getParameter("date_fin"), new ParsePosition(0));
 
-            Timestamp ts_debut = new Timestamp(date_debut.getTime());
-            Timestamp ts_fin = new Timestamp(date_fin.getTime());
+            //SimpleDateFormat simpleDateFormatEn = new SimpleDateFormat(patternEn);
+
+            //Date date_debut = simpleDateFormatEn.parse(req.getParameter("date_debut"), new ParsePosition(0));
+            //Date date_fin = simpleDateFormatEn.parse(req.getParameter("date_fin"), new ParsePosition(0));
+
+            //Timestamp ts_debut = new Timestamp(date_debut.getTime());
+            //Timestamp ts_fin = new Timestamp(date_fin.getTime());
 
             vReservation = new Reservation();
             vReservation.setLocataire((Utilisateur)req.getSession().getAttribute("utilisateur"));
             vReservation.setTopo(vTopoResource.getTopo(id_topo));
-            vReservation.setDate_debut(ts_debut);
-            vReservation.setDate_fin(ts_fin);
+            vReservation.setDate_debut(formatDate.stringToTimestamp(req.getParameter("date_debut")));
+            vReservation.setDate_fin(formatDate.stringToTimestamp(req.getParameter("date_fin")));
             vReservation.setMessage(req.getParameter("message"));
             vReservation.setTraite(false);
 
@@ -141,7 +146,7 @@ public class TopoServlet extends HttpServlet {
             req.removeAttribute("reservable");
         }
 
-        //--CONSULTATION D'UN SPOT
+        //--CONSULTATION D'UN TOPO
         if(req.getParameter("idTopo") != null) {
             id_topo = 0;
             id_topo = Integer.valueOf(req.getParameter("idTopo"));

@@ -9,7 +9,7 @@
 <%--HEADER HERE--%>
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-        <a class="navbar-brand" href="/ocscalade">OC'scalade</a>
+        <a class="navbar-brand" href="/ocscalade/index">OC'scalade</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -48,7 +48,7 @@
                         <a class="nav-link" href="/ocscalade/profil"><i class="fa fa-user" style="font-size:25px"></i> Profil</a>
                     </li>
                     <li style="margin-top: 5px">
-                        <form class="form-inline" action="index" method="post" style="margin-bottom: 0px;">
+                        <form class="form-inline" action="/ocscalade/index" method="post" style="margin-bottom: 0px;">
                             <button class="btn btn-outline-secondary btn-outline-danger " type="submit" name="_disconnect_"><i class="fa fa-power-off"></i> Deconnexion</button>
                         </form>
                     </li>

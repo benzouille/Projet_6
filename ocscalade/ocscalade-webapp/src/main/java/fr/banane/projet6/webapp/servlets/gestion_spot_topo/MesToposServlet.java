@@ -41,26 +41,29 @@ public class MesToposServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         //--DISPONIBILITE D'UN TOPO
-        if(req.getParameter("_disponible_") != null) {
-            System.out.println("je passe par DISPONIBILITE D'UN TOPO");
-            //TODO virer le null
-            req.setAttribute("vListTopos", null);
+        if(req.getParameter("_topo_dispo_") != null) {
+            System.out.println(req.getParameter("topo_dispo"));
+            if (req.getParameter("topo_dispo") != null){
+                System.out.println("disponible");
+            }
+            else{
+                System.out.println("indisponible");
+            }
+
+
         }
 
         //--ACCEPTER RESERVATION
         if(req.getParameter("_accepte_") != null) {
-            //System.out.println("je passe par ACCEPTER RESERVATION. Bouton " + req.getParameter("_accepte_"));
 
             if(req.getParameter("id_reservation_accepte") != null){
                 vReservation = vReservationResource.getReservation(Integer.valueOf(req.getParameter("id_reservation_accepte")));
                 vReservation.setAccepte(true);
-
             }
 
             if(req.getParameter("id_reservation_refus") != null){
                 vReservation = vReservationResource.getReservation(Integer.valueOf(req.getParameter("id_reservation_refus")));
                 vReservation.setAccepte(false);
-
             }
 
             vReservation.setTraite(true);
@@ -83,7 +86,10 @@ public class MesToposServlet extends HttpServlet {
         vListDemandeReservations = vReservationResource.getListReservationByProprietaireTopo(utilisateur.getId());
         req.setAttribute("vListDemandeReservations", vListDemandeReservations);
 
+
         vListPrete = vReservationResource.getListReservationByLocataire(utilisateur.getId());
+        for(Reservation reservation : vListPrete){
+        }
         req.setAttribute("vListPrete", vListPrete);
     }
 }
