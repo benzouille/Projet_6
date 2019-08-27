@@ -4,6 +4,7 @@ import fr.banane.projet6.model.bean.Spot;
 import fr.banane.projet6.model.bean.Utilisateur;
 import fr.banane.projet6.webapp.resource.SpotResource;
 import fr.banane.projet6.webapp.resource.UtilisateurResource;
+import fr.banane.projet6.webapp.technical.PasswordDigest;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +54,8 @@ public class IndexServlet extends HttpServlet {
         if(req.getParameter("_ok_") != null) {
 
             String pseudo = req.getParameter("pseudo");
-            String password = req.getParameter("password");
+            String password = PasswordDigest.hashAndSalt(req.getParameter("password"));
+            System.out.println("mpd connexion : " + password);
 
             vUtilisateur = vUtilisateurResource.getUtilisateurByPseudo(pseudo);
             if (password.equals(vUtilisateur.getPassword())) {

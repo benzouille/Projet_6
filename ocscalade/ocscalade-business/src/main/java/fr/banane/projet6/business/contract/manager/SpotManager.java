@@ -49,6 +49,18 @@ public interface SpotManager {
      */
     List<Spot> getListSpotByOfficiel();
 
+
+    /**
+     * Retourne une liste de spote en fonction des critères entrés
+     * @param param1 le departement
+     * @param param2 la difficulte
+     * @param param3 le nombre de secteurs
+     * @param param4 si équipé
+     * @param param5 si officiel
+     * @return une liste de Spot
+     */
+    List<Spot> getListSpotByQuery(String param1, String param2, String param3, boolean param4, boolean param5);
+
     /**
      * Retourne un objet Spot en particulier selon son 'id'.
      *

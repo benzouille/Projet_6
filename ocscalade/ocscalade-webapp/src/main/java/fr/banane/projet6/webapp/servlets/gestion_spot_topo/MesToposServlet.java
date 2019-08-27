@@ -42,14 +42,24 @@ public class MesToposServlet extends HttpServlet {
 
         //--DISPONIBILITE D'UN TOPO
         if(req.getParameter("_topo_dispo_") != null) {
-            System.out.println(req.getParameter("topo_dispo"));
+
+            //appel à la bdd
+            vTopo = vTopoResource.getTopo(Integer.parseInt(req.getParameter("idTopo")));
+
             if (req.getParameter("topo_dispo") != null){
-                System.out.println("disponible");
+                vTopo.setReservable(true);
             }
             else{
-                System.out.println("indisponible");
+                vTopo.setReservable(false);
             }
 
+            vTopoResource.updateTopo(vTopo);
+
+            //mise a null de l'objet et des parametres
+            vTopo = null;
+            req.removeAttribute("_topo_dispo_");
+            req.removeAttribute("idTopo");
+            req.removeAttribute("topo_dispo");
 
         }
 
@@ -68,6 +78,12 @@ public class MesToposServlet extends HttpServlet {
 
             vReservation.setTraite(true);
             vReservationResource.updateReservation(vReservation);
+
+            //mise a null de l'objet et des parametres
+            vReservation = null;
+            req.removeAttribute("_accepte_");
+            req.removeAttribute("id_reservation_accepte");
+            req.removeAttribute("id_reservation_refus");
 
         }
 

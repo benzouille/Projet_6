@@ -35,62 +35,65 @@
     <hr class="my-4">
 
     <div class="recherche">
-            <form>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label>Par départements</label>
-                        <div class="input-group mb-3">
-                            <select class="custom-select" id="departement">
-                                <option selected>Séléctionnez</option>
-                                <c:forEach items="${vListDepartements}" var="departement">
-                                    <option><c:out value="${departement.num}"/></option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label>Par difficultés</label>
-                        <div class="input-group mb-3">
-                            <select class="custom-select" id="inputGroupSelect02">
-                                <option selected>Choose...</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label>Par nombre de secteur</label>
-                        <div class="input-group mb-3">
-                            <select class="custom-select" id="inputGroupSelect03">
-                                <option selected>Choose...</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row col-12">
-                        <div class="form-check col-lg-5 col-md-5" style="margin-left: 15px">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">
-                                Equipement
-                            </label>
-                        </div>
-                        <div class="form-check  col-lg-5 col-md-6*5" style="margin-left: 15px">
-                            <input class="form-check-input pull-right" type="checkbox" value="" id="defaultCheck">
-                            <label class="form-check-label" for="defaultCheck1">
-                                Officiel
-                            </label>
-                        </div>
+        <form action="rechercher" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label>Par départements</label>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" name="departement" id="departement">
+                            <option selected>Séléctionnez</option>
+                            <c:forEach items="${vListDepartements}" var="departement">
+                                <option><c:out value="${departement.num}"/></option>
+                            </c:forEach>
+                        </select>
                     </div>
                 </div>
+
+                <div class="form-group col-md-4">
+                    <label>Par difficultés</label>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" name="difficulte" id="difficulte">
+                            <option selected>Séléctionnez</option>
+                            <c:forEach items="${vListDifficultes}" var="difficulte">
+                                <option><c:out value="${difficulte.difficulte}"/></option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Par nombre de secteur</label>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" name="nbreSecteur" id="nbreSecteur">
+                            <option selected>Séléctionnez</option>
+                            <c:forEach items="${vListNbreSecteurs}" var="nbreSecteur">
+                                <option><c:out value="${nbreSecteur}"/></option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <div class="form-check col-lg-5 col-md-5" style="margin-left: 15px">
+                        <input class="form-check-input" type="checkbox" value="" name="equipement" id="equipement">
+                        <label class="form-check-label" for="equipement">
+                            Equipement
+                        </label>
+                    </div>
+                    <div class="form-check  col-lg-5 col-md-6*5" style="margin-left: 15px">
+                        <input class="form-check-input pull-right" type="checkbox" value="" name="officiel" id="officiel">
+                        <label class="form-check-label" for="officiel">
+                            Officiel
+                        </label>
+                    </div>
+                </div>
+            </div>
             <div class="pull-right" style="margin-top: 20px">
-                <a href="/ocscalade/topos/nouveau" class="btn btn-outline-secondary" role="button"> Rechercher</a>
+                <input type="submit" name="_recherche_spot_" value="Rechercher" class="btn btn-outline-secondary"/>
             </div>
         </form>
-    <br>
-
+        <br>
+        <c:if test="${ !empty erreur}">
+            <p class="red">${ erreur }</p>
+        </c:if>
     </div>
 
     <div>

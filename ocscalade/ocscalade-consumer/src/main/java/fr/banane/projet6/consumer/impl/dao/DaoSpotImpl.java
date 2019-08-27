@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -97,6 +98,56 @@ public class DaoSpotImpl extends AbstractDao implements DaoSpot {
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Spot> vListSpot = vJdbcTemplate.query(vSQL, spotRM);
         return vListSpot;
+    }
+
+    @Override
+    public List<Spot> getListSpotByQuery(String param1, String param2, String param3, boolean param4, boolean param5) {
+        String vSQL = "SELECT * FROM spot WHERE ",
+                vAnd = " AND ",
+                vDepartement = "departement="+param1,
+                vDifficulte = "difficulte="+param2,
+                //TODO PROBLEME comment avoir le nombre de secteur ?
+                vNbreSecteur = "secteur="+param3,
+                vEquipement = "equipement="+param4,
+                vOfficiel = "officiel="+param5;
+
+        ArrayList<String> requeteList = new ArrayList<>();
+        requeteList.add(vSQL);
+
+        if(param1 != null){
+            vSQL += vDepartement;
+        }
+        if(param2 != null){
+            if (requeteList.size() < 2) {
+                requeteList.add(vAnd);
+            }
+            requeteList.add(vDifficulte);
+        }
+        if(param3 != null){
+            if (requeteList.size() < 2) {
+                requeteList.add(vAnd);
+            }
+            requeteList.add(vNbreSecteur);
+        }
+        if(param4){
+            if (requeteList.size() < 2) {
+                requeteList.add(vAnd);
+            }
+            requeteList.add(vEquipement);
+        }
+        if(param5){
+            if (requeteList.size() < 2) {
+                requeteList.add(vAnd);
+            }
+            requeteList.add(vOfficiel);
+        }
+
+        System.out.println(vSQL);
+
+        //JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        //List<Spot> vListSpot = vJdbcTemplate.query(vSQL, spotRM);
+        //return vListSpot;
+        return null;
     }
 
     @Override

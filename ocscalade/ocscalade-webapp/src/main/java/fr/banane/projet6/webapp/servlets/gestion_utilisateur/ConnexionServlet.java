@@ -2,6 +2,7 @@ package fr.banane.projet6.webapp.servlets.gestion_utilisateur;
 
 import fr.banane.projet6.model.bean.Utilisateur;
 import fr.banane.projet6.webapp.resource.UtilisateurResource;
+import fr.banane.projet6.webapp.technical.PasswordDigest;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,17 +29,18 @@ public class ConnexionServlet extends HttpServlet {
 
         if(req.getParameter("_ok_") != null) {
 
-                String pseudo = req.getParameter("pseudo");
-                String password = req.getParameter("password");
+            String pseudo = req.getParameter("pseudo");
+            String password = PasswordDigest.hashAndSalt(req.getParameter("password"));
+            System.out.println("mpd connexion : " + password);
 
-                vUtilisateur = vUtilisateurResource.getUtilisateurByPseudo(pseudo);
-                if(password.equals(vUtilisateur.getPassword())){
-                    session.setAttribute("utilisateur", vUtilisateur);
-                    this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
-                }
-                else {
-                    this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_utilisateur/connexion.jsp").forward(req, resp);
-                }
+            vUtilisateur = vUtilisateurResource.getUtilisateurByPseudo(pseudo);
+            if(password.equals(vUtilisateur.getPassword())){
+                session.setAttribute("utilisateur", vUtilisateur);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+            }
+            else {
+                this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_utilisateur/connexion.jsp").forward(req, resp);
+            }
         }
     }
 }

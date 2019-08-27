@@ -2,6 +2,7 @@ package fr.banane.projet6.webapp.servlets.gestion_utilisateur;
 
 import fr.banane.projet6.model.bean.Utilisateur;
 import fr.banane.projet6.webapp.resource.UtilisateurResource;
+import fr.banane.projet6.webapp.technical.PasswordDigest;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,8 +26,8 @@ public class NouvelUtilisateurServlet extends HttpServlet {
             Utilisateur vUtilisateur = new Utilisateur();
             vUtilisateur.setPseudo(req.getParameter("pseudo"));
             vUtilisateur.setEmail(req.getParameter("email"));
-            vUtilisateur.setPassword(req.getParameter("password"));
-
+            vUtilisateur.setPassword(PasswordDigest.hashAndSalt(req.getParameter("password")));
+            System.out.println("mpd inscription : " + PasswordDigest.hashAndSalt(req.getParameter("password")));
             if(vUtilisateurResource.utilisateurExist(vUtilisateur)) {
                 vUtilisateurResource.newUtilisateur(vUtilisateur);
                 this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_utilisateur/connexion.jsp").forward(req, resp);

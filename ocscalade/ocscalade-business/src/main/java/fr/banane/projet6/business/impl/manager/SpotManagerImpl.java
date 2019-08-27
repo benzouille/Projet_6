@@ -56,6 +56,11 @@ public class SpotManagerImpl extends AbstractManager implements SpotManager {
     }
 
     @Override
+    public List<Spot> getListSpotByQuery(String param1, String param2, String param3, boolean param4, boolean param5) {
+        return getDaoFactory().getDaoSpot().getListSpotByQuery(param1, param2, param3, param4, param5);
+    }
+
+    @Override
     public Spot getSpot(Integer pId) {
         return getDaoFactory().getDaoSpot().read(pId);
     }

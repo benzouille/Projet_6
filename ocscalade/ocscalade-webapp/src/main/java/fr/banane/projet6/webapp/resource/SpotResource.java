@@ -23,4 +23,8 @@ public class SpotResource extends AbstractResource {
     }
 
     public void updateSpot (Spot spot) {getManagerFactory().getSpotManager().updateSpot(spot);}
+
+    public List<Spot> getListSpotByQuery(String param1, String param2, String param3, boolean param4, boolean param5) {
+        return getManagerFactory().getSpotManager().getListSpotByQuery(param1, param2, param3, param4, param5);
+    }
 }

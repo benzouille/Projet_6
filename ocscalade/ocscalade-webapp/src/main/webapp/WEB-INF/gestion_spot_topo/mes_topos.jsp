@@ -52,6 +52,7 @@
                         <td class="link-td-btn"><input class="link link-btn" type="submit" name="idtopo" value="${topo.nom}"/></td>
                     </form>
                     <form action="mes_topos" method="post">
+                        <input type="hidden" name="idTopo" value="${topo.id}"/>
                         <td>
                             <div class="custom-control custom-switch">
 

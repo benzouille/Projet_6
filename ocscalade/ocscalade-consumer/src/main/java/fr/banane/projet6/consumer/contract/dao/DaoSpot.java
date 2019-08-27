@@ -32,6 +32,17 @@ public interface DaoSpot {
     List<Spot> getListSpotByOfficiel();
 
     /**
+     * Methode de recherche en fonction de critère
+     * @param param1 le departement
+     * @param param2 la difficulte
+     * @param param3 le nombre de secteurs
+     * @param param4 si équipé
+     * @param param5 si officiel
+     * @return une liste de Spot
+     */
+    List<Spot> getListSpotByQuery(String param1, String param2, String param3, boolean param4, boolean param5);
+
+    /**
      * Méthode de mise à jour
      * @param obj
      * @return boolean
@@ -50,4 +61,6 @@ public interface DaoSpot {
      * @return Le nombre de spot
      */
     int getCountSpot();
+
+
 }
