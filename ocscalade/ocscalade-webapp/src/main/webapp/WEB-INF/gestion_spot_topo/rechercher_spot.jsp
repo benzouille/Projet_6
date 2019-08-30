@@ -105,7 +105,6 @@
         <table class="table table-hover">
             <thead class="thead-dark">
             <tr>
-                <th scope="col"></th>
                 <th scope="col">Nom</th>
                 <th scope="col">Auteur</th>
                 <th scope="col">Département</th>
@@ -117,37 +116,32 @@
             </thead>
             <tbody>
             <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>69</td>
-                <td>6d</td>
-                <td>3</td>
-                <td><i class="fa fa-check-square" style="color: green; font-size:25px;"></i></td>
-                <td><i class="fa fa-window-close" style="color: red; font-size:25px;"> </i></td>
+<c:forEach items="${vListSpotRecherche}" var="spot">
+                <td><a class="link" href="/ocscalade/topos/topo">${spot.nom}</a></td>
+                <td>${spot.createur.pseudo}</td>
+                <td>${spot.departement.num}</td>
+
+                <%--<td>--%>
+                    <%--<c:forEach items="${spot.secteur}" var="secteur">--%>
+                        <%--<c:forEach items="${secteur.voie}" var="voie">--%>
+                            <%--${voie.difficulte.difficulte}--%>
+                        <%--</c:forEach>--%>
+                    <%--</c:forEach>--%>
+                <%--</td>--%>
+                <td>${spot.nbreSecteurs}</td>
+    <c:choose>
+        <c:when test="${spot.officiel}">
+            <td><i class="fa fa-check-square" style="color: green; font-size:25px;"></i></td>
+        </c:when>
+        <c:otherwise>
+            <td><i class="fa fa-window-close" style="color: red; font-size:25px;"> </i></td>
+        </c:otherwise>
+    </c:choose>
+
+
+</c:forEach>
             </tr>
             <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>69</td>
-                <td>6d</td>
-                <td>3</td>
-                <td><i class="fa fa-check-square" style="color: green; font-size:25px;"></i></td>
-                <td><i class="fa fa-window-close" style="color: red; font-size:25px;"> </i></td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>69</td>
-                <td>6d</td>
-                <td>3</td>
-                <td><i class="fa fa-check-square" style="color: green; font-size:25px;"></i></td>
-                <td><i class="fa fa-window-close" style="color: red; font-size:25px;"> </i></td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
                 <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
                 <td>Admin</td>
                 <td>69</td>

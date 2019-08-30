@@ -55,7 +55,6 @@ public class IndexServlet extends HttpServlet {
 
             String pseudo = req.getParameter("pseudo");
             String password = PasswordDigest.hashAndSalt(req.getParameter("password"));
-            System.out.println("mpd connexion : " + password);
 
             vUtilisateur = vUtilisateurResource.getUtilisateurByPseudo(pseudo);
             if (password.equals(vUtilisateur.getPassword())) {

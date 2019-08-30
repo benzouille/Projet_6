@@ -33,14 +33,14 @@ public interface DaoSpot {
 
     /**
      * Methode de recherche en fonction de critère
-     * @param param1 le departement
-     * @param param2 la difficulte
-     * @param param3 le nombre de secteurs
-     * @param param4 si équipé
-     * @param param5 si officiel
+     * @param departement le departement
+     * @param difficulte la difficulte
+     * @param nbreSecteur le nombre de secteurs
+     * @param equipement si équipé
+     * @param officiel si officiel
      * @return une liste de Spot
      */
-    List<Spot> getListSpotByQuery(String param1, String param2, String param3, boolean param4, boolean param5);
+    List<Spot> getListSpotByQuery(String departement, String difficulte, String nbreSecteur, boolean equipement, boolean officiel);
 
     /**
      * Méthode de mise à jour

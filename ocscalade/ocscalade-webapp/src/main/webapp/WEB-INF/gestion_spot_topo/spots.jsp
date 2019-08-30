@@ -50,7 +50,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="spots/spot" method="post">
+                            <form action="spots/spot" method="post" >
                                 <div class="modal-body">
                                     <div class="container-fluid">
                                         <div class="form-row">

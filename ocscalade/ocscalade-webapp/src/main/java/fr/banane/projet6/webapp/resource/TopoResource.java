@@ -2,6 +2,7 @@ package fr.banane.projet6.webapp.resource;
 
 import fr.banane.projet6.model.bean.Topo;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -76,6 +77,19 @@ public class TopoResource extends AbstractResource {
      */
     public Topo getTopoByName(String name){
         return getManagerFactory().getTopoManager().getTopoByName(name);
+    }
+
+    /**
+     * Retourne une list d'objet Topo selon une recherche multicritère
+     * @param departement
+     * @param spot
+     * @param createur
+     * @param date
+     * @param disponible
+     * @return vListTopoRecherche
+     */
+    public List<Topo> getListTopoByQuery(String departement, String spot, String createur, Timestamp date, boolean disponible) {
+        return getManagerFactory().getTopoManager().getListTopoByQuery( departement, spot, createur, date, disponible);
     }
 
     /**

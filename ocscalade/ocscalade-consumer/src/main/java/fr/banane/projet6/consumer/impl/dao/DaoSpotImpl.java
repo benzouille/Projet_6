@@ -70,7 +70,7 @@ public class DaoSpotImpl extends AbstractDao implements DaoSpot {
 
     @Override
     public List<Spot> readAll() {
-        String vSQL = "SELECT * FROM spot";
+        String vSQL = "SELECT * FROM spot ORDER BY id";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Spot> vListSpot = vJdbcTemplate.query(vSQL, spotRM);
         return vListSpot;
@@ -101,66 +101,89 @@ public class DaoSpotImpl extends AbstractDao implements DaoSpot {
     }
 
     @Override
-    public List<Spot> getListSpotByQuery(String param1, String param2, String param3, boolean param4, boolean param5) {
-        String vSQL = "SELECT * FROM spot WHERE ",
+    public List<Spot> getListSpotByQuery(String departement, String difficulte, String nbreSecteur, boolean equipement, boolean officiel) {
+
+        String vSELECT = "SELECT spot.* ",
+                vFROMSpot = "FROM spot ",
+                vFROMVoie = "FROM spot, secteur, voie ",
+                vWHERE = "WHERE ",
+                vSpotToVoie = "spot.id = secteur.id_spot AND secteur.id = voie.id_secteur",
+                vDepartement = "id_departement="+departement,
                 vAnd = " AND ",
-                vDepartement = "departement="+param1,
-                vDifficulte = "difficulte="+param2,
-                //TODO PROBLEME comment avoir le nombre de secteur ?
-                vNbreSecteur = "secteur="+param3,
-                vEquipement = "equipement="+param4,
-                vOfficiel = "officiel="+param5;
+                vDifficulte = " AND voie.id_difficulte = "+difficulte,
+                vEquipement = " AND voie.equipement = "+equipement,
+                vOfficiel = "officiel="+officiel;
 
         ArrayList<String> requeteList = new ArrayList<>();
-        requeteList.add(vSQL);
+        requeteList.add(vSELECT);
 
-        if(param1 != null){
-            vSQL += vDepartement;
+        if(difficulte == null && !equipement){
+            requeteList.add(vFROMSpot);
+            requeteList.add(vWHERE);
+            System.out.println("par le spot : "+requeteList.size());
         }
-        if(param2 != null){
-            if (requeteList.size() < 2) {
+        else{
+            requeteList.add(vFROMVoie);
+            requeteList.add(vWHERE);
+            requeteList.add(vSpotToVoie);
+            if(difficulte != null){
+                requeteList.add(vDifficulte);
+            }
+            if (equipement){
+                requeteList.add(vEquipement);
+            }
+            System.out.println("par la voie : "+requeteList.size());
+        }
+
+        if(departement != null ){
+            if(requeteList.size() != 3) {
                 requeteList.add(vAnd);
             }
-            requeteList.add(vDifficulte);
+            requeteList.add(vDepartement);
         }
-        if(param3 != null){
-            if (requeteList.size() < 2) {
-                requeteList.add(vAnd);
-            }
-            requeteList.add(vNbreSecteur);
-        }
-        if(param4){
-            if (requeteList.size() < 2) {
-                requeteList.add(vAnd);
-            }
-            requeteList.add(vEquipement);
-        }
-        if(param5){
-            if (requeteList.size() < 2) {
+
+        if(officiel){
+            if (requeteList.size() != 3) {
                 requeteList.add(vAnd);
             }
             requeteList.add(vOfficiel);
         }
 
+        StringBuilder vSQL = new StringBuilder();
+        for (String string : requeteList){
+            vSQL.append(string);
+        }
+
         System.out.println(vSQL);
 
-        //JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        //List<Spot> vListSpot = vJdbcTemplate.query(vSQL, spotRM);
-        //return vListSpot;
-        return null;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Spot> vListSpot = vJdbcTemplate.query(vSQL.toString(), spotRM);
+
+
+        System.out.println("nbre secteur" + nbreSecteur);
+        if(nbreSecteur != null){
+            List<Spot> vListSpotModif = new ArrayList<>();
+            for (Spot spot : vListSpot) {
+                if (spot.getSecteurs().size() == Integer.parseInt(nbreSecteur)) {
+                    vListSpotModif.add(spot);
+                }
+            }
+            vListSpot = vListSpotModif;
+        }
+        return vListSpot;
     }
 
     @Override
     public boolean update(Spot obj) {
 
-        String vSQL = "UPDATE spot SET nom=:nom, id_createur=:id_createur, officiel=:officiel, id_departement=:departement, adresse=:adresse, description=:descrption WHERE id=:id";
+        String vSQL = "UPDATE spot SET nom=:nom, id_createur=:id_createur, officiel=:officiel, id_departement=:departement, adresse=:adresse, description=:description WHERE id=:id";
 
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("id", obj.getId(), Types.INTEGER);
         vParams.addValue("nom", obj.getNom(), Types.VARCHAR);
         vParams.addValue("id_createur", obj.getCreateur().getId(), Types.INTEGER);
         vParams.addValue("officiel", obj.isOfficiel(), Types.BOOLEAN);
-        vParams.addValue("departement", obj.getDepartement(), Types.INTEGER);
+        vParams.addValue("departement", obj.getDepartement().getId(), Types.INTEGER);
         vParams.addValue("adresse", obj.getAdresse(), Types.VARCHAR);
         vParams.addValue("description", obj.getDescription(), Types.VARCHAR);
 

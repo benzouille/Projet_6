@@ -116,8 +116,7 @@
         <servlet-name>SpotServlet</servlet-name>
         <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.SpotServlet</servlet-class>
         <multipart-config>
-            <!-- TODO modifier la localisation -->
-            <location>/temp/</location>
+            <location>c:/tmp/</location>
             <max-file-size>10485760</max-file-size> <!-- 10 Mo -->
             <max-request-size>52428800</max-request-size> <!-- 5 x 10 Mo -->
             <file-size-threshold>1048576</file-size-threshold> <!-- 1 Mo -->
@@ -135,6 +134,15 @@
     <servlet-mapping>
         <servlet-name>RechercherSpotServlet</servlet-name>
         <url-pattern>/spots/rechercher</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GestionSpotsServlet</servlet-name>
+        <servlet-class>fr.banane.projet6.webapp.servlets.gestion_spot_topo.GestionSpotsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GestionSpotsServlet</servlet-name>
+        <url-pattern>/gestion</url-pattern>
     </servlet-mapping>
 
     <!-- SECTEUR -->

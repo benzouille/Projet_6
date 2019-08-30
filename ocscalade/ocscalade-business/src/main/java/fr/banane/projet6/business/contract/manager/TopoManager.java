@@ -3,6 +3,7 @@ package fr.banane.projet6.business.contract.manager;
 import fr.banane.projet6.model.bean.Topo;
 import fr.banane.projet6.model.exception.NotFoundException;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -66,6 +67,17 @@ public interface TopoManager {
      * @throws NotFoundException
      */
     Topo getTopoByName(String name);
+
+    /**
+     * Retourne une liste d'objet Topo en fonction de multiple critere
+     * @param departement
+     * @param spot
+     * @param createur
+     * @param date
+     * @param disponible
+     * @return vListTopoRecherche
+     */
+    List<Topo> getListTopoByQuery(String departement, String spot, String createur, Timestamp date, boolean disponible);
 
     /**
      * Met à jour un Topo.

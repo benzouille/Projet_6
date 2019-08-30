@@ -9,7 +9,7 @@ import java.io.*;
 public class TransfertImage {
 
     public static final int TAILLE_TAMPON = 10240;
-public static final String PATH = "/temp/";
+    public static final String PATH = "D:/intellij_workspace/Projet_6/ocscalade/ocscalade-webapp/src/main/webapp/images/spots";
 
     public TransfertImage(){
 

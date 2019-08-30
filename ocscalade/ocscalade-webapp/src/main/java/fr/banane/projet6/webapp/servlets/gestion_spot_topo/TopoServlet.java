@@ -16,17 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class TopoServlet extends HttpServlet {
 
-    private  int id_topo;
+    private int id_topo;
     private Topo vTopo;
     private TopoResource vTopoResource = new TopoResource();
 
@@ -35,15 +30,11 @@ public class TopoServlet extends HttpServlet {
 
     private Reservation vReservation;
     private ReservationResource vReservationResource = new ReservationResource();
-    private List<Reservation> vListReservations;
+    private List<Reservation> vListReservations = new ArrayList<>();
 
     private FormatDate formatDate = new FormatDate();
 
-    String patternFr ="dd-MM-yyyy";
-    String patternEn ="yyyy-MM-dd";
-
-    Locale localeEn = new Locale("en", "EN");
-    Locale localeFr = new Locale("fr", "FR");
+    Utilisateur vUtilisateur;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -62,9 +53,6 @@ public class TopoServlet extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
-
-        HttpSession session = req.getSession();
-        Utilisateur vUtilisateur = (Utilisateur)session.getAttribute("utilisateur");
 
         //--NOUVEAU TOPO
         if(req.getParameter("_nouveau_topo_") != null) {
@@ -87,9 +75,6 @@ public class TopoServlet extends HttpServlet {
             vTopo = vTopoResource.getTopoByName(req.getParameter("nom"));
             id_topo = vTopo.getId();
 
-            //renvoi à la vue
-            req.setAttribute("topo", vTopo);
-
             //mise a null de l'objet et des parametres
             vTopo = null;
             req.removeAttribute("_nouveau_topo_");
@@ -102,16 +87,6 @@ public class TopoServlet extends HttpServlet {
         //--RESERVATION D'UN SPOT
         if(req.getParameter("_reserver_") != null) {
 
-
-
-            //SimpleDateFormat simpleDateFormatEn = new SimpleDateFormat(patternEn);
-
-            //Date date_debut = simpleDateFormatEn.parse(req.getParameter("date_debut"), new ParsePosition(0));
-            //Date date_fin = simpleDateFormatEn.parse(req.getParameter("date_fin"), new ParsePosition(0));
-
-            //Timestamp ts_debut = new Timestamp(date_debut.getTime());
-            //Timestamp ts_fin = new Timestamp(date_fin.getTime());
-
             vReservation = new Reservation();
             vReservation.setLocataire((Utilisateur)req.getSession().getAttribute("utilisateur"));
             vReservation.setTopo(vTopoResource.getTopo(id_topo));
@@ -122,22 +97,8 @@ public class TopoServlet extends HttpServlet {
 
             //mise en bdd
             vReservationResource.newReservation(vReservation);
-            //mise à jour de l'objet topo et liste de reservation
-            List<Reservation> vListReservationsFull = vReservationResource.getListReservationByTopo(id_topo);
-            for(Reservation reservation : vListReservationsFull){
-                if(reservation.isAccepte()){
-                    vListReservations.add(reservation);
-                }
-            }
-
-            vTopo = vTopoResource.getTopo(id_topo);
-
-            //renvoi à la vue
-            req.setAttribute("topo", vTopo);
-            req.setAttribute("vListReservations", vListReservations);
 
             //mise a null de l'objet et des parametres
-            vTopo = null;
 
             req.removeAttribute("_reserver_");
             req.removeAttribute("date_debut");
@@ -150,11 +111,27 @@ public class TopoServlet extends HttpServlet {
         if(req.getParameter("idTopo") != null) {
             id_topo = 0;
             id_topo = Integer.valueOf(req.getParameter("idTopo"));
-            vTopo = vTopoResource.getTopo(id_topo);
-
-            req.setAttribute("topo", vTopo);
         }
 
+        intiPage(req);
+
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/topo.jsp").forward(req, resp);
+    }
+
+    private void intiPage(HttpServletRequest req) {
+        vUtilisateur = (Utilisateur) req.getSession().getAttribute("utilisateur");
+
+        List<Reservation> vListReservationsFull = vReservationResource.getListReservationByTopo(id_topo);
+        for (Reservation reservation : vListReservationsFull) {
+            if (reservation.isAccepte()) {
+                vListReservations.add(reservation);
+            }
+        }
+
+        vTopo = vTopoResource.getTopo(id_topo);
+
+        //renvoi à la vue
+        req.setAttribute("topo", vTopo);
+        req.setAttribute("vListReservations", vListReservations);
     }
 }

@@ -12,6 +12,7 @@ public class Spot {
     private int id;
     private Utilisateur createur;
     private ArrayList<Secteur> secteurs;
+    private int nbreSecteurs;
     private ArrayList<Image> images;
     private boolean officiel;
     private String nom;
@@ -45,6 +46,7 @@ public class Spot {
         this.id = id;
         this.createur = createur;
         this.secteurs = secteurs;
+        nbreSecteurs = secteurs.size();
         this.images=images;
         this.officiel = officiel;
         this.nom = nom;
@@ -77,6 +79,15 @@ public class Spot {
 
     public void setSecteurs(ArrayList<Secteur> secteurs) {
         this.secteurs = secteurs;
+        this.nbreSecteurs = this.secteurs.size();
+    }
+
+    public int getNbreSecteurs() {
+        return nbreSecteurs;
+    }
+
+    public void setNbreSecteurs(int nbreSecteurs) {
+        this.nbreSecteurs = nbreSecteurs;
     }
 
     public ArrayList<Image> getImages() {

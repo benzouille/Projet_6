@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,6 +102,59 @@ public class DaoTopoImpl extends AbstractDao implements DaoTopo {
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Topo> vListTopos = vJdbcTemplate.query(vSQL, topoRM);
         return vListTopos;
+    }
+
+    @Override
+    public List<Topo> getListTopoByQuery(String departement, String spot, String createur, Timestamp date, boolean disponible) {
+        String vInitSQL = "SELECT * FROM topo WHERE ",
+                vDepartement = "topo.id_spot IN (SELECT spot.id FROM spot WHERE id_departement="+departement+")",
+                vAnd = " AND ",
+                vSpot = "id_spot="+spot,
+                vCreateur = "id_utilisateur = "+createur,
+                vDate = "date_creation > '"+date+"'",
+                vDisponible = "reservable = "+disponible;
+
+        ArrayList<String> requeteList = new ArrayList<>();
+        requeteList.add(vInitSQL);
+
+        if(departement != null){
+            requeteList.add(vDepartement);
+        }
+        if(spot != null){
+            if (requeteList.size() > 1) {
+                requeteList.add(vAnd);
+            }
+            requeteList.add(vSpot);
+            }
+        if(createur != null){
+            if (requeteList.size() > 1) {
+                requeteList.add(vAnd);
+            }
+            requeteList.add(vCreateur);
+        }
+        if(date != null){
+            if (requeteList.size() > 1) {
+                requeteList.add(vAnd);
+            }
+            requeteList.add(vDate);
+        }
+        if (disponible){
+            if (requeteList.size() > 1) {
+                requeteList.add(vAnd);
+            }
+            requeteList.add(vDisponible);
+        }
+
+        StringBuilder vSQL = new StringBuilder();
+        for (String string : requeteList){
+            vSQL.append(string);
+        }
+
+        System.out.println(vSQL);
+
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Topo> vListTopo = vJdbcTemplate.query(vSQL.toString(), topoRM);
+        return vListTopo;
     }
 
 

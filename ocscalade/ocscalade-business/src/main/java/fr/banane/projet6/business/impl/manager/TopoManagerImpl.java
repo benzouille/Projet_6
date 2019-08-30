@@ -8,6 +8,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Named
@@ -62,6 +63,11 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager {
     @Override
     public Topo getTopoByName(String name) {
         return getDaoFactory().getDaoTopo().read(name);
+    }
+
+    @Override
+    public List<Topo> getListTopoByQuery(String departement, String spot, String createur, Timestamp date, boolean disponible) {
+            return getDaoFactory().getDaoTopo().getListTopoByQuery( departement, spot, createur, date, disponible);
     }
 
     @Override

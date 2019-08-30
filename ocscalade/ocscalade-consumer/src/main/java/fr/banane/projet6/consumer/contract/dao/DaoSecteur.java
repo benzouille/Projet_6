@@ -3,6 +3,7 @@ package fr.banane.projet6.consumer.contract.dao;
 import fr.banane.projet6.model.bean.Secteur;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Les méthodes CRUD nécessaires pour manipuler le bean "Secteur" / La table "secteur"
@@ -54,4 +55,5 @@ public interface DaoSecteur {
      * @return Le nombre de secteur
      */
     int getCountSecteur();
+
 }

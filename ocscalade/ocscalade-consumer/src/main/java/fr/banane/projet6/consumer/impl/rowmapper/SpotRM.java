@@ -47,18 +47,16 @@ public class SpotRM implements RowMapper<Spot> {
         //Commentaires
         ArrayList<Commentaire> commentaires = (ArrayList<Commentaire>) daoCommentaireImpl.readAllBySpot(rs.getInt("id"));
 
-        Spot vSpot = new Spot();
-        vSpot.setId(rs.getInt("id"));
-        vSpot.setCreateur(createur);
-        vSpot.setOfficiel(rs.getBoolean("officiel"));
-        vSpot.setNom(rs.getString("nom"));
-        vSpot.setDepartement(departement);
-        vSpot.setAdresse(rs.getString("adresse"));
-        vSpot.setDescription(rs.getString("description"));
-        vSpot.setSecteurs(secteurs);
-        vSpot.setImages(images);
-        vSpot.setCommentaires(commentaires);
-        return vSpot;
+        return new Spot(rs.getInt("id"),
+                createur,
+                secteurs,
+                images,
+                rs.getBoolean("officiel"),
+                rs.getString("nom"),
+                departement,
+                rs.getString("adresse"),
+                rs.getString("description"),
+                commentaires);
 
     }
 }

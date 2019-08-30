@@ -50,19 +50,19 @@
                             </c:otherwise>
                         </c:choose>
                         <li class="list-group-item list-group-item-action" style="text-align: center">
-                            <form class="link-td-btn" action="../spots/spot" method="post">
+                            <form class="link-td-btn" action="../spots/spot" method="post" style="margin-bottom: 0px">
                                 <input type="hidden" name="idSpot" value="${topo.spot.id}"/>
                                 <input class="link link-btn" type="submit" value="${topo.spot.nom}"/>
                             </form>
                         </li>
                         <li class="list-group-item list-group-item-action">Département : ${topo.spot.departement.nom}</li>
-                        <li class="list-group-item list-group-item-action">Date de création : ${topo.date_creation}</li>
+                        <li class="list-group-item list-group-item-action">Date de création : <d class="date">${topo.date_creation}</d></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="describe col-lg-8">
-            <h3 class="text-center"><strong>Description</strong></h3>
+            <h3 class="text-center"><strong>Déscription</strong></h3>
             <hr class="my-4">
             <p>${topo.description}</p>
         </div>
@@ -74,43 +74,23 @@
             <table class="table table-hover">
                 <thead class="thead-dark">
                 <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Durée</th>
+
+                    <th scope="col">Utilisateur</th>
+                    <th scope="col">Date début</th>
+                    <th scope="col">Date fin</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Admin</td>
-                    <td>01/01/2001</td>
-                    <td>matin</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Coincoin</td>
-                    <td>après-midi</td>
-                    <td>01/01/2001</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Bouh</td>
-                    <td>01/02/2001</td>
-                    <td>journée</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>Admin</td>
-                    <td>01/03/2001</td>
-                    <td>journée</td>
-                </tr>
+                <c:forEach items="${vListReservations}" var="reservation">
+                    <tr>
+                        <td>${reservation.locataire.pseudo}</td>
+                        <td class="date">${reservation.date_debut}</td>
+                        <td class="date">${reservation.date_fin}</td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
-        <p>le scope ${sessionScope.utilisateur.pseudo}</p>
-        <p>le topo ${topo.utilisateur.pseudo}</p>
-        <p>boolean ${topo.reservable}</p>
 
         <div class="row">
             <div  class="col-lg-12">
@@ -169,15 +149,20 @@
 <%@ include file="/WEB-INF/header_footer/footer.jsp" %>
 
 <!-- SCRIPTS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous">
+</script>
+
+<script type="application/javascript">
+    $(".date").each(function() {
+        gooddate = this.innerText.split(' ')[0].split('-');
+        $(this).text(gooddate[2]+"/"+gooddate[1]+"/"+gooddate[0]);
+    });
+</script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous">
-
-</script>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous">
 </script>
 

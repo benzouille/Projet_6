@@ -42,37 +42,40 @@ public class RechercherSpotServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
+        //--RECHERCHE SPOT
         if (req.getParameter("_recherche_spot_") != null) {
 
-            String param1 = null,
-                    param2 = null,
-                    param3 = null;
-            boolean param4 = false,
-                    param5 = false;
+            String departement = null,
+                    difficulte = null,
+                    nbreSecteur = null;
+            boolean equipement = false,
+                    officiel = false;
 
             if (!req.getParameter("departement").equals("Séléctionnez")) {
-                param1 = req.getParameter("departement");
+
+                departement = String.valueOf(vDepartementResource.getDepartementByNum(req.getParameter("departement")).getId());
             }
             if (!req.getParameter("difficulte").equals("Séléctionnez")) {
-                param2 = req.getParameter("difficulte");
+                difficulte = String.valueOf(vDifficulteResource.getDifficulte(req.getParameter("difficulte")).getId());
             }
             if (!req.getParameter("nbreSecteur").equals("Séléctionnez")) {
-                param3 = req.getParameter("nbreSecteur");
+                nbreSecteur = req.getParameter("nbreSecteur");
             }
             if (req.getParameter("equipement") != null) {
-                param4 = true;
+                equipement = true;
             }
             if (req.getParameter("officiel") != null) {
-                param5 = true;
+                officiel = true;
             }
 
-            if(param1 == null && param2 == null && param3 == null && !param4 && !param5){
+            if(departement == null && difficulte == null && nbreSecteur == null && !equipement && !officiel){
                 String erreur = "Aucun critère de recherche n'est entré !";
                 req.setAttribute("erreur", erreur);
             }
             else {
-                vSpotResource.getListSpotByQuery( param1, param2, param3, param4, param5);
-                System.out.println("recherche : " + param1 + " " + param2 + " " + param3 + " " + param4 + " " + param5);
+                List<Spot> vListSpotRecherche = vSpotResource.getListSpotByQuery( departement, difficulte, nbreSecteur, equipement, officiel);
+                System.out.println(vListSpotRecherche.toString());
+                req.setAttribute("vListSpotRecherche", vListSpotRecherche);
             }
 
             req.removeAttribute("departement");

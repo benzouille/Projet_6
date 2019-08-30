@@ -137,7 +137,7 @@
     </div>
     <hr class="my-4">
     <div class="commentaire">
-        <h3 class="text-center"><strong>Commentaires</strong></h3>
+        <h3 class="text-center"><strong><i class="fa fa-comments"></i> Commentaires</strong></h3>
         <div class="row">
             <div  class="col-lg-12">
                 <c:if test="${ !empty sessionScope.utilisateur}">

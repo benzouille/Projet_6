@@ -2,6 +2,7 @@ package fr.banane.projet6.consumer.contract.dao;
 
 import fr.banane.projet6.model.bean.Topo;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -30,6 +31,17 @@ public interface DaoTopo {
     List<Topo> readAllByCreateur(int id_utilisateur);
     List<Topo> readAllByDepartementSpot(int id_dep);
     List<Topo> readAllByReservable();
+
+    /**
+     * Methode de recherche par criteres multiples
+     * @param departement
+     * @param spot
+     * @param createur
+     * @param date
+     * @param disponible
+     * @return vListTopoRecherche
+     */
+    List<Topo> getListTopoByQuery(String departement, String spot, String createur, Timestamp date, boolean disponible);
 
     /**
      * Méthode de mise à jour

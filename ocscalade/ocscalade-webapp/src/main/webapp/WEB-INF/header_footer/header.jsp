@@ -41,6 +41,11 @@
                     </li>
                 </c:if>
                 <c:if test="${ !empty sessionScope.utilisateur}">
+                    <c:if test="${sessionScope.utilisateur.privilege.id > 1}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ocscalade/gestion"><i class="fas fa-award" style="font-size:25px"></i> Gestion</a>
+                        </li>
+                    </c:if>
                     <li class="nav-item">
                         <a class="nav-link" href="/ocscalade/topos/mes_topos"><i class="fa fa-book" style="font-size:25px"></i> Mes topos</a>
                     </li>

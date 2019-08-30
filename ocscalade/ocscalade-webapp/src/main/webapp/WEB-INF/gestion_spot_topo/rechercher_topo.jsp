@@ -34,12 +34,12 @@
     <hr class="my-4">
 
     <div class="recherche">
-        <form>
+        <form action="rechercher" method="post">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label>Par départements</label>
                     <div class="input-group mb-3">
-                        <select class="custom-select" id="departement">
+                        <select class="custom-select" name="departement" id="departement">
                             <option selected>Séléctionnez</option>
                             <c:forEach items="${vListDepartements}" var="departement">
                                 <option><c:out value="${departement.num}"/></option>
@@ -50,39 +50,49 @@
                 <div class="form-group col-md-6">
                     <label>Par spot lié</label>
                     <div class="input-group mb-3">
-                        <select class="custom-select" id="inputGroupSelect02">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="custom-select" name="spot" id="spot">
+                            <option selected>Séléctionnez</option>
+                            <c:forEach items="${vListSpots}" var="spot">
+                                <option><c:out value="${spot}"/></option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
                 <div class="form-group col-md-6">
                     <label>Par créateur</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="createur" placeholder="créateur">
+                        <select class="custom-select" name="createur" id="createur">
+                            <option selected>Séléctionnez</option>
+                            <c:forEach items="${vListUtilisateurs}" var="utilisateur">
+                                <option><c:out value="${utilisateur}"/></option>
+                            </c:forEach>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group col-md-6">
                     <label>Par date</label>
                     <div class="input-group mb-3">
-                        <input type="date" class="form-control" id="date">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">après le : </span>
+                        </div>
+                        <input type="date" class="form-control" name="date" id="date" aria-describedby="basic-addon3">
                     </div>
                 </div>
                 <div class="row col-12">
                     <div class="form-check col-lg-5 col-md-5" style="margin-left: 15px">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">Disponible</label>
+                        <input class="form-check-input" type="checkbox" value="" name="disponible" id="disponible">
+                        <label class="form-check-label" for="disponible">Disponible</label>
                     </div>
                 </div>
             </div>
             <div class="pull-right" style="margin-top: 20px">
-                <a href="/ocscalade/topos/nouveau" class="btn btn-outline-secondary" role="button"> Rechercher</a>
+                <input type="submit" name="_recherche_topo_" value="Rechercher" class="btn btn-outline-secondary"/>
             </div>
         </form>
         <br>
-
+        <c:if test="${ !empty erreur}">
+            <p class="red">${ erreur }</p>
+        </c:if>
     </div>
 
     <div>
@@ -94,7 +104,6 @@
         <table class="table table-hover">
             <thead class="thead-dark">
             <tr>
-                <th scope="col"></th>
                 <th scope="col">Nom</th>
                 <th scope="col">Département</th>
                 <th scope="col">Spot lié</th>
@@ -104,52 +113,29 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>69</td>
-                <td><a class="link" href="/ocscalade/spots/spot">Le pic</a></td>
-                <td>Admin</td>
-                <td>21/03/2011</td>
-                <td><i class="fa fa-check-square" style="color: green; font-size:25px;"></i></td>
-
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Les Difficultés des pics vogien</a></td>
-                <td>88</td>
-                <td><a class="link" href="/ocscalade/spots/spot">Les pics</a></td>
-                <td>Admin</td>
-                <td>24/04/1901</td>
-                <td><i class="fa fa-window-close" style="color: red; font-size:25px;"> </i></td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Les Difficultés des pics vogien</a></td>
-                <td>88</td>
-                <td><a class="link" href="/ocscalade/spots/spot">Les pics</a></td>
-                <td>Admin</td>
-                <td>24/04/1901</td>
-                <td><i class="fa fa-window-close" style="color: red; font-size:25px;"> </i></td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Les Difficultés des pics vogien</a></td>
-                <td>88</td>
-                <td><a class="link" href="/ocscalade/spots/spot">Les pics</a></td>
-                <td>Admin</td>
-                <td>24/04/1901</td>
-                <td><i class="fa fa-window-close" style="color: red; font-size:25px;"> </i></td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td><a class="link" href="/ocscalade/topos/topo">Les Difficultés des pics vogien</a></td>
-                <td>88</td>
-                <td><a class="link" href="/ocscalade/spots/spot">Les pics</a></td>
-                <td>Admin</td>
-                <td>24/04/1901</td>
-                <td><i class="fa fa-window-close" style="color: red; font-size:25px;"> </i></td>
-            </tr>
+            <c:forEach items="${vListTopoRecherche}" var="topo">
+                <tr>
+                    <form action="topos/topo" method="post">
+                        <input type="hidden" name="idTopo" value="${topo.id}"/>
+                        <td class="link-td-btn"><input class="link link-btn" type="submit" value="${topo.nom}"/></td>
+                    </form>
+                    <td>${topo.spot.departement.nom}</td>
+                    <form action="topos/topo" method="post">
+                        <input type="hidden" name="idTopo" value="${topo.spot.id}"/>
+                        <td class="link-td-btn"><input class="link link-btn" type="submit" value="${topo.spot.nom}"/></td>
+                    </form>
+                    <td>${topo.utilisateur.pseudo}</td>
+                    <td class="date">${topo.date_creation}</td>
+                    <c:choose>
+                        <c:when test="${topo.reservable}">
+                            <td><i class="fa fa-check-square" style="color: green; font-size:25px;"></i></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td><i class="fa fa-window-close" style="color: red; font-size:25px;"> </i></td>
+                        </c:otherwise>
+                    </c:choose>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
@@ -162,6 +148,13 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous">
+</script>
+
+<script type="application/javascript">
+    $(".date").each(function() {
+        gooddate = this.innerText.split(' ')[0].split('-');
+        $(this).text(gooddate[2]+"/"+gooddate[1]+"/"+gooddate[0]);
+    });
 </script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"

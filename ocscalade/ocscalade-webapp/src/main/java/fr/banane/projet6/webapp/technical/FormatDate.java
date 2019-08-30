@@ -19,10 +19,15 @@ public class FormatDate {
     public FormatDate(){}
 
     public Timestamp stringToTimestamp(String dateStr){
-        SimpleDateFormat simpleDateFormatEn = new SimpleDateFormat(patternEn);
-        Date date = simpleDateFormatEn.parse(dateStr, new ParsePosition(0));
-        Timestamp timestamp = new Timestamp(date.getTime());
-        return timestamp;
+        if(dateStr != null){
+            SimpleDateFormat simpleDateFormatEn = new SimpleDateFormat(patternEn);
+            Date date = simpleDateFormatEn.parse(dateStr, new ParsePosition(0));
+            Timestamp timestamp = new Timestamp(date.getTime());
+            return timestamp;
+        }
+        else {
+            return null;
+        }
     }
 
     public String formatDateAffichage(Timestamp timestamp){

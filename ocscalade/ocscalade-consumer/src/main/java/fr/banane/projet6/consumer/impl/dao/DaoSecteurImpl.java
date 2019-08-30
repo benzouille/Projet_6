@@ -11,8 +11,12 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.sql.ResultSet;
 import java.sql.Types;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 
 /**

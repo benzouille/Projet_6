@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MesToposServlet extends HttpServlet {
@@ -102,9 +103,12 @@ public class MesToposServlet extends HttpServlet {
         vListDemandeReservations = vReservationResource.getListReservationByProprietaireTopo(utilisateur.getId());
         req.setAttribute("vListDemandeReservations", vListDemandeReservations);
 
-
-        vListPrete = vReservationResource.getListReservationByLocataire(utilisateur.getId());
-        for(Reservation reservation : vListPrete){
+        vListPrete = new ArrayList<>();
+        List<Reservation> vListPreteFull = vReservationResource.getListReservationByLocataire(utilisateur.getId());
+        for(Reservation reservation : vListPreteFull){
+            if(reservation.isAccepte()){
+                vListPrete.add(reservation);
+            }
         }
         req.setAttribute("vListPrete", vListPrete);
     }
