@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe Servlet de la jsp mes_topos permettant de gérer ses topos, les demande de reservation et les topos qui sont pretés à l'utilisateur.
+ */
 public class MesToposServlet extends HttpServlet {
 
     private Topo vTopo;
@@ -30,7 +33,7 @@ public class MesToposServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        intiPage(req);
+        initPage(req);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/mes_topos.jsp").forward(req, resp);
     }
@@ -61,7 +64,6 @@ public class MesToposServlet extends HttpServlet {
             req.removeAttribute("_topo_dispo_");
             req.removeAttribute("idTopo");
             req.removeAttribute("topo_dispo");
-
         }
 
         //--ACCEPTER RESERVATION
@@ -85,16 +87,18 @@ public class MesToposServlet extends HttpServlet {
             req.removeAttribute("_accepte_");
             req.removeAttribute("id_reservation_accepte");
             req.removeAttribute("id_reservation_refus");
-
         }
 
-        intiPage(req);
+        initPage(req);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/mes_topos.jsp").forward(req, resp);
     }
 
-
-    private void intiPage(HttpServletRequest req){
+    /**
+     * Initialisation de la servlet et transmission des données à la jsp
+     * @param req la requete
+     */
+    private void initPage(HttpServletRequest req){
         Utilisateur utilisateur = (Utilisateur)req.getSession().getAttribute("utilisateur");
 
         vListTopos = vTopoResource.getListTopoByUser(utilisateur.getId());

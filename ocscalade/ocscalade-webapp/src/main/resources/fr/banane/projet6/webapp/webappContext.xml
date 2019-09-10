@@ -22,14 +22,4 @@
         <property name="jndiName" value="java:comp/env/jdbc/OCscalade"/>
     </bean>
 
-    <!-- ===== Fonctionnement avec les annotations ===== -->
-
-    <!-- Prend en compte la configuration des injections (@Inject...) -->
-
-        <!--<context:annotation-config/>-->
-
-    <!-- Scanne les packages pour trouver les beans qui se déclarent (@Named...) -->
-
-        <!--<context:component-scan base-package="fr.banane.projet6"/>-->
-
 </beans>

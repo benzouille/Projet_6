@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Servlet gérant la jsp topos.jsp affichant dynamaiquement la liste des topos
+ * Servlet gérant la jsp topos.jsp affichant dynamiquement la liste des topos
  */
 public class ToposServlet extends HttpServlet {
 
@@ -29,13 +29,7 @@ public class ToposServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        vListSpots = vSpotResource.getListSpot();
-        vListTopos = vTopoResource.getListTopo();
-
-        req.setAttribute("vListSpots", vListSpots);
-        req.setAttribute("vListTopos", vListTopos);
-
-
+        initPage(req);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/topos.jsp").forward(req, resp);
     }
@@ -46,10 +40,21 @@ public class ToposServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        vListTopos = vTopoResource.getListTopo();
-
-        req.setAttribute("vListTopos", vListTopos);
+        initPage(req);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/topos.jsp").forward(req, resp);
+    }
+
+    /**
+     * Initialisation de la servlet et transmission des données à la jsp
+     * @param req la requete
+     */
+    private void initPage(HttpServletRequest req) {
+
+        vListSpots = vSpotResource.getListSpot();
+        vListTopos = vTopoResource.getListTopo();
+
+        req.setAttribute("vListSpots", vListSpots);
+        req.setAttribute("vListTopos", vListTopos);
     }
 }

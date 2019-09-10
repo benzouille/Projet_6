@@ -27,7 +27,7 @@
 
 <%-- BODY --%>
 <div class="container">
-    <div class="jumbotron" style="margin-top: 10px;">
+    <div class="jumbotron">
         <h1 class="display-4"><strong>Rechercher un topo</strong></h1>
     </div>
 
@@ -79,13 +79,13 @@
                     </div>
                 </div>
                 <div class="row col-12">
-                    <div class="form-check col-lg-5 col-md-5" style="margin-left: 15px">
+                    <div class="form-check col-lg-5 col-md-5 margin-15l">
                         <input class="form-check-input" type="checkbox" value="" name="disponible" id="disponible">
                         <label class="form-check-label" for="disponible">Disponible</label>
                     </div>
                 </div>
             </div>
-            <div class="pull-right" style="margin-top: 20px">
+            <div class="pull-right margin-20t">
                 <input type="submit" name="_recherche_topo_" value="Rechercher" class="btn btn-outline-secondary"/>
             </div>
         </form>
@@ -128,16 +128,19 @@
                     <td class="date">${topo.date_creation}</td>
                     <c:choose>
                         <c:when test="${topo.reservable}">
-                            <td><i class="fa fa-check-square" style="color: green; font-size:25px;"></i></td>
+                            <td><i class="fa fa-check-square green font25"></i></td>
                         </c:when>
                         <c:otherwise>
-                            <td><i class="fa fa-window-close" style="color: red; font-size:25px;"> </i></td>
+                            <td><i class="fa fa-window-close red font25"> </i></td>
                         </c:otherwise>
                     </c:choose>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+        <c:if test="${ !empty vide}">
+            <h4 class="text-center">${ vide }</h4>
+        </c:if>
     </div>
 </div>
 

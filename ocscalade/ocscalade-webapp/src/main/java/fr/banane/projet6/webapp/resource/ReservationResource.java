@@ -15,20 +15,18 @@ public class ReservationResource extends AbstractResource {
 
     /**
      * Crée une Reservation.
-     *
      * @param vReservation objet à envoyer en bdd
      */
     public void newReservation(Reservation vReservation){
         getManagerFactory().getReservationManager().newReservation(vReservation);
     }
-    //TODO ajouter les exceptions NotFoundException et DuplicateException
 
     /**
      * Retourne un objet Reservation en particulier selon son 'id'.
      *
      * @param pId L'identifiant du Reservation
      * @return L'objet Reservation correspondant à l'identifiant.
-     * @throws NotFoundException
+     * @throws NotFoundException ne trouve pas la ressource demandée
      */
     public Reservation getReservation(Integer pId){
         return getManagerFactory().getReservationManager().getReservation(pId);
@@ -36,7 +34,6 @@ public class ReservationResource extends AbstractResource {
 
     /**
      * Retourne la liste des Reservations.
-     *
      * @return Une liste de Reservation.
      */
     public List<Reservation> getListReservation(){
@@ -45,7 +42,6 @@ public class ReservationResource extends AbstractResource {
 
     /**
      * Retourne la liste des Reservation crée par un utilisateur.
-     *
      * @return Une liste de Reservation.
      */
     public List<Reservation> getListReservationByLocataire(int id_locataire){
@@ -54,7 +50,6 @@ public class ReservationResource extends AbstractResource {
 
     /**
      * Retourne la liste des Reservation d'un topo.
-     *
      * @return Une liste de Reservation.
      */
     public List<Reservation> getListReservationByTopo(int id_topo){
@@ -63,7 +58,6 @@ public class ReservationResource extends AbstractResource {
 
     /**
      * Retourne la liste des Reservation selon le proprietaire du ou des topo réservé.
-     *
      * @return Une liste de Reservation.
      */
     public List<Reservation> getListReservationByProprietaireTopo(int id_proprietaire){
@@ -72,19 +66,17 @@ public class ReservationResource extends AbstractResource {
 
     /**
      * Met à jour une Reservation.
-     * @param vReservation
+     * @param vReservation objet Reservation
      */
     public void updateReservation(Reservation vReservation){
         getManagerFactory().getReservationManager().updateReservation(vReservation);
     }
-    //TODO ajouter le throws pour l'exceptions NotFoundException
 
     /**
      * Supprime une Reservation
-     * @param vReservation
+     * @param vReservation objet Reservation
      */
     public void deleteReservation(Reservation vReservation){
         getManagerFactory().getReservationManager().deleteReservation(vReservation);
     }
-    //TODO ajouter le throws pour l'exceptions NotFoundException
 }

@@ -25,7 +25,7 @@ public interface VoieManager {
      *
      * @param pId L'identifiant de la Voie
      * @return L'objet Voie correspondant à l'identifiant.
-     * @throws NotFoundException
+     * @throws NotFoundException ne trouve pas la ressource demandée
      */
     Voie getVoie(Integer pId);
 
@@ -41,7 +41,7 @@ public interface VoieManager {
      *
      * @param name nom du Voie
      * @return L'objet Voie correspondant à son nom.
-     * @throws NotFoundException
+     * @throws NotFoundException ne trouve pas la ressource demandée
      */
     Voie getVoieByName(String name);
 
@@ -54,24 +54,20 @@ public interface VoieManager {
 
     /**
      * Met à jour un Voie.
-     * @param vVoie
+     * @param vVoie objet Voie
      */
     void updateSpot(Voie vVoie);
-    //TODO ajouter le throws pour l'exceptions NotFoundException
 
     /**
      * Supprime une Voie
-     * @param vVoie
+     * @param vVoie objet Voie
      */
     void deleteVoie(Voie vVoie);
-    //TODO ajouter le throws pour l'exceptions NotFoundException
 
     /**
      * Supprime les objets Voie selon l'id du secteur
-     * @param id_secteur
+     * @param id_secteur int
      */
     void deleteAllByIdSecteur(int id_secteur);
-
-    int getCountVoie();
 }
 

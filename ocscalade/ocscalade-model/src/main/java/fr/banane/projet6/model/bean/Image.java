@@ -10,8 +10,6 @@ public class Image {
     private int id;
     private int id_spot;
     private String titre;
-    private String path;
-
 
     // ==================== Constructeurs ====================
     /**
@@ -25,13 +23,11 @@ public class Image {
      * @param id -
      * @param id_spot -
      * @param titre -
-     * @param path-
      */
-    public Image (int id, int id_spot, String titre, String path){
+    public Image (int id, int id_spot, String titre){
         this.id = id;
         this.id_spot = id_spot;
         this.titre = titre;
-        this.path = path;
     }
 
     // ==================== Getters/Setters ====================
@@ -60,14 +56,6 @@ public class Image {
         this.titre = titre;
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
     // ==================== Methodes ====================
 
     @Override
@@ -76,7 +64,6 @@ public class Image {
                 "id=" + id +
                 ", id_spot=" + id_spot +
                 ", titre='" + titre + '\'' +
-                ", path='" + path + '\'' +
                 '}';
     }
 }

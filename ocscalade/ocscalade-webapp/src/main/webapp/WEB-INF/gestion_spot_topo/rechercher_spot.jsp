@@ -28,7 +28,7 @@
 <%-- BODY --%>
 
 <div class="container">
-    <div class="jumbotron" style="margin-top: 10px;">
+    <div class="jumbotron">
         <h1 class="display-4"><strong>Rechercher un spot</strong></h1>
     </div>
 
@@ -72,13 +72,13 @@
                     </div>
                 </div>
                 <div class="row col-12">
-                    <div class="form-check col-lg-5 col-md-5" style="margin-left: 15px">
+                    <div class="form-check col-lg-5 col-md-5 margin-15l">
                         <input class="form-check-input" type="checkbox" value="" name="equipement" id="equipement">
                         <label class="form-check-label" for="equipement">
                             Equipement
                         </label>
                     </div>
-                    <div class="form-check  col-lg-5 col-md-6*5" style="margin-left: 15px">
+                    <div class="form-check  col-lg-5 col-md-6*5 margin-15l">
                         <input class="form-check-input pull-right" type="checkbox" value="" name="officiel" id="officiel">
                         <label class="form-check-label" for="officiel">
                             Officiel
@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            <div class="pull-right" style="margin-top: 20px">
+            <div class="pull-right margin-20t">
                 <input type="submit" name="_recherche_spot_" value="Rechercher" class="btn btn-outline-secondary"/>
             </div>
         </form>
@@ -108,50 +108,32 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Auteur</th>
                 <th scope="col">Département</th>
-                <th scope="col">Difficulté</th>
                 <th scope="col">Secteurs</th>
-                <th scope="col">Equipement</th>
                 <th scope="col">Officiel</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-<c:forEach items="${vListSpotRecherche}" var="spot">
-                <td><a class="link" href="/ocscalade/topos/topo">${spot.nom}</a></td>
-                <td>${spot.createur.pseudo}</td>
-                <td>${spot.departement.num}</td>
-
-                <%--<td>--%>
-                    <%--<c:forEach items="${spot.secteur}" var="secteur">--%>
-                        <%--<c:forEach items="${secteur.voie}" var="voie">--%>
-                            <%--${voie.difficulte.difficulte}--%>
-                        <%--</c:forEach>--%>
-                    <%--</c:forEach>--%>
-                <%--</td>--%>
-                <td>${spot.nbreSecteurs}</td>
-    <c:choose>
-        <c:when test="${spot.officiel}">
-            <td><i class="fa fa-check-square" style="color: green; font-size:25px;"></i></td>
-        </c:when>
-        <c:otherwise>
-            <td><i class="fa fa-window-close" style="color: red; font-size:25px;"> </i></td>
-        </c:otherwise>
-    </c:choose>
-
-
-</c:forEach>
-            </tr>
-            <tr>
-                <td><a class="link" href="/ocscalade/topos/topo">Bien débuter</a></td>
-                <td>Admin</td>
-                <td>69</td>
-                <td>6d</td>
-                <td>3</td>
-                <td><i class="fa fa-check-square" style="color: green; font-size:25px;"></i></td>
-                <td><i class="fa fa-window-close" style="color: red; font-size:25px;"> </i></td>
-            </tr>
+            <c:forEach items="${vListSpotRecherche}" var="spot">
+                <tr>
+                    <td><a class="link" href="/ocscalade/topos/topo">${spot.nom}</a></td>
+                    <td>${spot.createur.pseudo}</td>
+                    <td>${spot.departement.num}</td>
+                    <td>${spot.nbreSecteurs}</td>
+                    <c:choose>
+                        <c:when test="${spot.officiel}">
+                            <td><i class="fa fa-check-square green font25"></i></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td><i class="fa fa-window-close red font25"> </i></td>
+                        </c:otherwise>
+                    </c:choose>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
+        <c:if test="${ !empty vide}">
+            <h4 class="text-center">${ vide }</h4>
+        </c:if>
     </div>
 </div>
 <%-- FOOTER --%>

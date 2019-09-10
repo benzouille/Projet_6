@@ -15,7 +15,7 @@ public interface DaoCommentaire {
 
     /**
      * Méthode de création
-     * @param obj
+     * @param obj Commentaire
      * @return boolean
      */
     boolean create(Commentaire obj);

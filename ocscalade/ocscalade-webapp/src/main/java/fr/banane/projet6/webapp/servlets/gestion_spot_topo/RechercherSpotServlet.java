@@ -3,6 +3,7 @@ package fr.banane.projet6.webapp.servlets.gestion_spot_topo;
 import fr.banane.projet6.model.bean.Departement;
 import fr.banane.projet6.model.bean.Difficulte;
 import fr.banane.projet6.model.bean.Spot;
+import fr.banane.projet6.model.exception.TechnicalException;
 import fr.banane.projet6.webapp.resource.DepartementResource;
 import fr.banane.projet6.webapp.resource.DifficulteResource;
 import fr.banane.projet6.webapp.resource.SpotResource;
@@ -17,6 +18,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Classe Servlet de la jsp rechercher_spot permettant d'effectuer des recherche de spot selon plusieurs critère.
+ */
 public class RechercherSpotServlet extends HttpServlet {
 
     private DepartementResource vDepartementResource = new DepartementResource();
@@ -31,7 +35,7 @@ public class RechercherSpotServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        intiPage(req);
+        initPage(req);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/rechercher_spot.jsp").forward(req, resp);
     }
@@ -56,7 +60,11 @@ public class RechercherSpotServlet extends HttpServlet {
                 departement = String.valueOf(vDepartementResource.getDepartementByNum(req.getParameter("departement")).getId());
             }
             if (!req.getParameter("difficulte").equals("Séléctionnez")) {
-                difficulte = String.valueOf(vDifficulteResource.getDifficulte(req.getParameter("difficulte")).getId());
+                try {
+                    difficulte = String.valueOf(vDifficulteResource.getDifficulte(req.getParameter("difficulte")).getId());
+                } catch (TechnicalException e) {
+                    e.printStackTrace();
+                }
             }
             if (!req.getParameter("nbreSecteur").equals("Séléctionnez")) {
                 nbreSecteur = req.getParameter("nbreSecteur");
@@ -74,7 +82,12 @@ public class RechercherSpotServlet extends HttpServlet {
             }
             else {
                 List<Spot> vListSpotRecherche = vSpotResource.getListSpotByQuery( departement, difficulte, nbreSecteur, equipement, officiel);
-                System.out.println(vListSpotRecherche.toString());
+
+                if(vListSpotRecherche.size() == 0) {
+                    String vide = "Aucun spot n'a été trouvé avec vos critères de recherche.";
+                    req.setAttribute("vide", vide);
+                }
+
                 req.setAttribute("vListSpotRecherche", vListSpotRecherche);
             }
 
@@ -86,12 +99,16 @@ public class RechercherSpotServlet extends HttpServlet {
 
         }
 
-        intiPage(req);
+        initPage(req);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/rechercher_spot.jsp").forward(req, resp);
     }
 
-    private void intiPage(HttpServletRequest req){
+    /**
+     * Initialisation de la servlet et transmission des données à la jsp
+     * @param req la requete
+     */
+    private void initPage(HttpServletRequest req){
 
         List<Departement> vListDepartements = vDepartementResource.getListDepartement();
         req.setAttribute("vListDepartements", vListDepartements);
@@ -101,7 +118,6 @@ public class RechercherSpotServlet extends HttpServlet {
 
         List<Spot> vListSpots = vSpotResource.getListSpot();
         ArrayList<Integer> vListNbreSecteurs = new ArrayList<>();
-
 
         for(Spot spot : vListSpots){
             vListNbreSecteurs.add(spot.getSecteurs().size());

@@ -4,10 +4,16 @@ import fr.banane.projet6.model.bean.Privilege;
 
 import java.util.List;
 
+/**
+ * Les méthodes CRUD nécessaires pour manipuler le bean "Privilege" / La table "privilege"
+ *
+ * @author Banane
+ *
+ */
 public interface DaoPrivilege {
     /**
      * Méthode de recherche des informations
-     * @param id -
+     * @param id int privilege
      * @return T
      */
     Privilege read(int id);

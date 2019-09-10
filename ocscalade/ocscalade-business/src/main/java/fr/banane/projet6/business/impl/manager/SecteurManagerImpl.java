@@ -10,6 +10,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
+/**
+ * Implémentation de l'interface manager "SecteurManager".
+ *
+ * @author Banane
+ */
 @Named
 public class SecteurManagerImpl extends AbstractManager implements SecteurManager {
 
@@ -19,7 +24,6 @@ public class SecteurManagerImpl extends AbstractManager implements SecteurManage
 
     @Override
     public void newSecteur(Secteur vSecteur) {
-        //TODO ajouter les exceptions NotFoundException et DuplicateException
         TransactionStatus vTransactionStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
         try{
             getDaoFactory().getDaoSecteur().create(vSecteur);
@@ -56,11 +60,9 @@ public class SecteurManagerImpl extends AbstractManager implements SecteurManage
 
     @Override
     public void updateSecteur(Secteur vSecteur) {
-
     }
 
     @Override
     public void deleteSecteur(Secteur vSecteur) {
-
     }
 }

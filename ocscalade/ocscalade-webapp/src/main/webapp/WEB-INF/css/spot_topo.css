@@ -2,12 +2,43 @@
     background: url("https://zupimages.net/up/19/26/68cj.jpg");
     box-shadow: 0 5px 15px -5px #00000070;
     color: white;
+    margin-top: 10px;
 }
 .rotate{
     transform:rotate(345deg);
 }
 .carousel {
 
+}
+.text-center{
+    text-align: center
+}
+.no-bottom-margin{
+    margin-bottom: 0;
+}
+.margin-5b{
+    margin-bottom: 5px;
+}
+.margin-10b{
+      margin-bottom: 10px;
+  }
+.margin-10t{
+    margin-top: 10px;
+}
+.margin-20t{
+    margin-top: 20px;
+}
+.margin-0l{
+    margin-left: 0;
+}
+.margin-15l{
+    margin-left: 15px
+}
+.margin-5r{
+    margin-right: 5px;
+}
+.card-size{
+    height: 151px;
 }
 .carousel-item {
     max-height: 600px;
@@ -23,7 +54,6 @@
     padding: 4px;
     text-align: center; /* Aligner les images dans le conteneur */
 }
-
 .img_spot{
 
     border-radius: 10px;
@@ -65,8 +95,14 @@
 .link-td-btn input:hover{
     color: #007bff;
 }
+.font25{
+    font-size:25px;
+}
 .red{
     color: red;
+}
+.green{
+    color: green;
 }
 .page-link{
     color: #60a3bc;

@@ -1,12 +1,16 @@
 package fr.banane.projet6.model.exception;
 
+/**
+ * Classe d'exception levée quand l'objet métier crée est déjà dans la base de donnée
+ *
+ * @author Banane
+ */
 public class DuplicateException extends Exception {
     /**
      * Constructeur par défaut.
      */
     public DuplicateException() {
     }
-
 
     /**
      * Constructeur.
@@ -16,7 +20,6 @@ public class DuplicateException extends Exception {
     public DuplicateException(String pMessage) {
         super(pMessage);
     }
-
 
     /**
      * Constructeur.

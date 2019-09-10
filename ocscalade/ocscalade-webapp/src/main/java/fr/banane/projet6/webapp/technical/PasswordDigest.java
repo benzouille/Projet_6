@@ -4,8 +4,16 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Classe de sécurisation des mots de passe
+ */
 public class PasswordDigest {
 
+    /**
+     * Méthode permettant de hash et saler un String
+     * @param password string
+     * @return string hash
+     */
     public static String hashAndSalt(String password){
 
         String cle_salage = password.length()+"Agrougrou";

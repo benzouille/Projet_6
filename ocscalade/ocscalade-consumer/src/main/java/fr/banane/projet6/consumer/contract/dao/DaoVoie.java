@@ -14,14 +14,14 @@ public interface DaoVoie {
 
     /**
      * Méthode de création
-     * @param obj
+     * @param obj Voie
      * @return boolean
      */
     boolean create(Voie obj);
 
     /**
      * Méthode de recherche des informations
-     * @param id
+     * @param id int
      * @return T
      */
     Voie read(int id);
@@ -31,24 +31,23 @@ public interface DaoVoie {
 
     /**
      * Méthode de mise à jour
-     * @param obj
+     * @param obj Voie
      * @return boolean
      */
     boolean update(Voie obj);
 
     /**
      * Méthode pour effacer
-     * @param obj
+     * @param obj Voie
      * @return boolean
      */
     boolean delete(Voie obj);
 
     /**
      * Méthode pour effacer
-     * @param id_secteur
-     * @return boolean
+     * @param id_secteur int
      */
-    boolean deleteAll(int id_secteur);
+    void deleteAll(int id_secteur);
 
     /**
      * Retourne le nombre de voie

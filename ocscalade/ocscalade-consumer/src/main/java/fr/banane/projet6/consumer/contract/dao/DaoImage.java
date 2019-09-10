@@ -27,7 +27,7 @@ public interface DaoImage {
     Image read(int id);
     Image read(String code);
     List<Image> readAll();
-    List<Image> readAll(int id);
+    List<Image> readAllByIdSpot(int id_spot);
 
     /**
      * Méthode de mise à jour

@@ -17,8 +17,7 @@ public interface SecteurManager {
      *
      * @param vSecteur objet à envoyer en bdd
      */
-    public void newSecteur(Secteur vSecteur);
-    //TODO ajouter les exceptions NotFoundException et DuplicateException
+    void newSecteur(Secteur vSecteur);
 
     /**
      * Retourne la liste des Secteur.
@@ -39,7 +38,7 @@ public interface SecteurManager {
      *
      * @param pId L'identifiant du Secteur
      * @return L'objet Secteur correspondant à l'identifiant.
-     * @throws NotFoundException
+     * @throws NotFoundException ne trouve pas la ressource demandée
      */
     Secteur getSecteur(Integer pId);
 
@@ -48,22 +47,20 @@ public interface SecteurManager {
      *
      * @param name nom du Secteur
      * @return L'objet Secteur correspondant à son nom.
-     * @throws NotFoundException
+     * @throws NotFoundException ne trouve pas la ressource demandée
      */
     Secteur getSecteurByName(String name);
 
     /**
      * Met à jour un Secteur.
-     * @param vSecteur
+     * @param vSecteur objet Secteur
      */
-    public void updateSecteur(Secteur vSecteur);
-    //TODO ajouter le throws pour l'exceptions NotFoundException
+    void updateSecteur(Secteur vSecteur);
 
     /**
      * Supprime un Secteur
-     * @param vSecteur
+     * @param vSecteur objet Secteur
      */
-    public void deleteSecteur(Secteur vSecteur);
-    //TODO ajouter le throws pour l'exceptions NotFoundException
+    void deleteSecteur(Secteur vSecteur);
 
 }

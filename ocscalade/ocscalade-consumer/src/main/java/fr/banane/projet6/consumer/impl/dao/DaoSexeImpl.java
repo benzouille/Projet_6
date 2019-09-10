@@ -33,7 +33,12 @@ public class DaoSexeImpl extends AbstractDao implements DaoSexe {
 
     @Override
     public Sexe read(String code) {
-        return null;
+        String vSQL = "SELECT * FROM sexe WHERE sexe='"+code+"'";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Sexe> vListSexe = vJdbcTemplate.query(vSQL, sexeRM);
+        Sexe vSexe = vListSexe.get(0);
+
+        return vSexe;
     }
 
     @Override

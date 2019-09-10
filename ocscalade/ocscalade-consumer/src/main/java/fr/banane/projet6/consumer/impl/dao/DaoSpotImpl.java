@@ -77,8 +77,8 @@ public class DaoSpotImpl extends AbstractDao implements DaoSpot {
     }
 
     @Override
-    public List<Spot> readAllByIdCreateur(int id_createur) {
-        String vSQL = "SELECT * FROM spot WHERE id_createur="+id_createur;
+    public List<Spot> readAllForIndex() {
+        String vSQL = "SELECT spot.* FROM spot ORDER BY id DESC FETCH FIRST 8 ROWS ONLY";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Spot> vListSpot = vJdbcTemplate.query(vSQL, spotRM);
         return vListSpot;
@@ -87,14 +87,6 @@ public class DaoSpotImpl extends AbstractDao implements DaoSpot {
     @Override
     public List<Spot> getListSpotByDepartement(int id_dep) {
         String vSQL = "SELECT * FROM spot WHERE id_departement="+id_dep;
-        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Spot> vListSpot = vJdbcTemplate.query(vSQL, spotRM);
-        return vListSpot;
-    }
-
-    @Override
-    public List<Spot> getListSpotByOfficiel() {
-        String vSQL = "SELECT * FROM spot WHERE officiel="+true;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Spot> vListSpot = vJdbcTemplate.query(vSQL, spotRM);
         return vListSpot;
@@ -119,8 +111,9 @@ public class DaoSpotImpl extends AbstractDao implements DaoSpot {
 
         if(difficulte == null && !equipement){
             requeteList.add(vFROMSpot);
-            requeteList.add(vWHERE);
-            System.out.println("par le spot : "+requeteList.size());
+            if(departement != null || officiel){
+                requeteList.add(vWHERE);
+            }
         }
         else{
             requeteList.add(vFROMVoie);
@@ -132,7 +125,6 @@ public class DaoSpotImpl extends AbstractDao implements DaoSpot {
             if (equipement){
                 requeteList.add(vEquipement);
             }
-            System.out.println("par la voie : "+requeteList.size());
         }
 
         if(departement != null ){
@@ -154,13 +146,9 @@ public class DaoSpotImpl extends AbstractDao implements DaoSpot {
             vSQL.append(string);
         }
 
-        System.out.println(vSQL);
-
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Spot> vListSpot = vJdbcTemplate.query(vSQL.toString(), spotRM);
 
-
-        System.out.println("nbre secteur" + nbreSecteur);
         if(nbreSecteur != null){
             List<Spot> vListSpotModif = new ArrayList<>();
             for (Spot spot : vListSpot) {
@@ -194,7 +182,7 @@ public class DaoSpotImpl extends AbstractDao implements DaoSpot {
     }
 
     @Override
-    public boolean delete(Spot obj) {
+    public void delete(Spot obj) {
         //suppression des secteurs liées à l'id du spot
         daoSecteurImpl.deleteAll(obj.getId());
 
@@ -207,14 +195,11 @@ public class DaoSpotImpl extends AbstractDao implements DaoSpot {
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
 
         vJdbcTemplate.update(vSQL, vParam);
-
-        return false;
     }
 
     @Override
     public int getCountSpot() {
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        int vNbSpot = vJdbcTemplate.queryForObject( "SELECT COUNT(*) FROM spot", Integer.class);
-        return vNbSpot;
+        return vJdbcTemplate.queryForObject( "SELECT COUNT(*) FROM spot", Integer.class);
     }
 }

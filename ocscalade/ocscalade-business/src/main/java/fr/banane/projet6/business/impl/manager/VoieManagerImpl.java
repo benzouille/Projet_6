@@ -10,6 +10,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
+/**
+ * Implémentation de l'interface manager "VoieManager".
+ *
+ * @author Banane
+ */
 @Named
 public class VoieManagerImpl extends AbstractManager implements VoieManager {
 
@@ -19,7 +24,6 @@ public class VoieManagerImpl extends AbstractManager implements VoieManager {
 
     @Override
     public void newVoie(Voie vVoie) {
-        //TODO ajouter les exceptions NotFoundException et DuplicateException
         TransactionStatus vTransactionStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
         try{
             getDaoFactory().getDaoVoie().create(vVoie);
@@ -56,10 +60,9 @@ public class VoieManagerImpl extends AbstractManager implements VoieManager {
 
     @Override
     public void updateSpot(Voie vVoie) {
-        //TODO ajouter les exceptions NotFoundException
         TransactionStatus vTransactionStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
         try{
-        getDaoFactory().getDaoVoie().update(vVoie);
+            getDaoFactory().getDaoVoie().update(vVoie);
 
             TransactionStatus vTScommit = vTransactionStatus;
             vTransactionStatus = null;
@@ -76,25 +79,20 @@ public class VoieManagerImpl extends AbstractManager implements VoieManager {
         //TODO ajouter les exceptions NotFoundException
         TransactionStatus vTransactionStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
         try{
-        getDaoFactory().getDaoVoie().delete(vVoie);
+            getDaoFactory().getDaoVoie().delete(vVoie);
 
-        TransactionStatus vTScommit = vTransactionStatus;
-        vTransactionStatus = null;
-        platformTransactionManager.commit(vTScommit);
-    }finally {
-        if(vTransactionStatus != null) {
-            platformTransactionManager.rollback(vTransactionStatus);
+            TransactionStatus vTScommit = vTransactionStatus;
+            vTransactionStatus = null;
+            platformTransactionManager.commit(vTScommit);
+        }finally {
+            if(vTransactionStatus != null) {
+                platformTransactionManager.rollback(vTransactionStatus);
+            }
         }
-    }
     }
 
     @Override
     public void deleteAllByIdSecteur(int id_secteur) {
-
     }
 
-    @Override
-    public int getCountVoie() {
-        return 0;
-    }
 }

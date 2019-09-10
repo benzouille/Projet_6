@@ -1,5 +1,8 @@
 package fr.banane.projet6.model.bean;
 
+import fr.banane.projet6.model.exception.DuplicateException;
+import fr.banane.projet6.model.exception.StringSetException;
+
 /**
  * Objet metier représentant un Utilisateur
  *
@@ -80,8 +83,12 @@ public class Utilisateur {
         return pseudo;
     }
 
-    public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
+    public void setPseudo(String pseudo) throws StringSetException {
+        if(pseudo.length() > 10) {
+            throw new StringSetException("Le pseudo est trop grand ! (10 caractères maximum)");
+        }else{
+            this.pseudo = pseudo;
+        }
     }
 
     public String getEmail() {

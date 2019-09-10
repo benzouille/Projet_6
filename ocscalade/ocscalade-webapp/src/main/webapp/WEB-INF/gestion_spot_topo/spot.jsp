@@ -25,7 +25,7 @@
 <%@ include file="/WEB-INF/header_footer/header.jsp" %>
 
 <div class="container">
-    <div class="jumbotron" style="margin-top: 10px;">
+    <div class="jumbotron">
         <div>
             <h1 class="display-4"><strong><c:out value="${spot.nom}"/></strong></h1>
             <c:if test="${spot.officiel}">
@@ -42,90 +42,131 @@
     <%--CAROUSSEL--%>
     <div class="information row">
         <div class="photo col-lg-5">
-            <div class="carousel-spot" style="margin-bottom: 10px">
-                <div id="carouselCaptions" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselCaptions" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselCaptions" data-slide-to="1"></li>
-                        <li data-target="#carouselCaptions" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="https://zupimages.net/up/19/27/mlvw.jpg" class="img_spot d-block img-fluid" alt="image du spot">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://static.actu.fr/uploads/2018/04/25026-180425182555366-1-854x1139.jpg" class="img_spot d-block img-fluid" alt="image du spot">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://zupimages.net/up/19/27/mlvw.jpg" class="img_spot d-block img-fluid" alt="image du spot">
-                        </div>
+            <div class="row margin-10b">
+                <c:if test="${ !empty sessionScope.utilisateur && sessionScope.utilisateur.pseudo == spot.createur.pseudo && !imageFull}">
+                    <div class="form-inline pull-right">
+                        <a href="#" class="btn btn-outline-success margin-10t" role="button"  data-toggle="modal" data-target="#photoModal"><i class="fa fa-plus"></i> Ajouter des photos</a>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselCaptions" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselCaptions" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="secteur_list_1 col-lg-12">
-                    <h3 class="text-center"><strong>Secteurs</strong></h3>
-                    <hr class="my-4">
-                    <ul class="list-group">
-                        <c:forEach items="${spot.secteurs}" var="secteur">
-                            <form action="spot/secteur" method="post">
-                                <input type="hidden" name="id_secteur" value="${secteur.id}"/>
-                                <input type="submit" name="_secteur_" id="${secteur.id}" class="btn list-group-item list-group-item-action turquoise" value="${secteur.nom}"/>
-                            </form>
-                        </c:forEach>
-                    </ul>
-                    <div>
-                        <c:if test="${ !empty sessionScope.utilisateur && sessionScope.utilisateur.pseudo == spot.createur.pseudo}">
-                            <div class="form-inline pull-right">
-                                <a href="#" class="btn btn-outline-success" role="button" style="margin-top: 10px" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Nouveau secteur</a>
-                            </div>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Nouveau secteur</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <form action="spot/secteur" method="post">
-                                            <div class="modal-body">
-                                                <div class="container-fluid">
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <label for="nom">Nom</label>
-                                                            <input type="text" class="form-control" name="nom" id="nom" placeholder="nom"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="inputDescription">Description</label>
-                                                        <textarea class="form-control" id="inputDescription" name="description" rows="6" placeholder="1000 caractères maxi."></textarea>
-                                                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="ajoutPhoto" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ajoutPhoto">Ajouter des photos</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="spot" method="post" enctype="multipart/form-data">
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <div class="form-group">
+                                                <p><small>3 photos maximum, de 10 Mo max, de format .jpg et de taille 800 par 600 px ou 1200 par 800px.</small></p>
+                                                <div class="form-group">
+                                                    <input type="file" class="form-control-file" name="image1" id="photo1">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="file" class="form-control-file" name="image2" id="photo2">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="file" class="form-control-file" name="image3" id="photo3">
                                                 </div>
                                             </div>
-                                            <div class="modal-footer">
-                                                <input type="hidden" name="id_spot" value="${spot.id}"/>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                <input type="submit" name="_nouveau_secteur_" value="Enregistrer" class="btn btn-primary"/>
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="modal-footer">
+                                        <input type="hidden" name="id_spot" value="${spot.id}"/>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                        <input type="submit" name="_image_" value="Enregistrer" class="btn btn-primary"/>
+                                    </div>
+                                </form>
                             </div>
-                        </c:if>
+                        </div>
+                    </div>
+                </c:if>
+            </div>
+            <div class="row">
+                <div class="carousel-spot margin-10b">
+                    <div id="carouselCaptions" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselCaptions" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselCaptions" data-slide-to="1"></li>
+                            <li data-target="#carouselCaptions" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <c:forEach items="${vListImagesPath}" var="image" varStatus="vs">
+                                <div class="carousel-item <c:if test="${vs.first}"> active</c:if>">
+                                    <img src="<%=request.getContextPath()%>${image}" class="img_spot d-block img-fluid" alt="image du spot">
+                                </div>
+                            </c:forEach>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselCaptions" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselCaptions" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
                 </div>
             </div>
+            <div class="secteur_list_1 col-lg-12">
+                <h3 class="text-center"><strong>Secteurs</strong></h3>
+                <hr class="my-4">
+                <ul class="list-group">
+                    <c:forEach items="${spot.secteurs}" var="secteur">
+                        <form action="spot/secteur" method="post">
+                            <input type="hidden" name="id_secteur" value="${secteur.id}"/>
+                            <input type="submit" name="_secteur_" id="${secteur.id}" class="btn list-group-item list-group-item-action turquoise" value="${secteur.nom}"/>
+                        </form>
+                    </c:forEach>
+                </ul>
+                <div>
+                    <c:if test="${ !empty sessionScope.utilisateur && sessionScope.utilisateur.pseudo == spot.createur.pseudo}">
+                        <div class="form-inline pull-right">
+                            <a href="#" class="btn btn-outline-success margin-10t" role="button" data-toggle="modal" data-target="#secteurModal"><i class="fa fa-plus"></i> Nouveau secteur</a>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="secteurModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Nouveau secteur</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form action="spot/secteur" method="post">
+                                        <div class="modal-body">
+                                            <div class="container-fluid">
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="nom">Nom</label>
+                                                        <input type="text" class="form-control" name="nom" id="nom" placeholder="nom"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputDescription">Description</label>
+                                                    <textarea class="form-control" id="inputDescription" name="description" rows="6" placeholder="1000 caractères maxi."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="hidden" name="id_spot" value="${spot.id}"/>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                            <input type="submit" name="_nouveau_secteur_" value="Enregistrer" class="btn btn-primary"/>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
+                </div>
+            </div>
+
         </div>
         <div class="describe col-lg-7">
             <h3 class="text-center"><strong>Informations</strong></h3>
@@ -177,7 +218,7 @@
         <c:forEach items="${spot.commentaires}" var="commentaire">
             <div class="card border-light mb-3">
                 <div class="row no-gutters">
-                    <div class="card-header row col-md-3" style="margin-left: 0px">
+                    <div class="card-header row col-md-3 margin-0l">
                         <div class="col-6 col-md-12 col-lg-12">
                             <h6>${commentaire.utilisateur.pseudo}</h6>
                         </div>
@@ -191,8 +232,8 @@
                         <div class="card-body">
                             <p class="card-text">${commentaire.commentaire}</p>
                             <c:if test="${sessionScope.utilisateur.pseudo == commentaire.utilisateur.pseudo || sessionScope.utilisateur.privilege.id==2 || sessionScope.utilisateur.privilege.id==3}">
-                                <div class="row pull-right" style="margin-bottom: 5px">
-                                    <form action="spots/spot" method="post" style="margin-right: 5px">
+                                <div class="row pull-right margin-5b">
+                                    <form class="margin-5r" action="spots/spot" method="post">
                                         <a href="#" class="btn btn-outline-secondary btn-sm" role="button" data-toggle="modal" data-target="#modalEdit${commentaire.id}">Editer</a>
                                     </form>
                                     <!-- Modal -->

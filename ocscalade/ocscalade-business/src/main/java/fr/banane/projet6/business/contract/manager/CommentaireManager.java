@@ -2,6 +2,7 @@ package fr.banane.projet6.business.contract.manager;
 
 import fr.banane.projet6.model.bean.Commentaire;
 import fr.banane.projet6.model.exception.NotFoundException;
+import fr.banane.projet6.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -18,32 +19,32 @@ public interface CommentaireManager {
      * @param vCommentaire objet à envoyer en bdd
      *
      */
-    void newCommentaire(Commentaire vCommentaire);
+    void newCommentaire(Commentaire vCommentaire) throws TechnicalException;
 
     /**
      * Retourne un objet Commentaire en particulier selon son 'id'.
      *
      * @param pId L'identifiant de la Commentaire
      * @return L'objet Commentaire correspondant à l'identifiant.
-     * @throws NotFoundException
+     * @throws TechnicalException ne trouve pas la ressource demandée
      */
-    Commentaire getCommentaire(Integer pId);
+    Commentaire getCommentaire(Integer pId) throws TechnicalException;
 
     /**
      * Retourne la liste des Commentaire.
      *
      * @return Une liste de Commentaire.
      */
-    List<Commentaire> getListCommentaire();
+    List<Commentaire> getListCommentaire() throws TechnicalException;
 
     /**
      * Retourne Une liste de Commentaire selon son 'utilisateur'.
      *
      * @param id_utilisateur id de l'utilisateur
      * @return Une liste de Commentaire correspondant à l'utilisateur.
-     * @throws NotFoundException
+     * @throws TechnicalException ne trouve pas la ressource demandée
      */
-    List<Commentaire> getCommentaireByUser(int id_utilisateur);
+    List<Commentaire> getCommentaireByUser(int id_utilisateur) throws TechnicalException;
 
     /**
      * Retourne la liste des Commentaire d'un spot.
@@ -58,20 +59,16 @@ public interface CommentaireManager {
      * @param vCommentaire
      */
     void updateCommentaire(Commentaire vCommentaire);
-    //TODO ajouter le throws pour l'exceptions NotFoundException
 
     /**
      * Supprime un Commentaire
      * @param vCommentaire
      */
     void deleteCommentaire(Commentaire vCommentaire);
-    //TODO ajouter le throws pour l'exceptions NotFoundException
 
     /**
      * Supprime les objets Commentaire selon l'id du spot
      * @param id_spot
      */
     void deleteAllByIdSpot(int id_spot);
-
-    int getCountCommentaire();
 }

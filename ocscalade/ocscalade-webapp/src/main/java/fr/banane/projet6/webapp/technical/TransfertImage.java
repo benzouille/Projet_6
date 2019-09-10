@@ -6,16 +6,20 @@ import java.io.*;
 /**
  * Classe permetant de transferer des images au dossier serveur
  */
-public class TransfertImage {
+public abstract class TransfertImage {
 
-    public static final int TAILLE_TAMPON = 10240;
-    public static final String PATH = "D:/intellij_workspace/Projet_6/ocscalade/ocscalade-webapp/src/main/webapp/images/spots";
+    private static final int TAILLE_TAMPON = 102400;
+    private static final String PATH = "D:/intellij_workspace/Projet_6/ocscalade/ocscalade-webapp/src/main/webapp/images/spots/";
 
-    public TransfertImage(){
+    public TransfertImage(){ }
 
-    }
-
-    public void transfert(Part part, String nomImage) throws IOException {
+    /**
+     * Méthode permettant de telechager un fichier image sur le serveur depuis le coté client
+     * @param part Part l'image
+     * @param nomImage String titre de l'image
+     * @throws IOException exception
+     */
+    public static void transfert(Part part, String nomImage) throws IOException {
         BufferedInputStream entree = null;
         BufferedOutputStream sortie = null;
         try {
@@ -39,6 +43,11 @@ public class TransfertImage {
         }
     }
 
+    /**
+     * Méthode de récupération du titre de l'image
+     * @param part part image
+     * @return
+     */
     public static String getNomFichier( Part part ) {
         for ( String contentDisposition : part.getHeader( "content-disposition" ).split( ";" ) ) {
             if ( contentDisposition.trim().startsWith( "filename" ) ) {
@@ -47,5 +56,4 @@ public class TransfertImage {
         }
         return null;
     }
-
 }

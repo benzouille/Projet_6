@@ -4,6 +4,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.sql.DataSource;
 
+/**
+ * Classe Abstraite permettant de récuperer la data source
+ */
 public abstract class AbstractDao {
 
     @Inject

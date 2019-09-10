@@ -27,62 +27,101 @@
 <div class="container">
     <div class="row">
         <div class="col-xl-2 col-lg-2 col-md-2"></div>
-        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
-            <form class="box-profil" action="profil" method="post">
-                <h1>Profil</h1>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <label for="id_pseudo" class="">Pseudo : </label>
-                    </div>
-                    <div class="col-lg-8">
-                        <input id="id_pseudo" class="" type="text" value="<c:if test="${ !empty sessionScope.utilisateur}">${ sessionScope.utilisateur.pseudo }</c:if>"/>
+        <div class="box-profil col-xl-8 col-lg-8 col-md-8 col-sm-12">
+            <h1>Profil</h1>
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="pseudo" class="">Pseudo : </label>
+                </div>
+                <div class="col-lg-8">
+                    <label id="pseudo" name="pseudo"><c:if test="${ !empty sessionScope.utilisateur}">${ sessionScope.utilisateur.pseudo }</c:if></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+                    <label for="email" class="">Email : </label>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <label id="email"><c:if test="${ !empty sessionScope.utilisateur}">${ sessionScope.utilisateur.email }</c:if></label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+                    <label for="sexe" class="">Sexe : </label>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <label id="sexe"><c:if test="${ !empty sessionScope.utilisateur}">${ sessionScope.utilisateur.sexe.sexe }</c:if></label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+                    <label for="departement" class="">Departement : </label>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <label id="departement"><c:if test="${ !empty sessionScope.utilisateur}">${ sessionScope.utilisateur.departement.num }, ${ sessionScope.utilisateur.departement.nom }</c:if></label>
+                </div>
+            </div>
+            <div class="form-inline pull-right">
+                <input type="button" name="_ok_" value="Modifier" data-toggle="modal" data-target="#exampleModal">
+            </div>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-md-2"></div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modifier le profil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="profil" method="post">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="id_sexe">Sexe</label>
+                                    <select class="custom-select" name="sexe" id="id_sexe">
+                                        <option selected>Séléctionnez</option>
+                                        <c:forEach items="${vListSexes}" var="sexe">
+                                            <option><c:out value="${sexe.sexe}"/></option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label for="id_departement">Département</label>
+                                    <select class="custom-select" name="departement" id="id_departement">
+                                        <option selected>Séléctionnez</option>
+                                        <c:forEach items="${vListDepartements}" var="departement">
+                                            <option><c:out value="${departement.num}"/></option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label for="id_email">Email</label>
+                                    <input type="email" id="id_email" class="form-control"  name="email" value="<c:if test="${ !empty sessionScope.utilisateur}">${ sessionScope.utilisateur.email }</c:if>"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-12">
-                        <label for="id_email" class="">Email : </label>
-                    </div>
-                    <div class="col-lg-8 col-md-12">
-                        <input id="id_email" class="" type="text" name="email" value="<c:if test="${ !empty sessionScope.utilisateur}">${ sessionScope.utilisateur.email }</c:if>"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-12">
-                        <label for="id_password" class="">Mot de passe : </label>
-                    </div>
-                    <div class="col-lg-8 col-md-12">
-                        <input id="id_password" class="" type="text" name="password" value="<c:if test="${ !empty sessionScope.utilisateur}">${ sessionScope.utilisateur.password }</c:if>"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-12">
-                        <label for="id_sexe" class="">Sexe : </label>
-                    </div>
-                    <div class="col-lg-8 col-md-12">
-                        <select class="custom-select" id="id_sexe">
-                            <option selected>Choose...</option>
-                            <c:forEach items="${vListSexes}" var="sexe">
-                            <option><c:out value="${sexe.sexe}"/></option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-12">
-                        <label for="id_departement" class="">Departement : </label>
-                    </div>
-                    <div class="col-lg-8 col-md-12">
-                        <select class="custom-select" id="id_departement">
-                            <option selected>Séléctionnez</option>
-                            <c:forEach items="${vListDepartements}" var="departement">
-                                <option><c:out value="${departement.num}"/></option>
-                            </c:forEach>
-                        </select>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <input type="submit" name="_modifier_profil_" class="btn btn-primary" value="Enregistrer"/>
                 </div>
             </form>
         </div>
-        <div class="col-xl-2 col-lg-2 col-md-2"></div>
     </div>
 </div>
 

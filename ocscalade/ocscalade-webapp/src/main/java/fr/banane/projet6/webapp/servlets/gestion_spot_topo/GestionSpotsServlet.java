@@ -2,6 +2,7 @@ package fr.banane.projet6.webapp.servlets.gestion_spot_topo;
 
 import fr.banane.projet6.model.bean.Spot;
 import fr.banane.projet6.model.bean.Utilisateur;
+import fr.banane.projet6.model.exception.TechnicalException;
 import fr.banane.projet6.webapp.resource.SpotResource;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe Servlet de la jsp gestion_spots utilisé par les modérateur pour officialiser ou non les spots
+ */
 public class GestionSpotsServlet extends HttpServlet {
 
     private Spot vSpot;
@@ -24,7 +28,7 @@ public class GestionSpotsServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        intiPage(req);
+        initPage(req);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/gestion_spots.jsp").forward(req, resp);
     }
@@ -39,7 +43,11 @@ public class GestionSpotsServlet extends HttpServlet {
         if(req.getParameter("_spot_officiel_") != null) {
 
             //appel à la bdd
-            vSpot = vSpotResource.getSpot(Integer.parseInt(req.getParameter("idSpot")));
+            try {
+                vSpot = vSpotResource.getSpot(Integer.parseInt(req.getParameter("idSpot")));
+            } catch (TechnicalException e) {
+                e.printStackTrace();
+            }
 
             if (req.getParameter("spot_officiel") != null){
                 vSpot.setOfficiel(true);
@@ -55,16 +63,18 @@ public class GestionSpotsServlet extends HttpServlet {
             req.removeAttribute("_spot_officiel_");
             req.removeAttribute("idSpot");
             req.removeAttribute("spot_officiel");
-
         }
 
-        intiPage(req);
+        initPage(req);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/gestion_spots.jsp").forward(req, resp);
     }
 
-
-    private void intiPage(HttpServletRequest req){
+    /**
+     * Initialisation de la servlet et transmission des données à la jsp
+     * @param req la requete
+     */
+    private void initPage(HttpServletRequest req){
         Utilisateur utilisateur = (Utilisateur)req.getSession().getAttribute("utilisateur");
 
         vListSpots = vSpotResource.getListSpot();

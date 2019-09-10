@@ -24,7 +24,7 @@ public interface SexeManager {
      *
      * @param pId L'identifiant du Sexe
      * @return L'objet Sexe correspondant à l'identifiant.
-     * @throws NotFoundException
+     * @throws NotFoundException ne trouve pas la ressource demandée
      */
     Sexe getSexe(Integer pId) throws NotFoundException;
 
@@ -33,7 +33,7 @@ public interface SexeManager {
      *
      * @param sexe nom du Sexe
      * @return L'objet Sexe correspondant à son sexe.
-     * @throws NotFoundException
+     * @throws NotFoundException ne trouve pas la ressource demandée
      */
     Sexe getSexeBySexe(String sexe);
 }

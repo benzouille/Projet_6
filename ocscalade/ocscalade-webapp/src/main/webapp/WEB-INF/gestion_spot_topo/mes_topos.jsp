@@ -28,7 +28,7 @@
 <%-- BODY --%>
 
 <div class="container">
-    <div class="jumbotron" style="margin-top: 10px;">
+    <div class="jumbotron">
         <h1 class="display-4"><strong>Mes topos</strong></h1>
     </div>
 

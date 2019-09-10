@@ -1,6 +1,7 @@
 package fr.banane.projet6.consumer.contract.dao;
 
 import fr.banane.projet6.model.bean.Utilisateur;
+import fr.banane.projet6.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -14,31 +15,31 @@ public interface DaoUtilisateur {
 
     /**
      * Méthode de création
-     * @param obj
+     * @param obj Utilisateur
      * @return boolean
      */
     boolean create(Utilisateur obj);
 
     /**
      * Méthode de recherche des informations
-     * @param id
+     * @param id int
      * @return T
      */
-    Utilisateur read(int id);
-    Utilisateur read(String pseudo);
+    Utilisateur read(int id) throws TechnicalException;
+    Utilisateur read(String pseudo) throws TechnicalException;
     List<Utilisateur> readAll();
     List<Utilisateur> readAll(int id);
 
     /**
      * Méthode de mise à jour
-     * @param obj
+     * @param obj Utilisateur
      * @return boolean
      */
     boolean update(Utilisateur obj);
 
     /**
      * Méthode pour effacer
-     * @param obj
+     * @param obj Utilisateur
      * @return boolean
      */
     boolean delete(Utilisateur obj);

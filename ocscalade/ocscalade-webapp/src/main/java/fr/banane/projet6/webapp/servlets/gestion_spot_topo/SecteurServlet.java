@@ -1,9 +1,7 @@
 package fr.banane.projet6.webapp.servlets.gestion_spot_topo;
 
-import fr.banane.projet6.model.bean.Difficulte;
-import fr.banane.projet6.model.bean.Secteur;
-import fr.banane.projet6.model.bean.Spot;
-import fr.banane.projet6.model.bean.Voie;
+import fr.banane.projet6.model.bean.*;
+import fr.banane.projet6.model.exception.TechnicalException;
 import fr.banane.projet6.webapp.resource.DifficulteResource;
 import fr.banane.projet6.webapp.resource.SecteurResource;
 import fr.banane.projet6.webapp.resource.SpotResource;
@@ -13,15 +11,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Classe Servlet de la jsp secteur permettant d'afficher un secteur ou créer un nouveau secteurs ou nouvelle voie.
+ */
 public class SecteurServlet extends HttpServlet {
+
+    String vCreateur;
 
     private int id_secteur;
     private Secteur vSecteur;
     private SecteurResource vSecteurResource = new SecteurResource();
 
+    private Spot vSpot;
     private SpotResource vSpotResource = new SpotResource();
 
     private Voie vVoie;
@@ -33,8 +38,10 @@ public class SecteurServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        vListDifficultes = vDifficulteResource.getListDifficulte();
-        req.setAttribute("vListDifficultes", vListDifficultes);
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+
+        initPage(req);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/secteur.jsp").forward(req, resp);
     }
@@ -45,8 +52,8 @@ public class SecteurServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        vListDifficultes = vDifficulteResource.getListDifficulte();
-        req.setAttribute("vListDifficultes", vListDifficultes);
+        HttpSession session = req.getSession();
+        Utilisateur vUtilisateur = (Utilisateur)session.getAttribute("utilisateur");
 
         //--NOUVEAU SECTEUR
         if(req.getParameter("_nouveau_secteur_") != null) {
@@ -60,14 +67,18 @@ public class SecteurServlet extends HttpServlet {
             vSecteurResource.newSecteur(vSecteur);
             //appel de l'objet crée
             vSecteur = vSecteurResource.getSecteurByName(req.getParameter("nom"));
-            String vCreateur = vSpotResource.getSpot(vSecteur.getId_spot()).getCreateur().getPseudo();
+            vCreateur = null;
+            try {
+                vCreateur = vSpotResource.getSpot(vSecteur.getId_spot()).getCreateur().getPseudo();
+            } catch (TechnicalException e) {
+                req.setAttribute("erreur", e.getMessage());
+                this.getServletContext().getRequestDispatcher("/WEB-INF/error_page.jsp").forward(req, resp);
+                e.printStackTrace();
+            }
             id_secteur = vSecteur.getId();
-            //renvoi à la vue
-            req.setAttribute("vCreateur", vCreateur);
-            req.setAttribute("vSecteur", vSecteur);
 
             //mise a null de l'objet et des parametres
-            vSecteur = null;
+
             req.removeAttribute("_nouveau_secteur_");
             req.removeAttribute("id_spot");
             req.removeAttribute("nom");
@@ -76,15 +87,16 @@ public class SecteurServlet extends HttpServlet {
 
         //--NOUVELLE VOIE
         if(req.getParameter("_nouvelle_voie_") != null) {
-//            System.out.println("je passe par NOUVELLE VOIE de SecteurServlet");
-//            System.out.println(" voie diff : "+req.getParameter("difficulte"));
-//            System.out.println(" voie equi : "+req.getParameter("equipement"));
-//            System.out.println(" voie desc : "+req.getParameter("description"));
-
+//
             vVoie = new Voie();
             vVoie.setId_secteur(id_secteur);
             vVoie.setNom(req.getParameter("nom"));
-            vVoie.setDifficulte(vDifficulteResource.getDifficulte(req.getParameter("difficulte")));
+
+                try {
+                    vVoie.setDifficulte(vDifficulteResource.getDifficulte(req.getParameter("difficulte")));
+                } catch (TechnicalException e) {
+                    e.printStackTrace();
+                }
             if(req.getParameter("equipement") != null) {
                 vVoie.setEquipement(true);
                 vVoie.setNb_point(Integer.valueOf(req.getParameter("nb_point")));
@@ -94,15 +106,17 @@ public class SecteurServlet extends HttpServlet {
 
             //mise en bdd
             vVoieResource.newVoie(vVoie);
-            //appel de l'objet crée
-            vSecteur = vSecteurResource.getSecteur(id_secteur);
-            String vCreateur = vSpotResource.getSpot(vSecteur.getId_spot()).getCreateur().getPseudo();
-            //renvoi à la vue
-            req.setAttribute("vCreateur", vCreateur);
-            req.setAttribute("vSecteur", vSecteur);
 
-            //mise a zero de l'objet et des parametres
-            vVoie = null;
+            vCreateur = null;
+            try {
+                vCreateur = vSpotResource.getSpot(vSecteur.getId_spot()).getCreateur().getPseudo();
+            } catch (TechnicalException e) {
+                req.setAttribute("erreur", e.getMessage());
+                this.getServletContext().getRequestDispatcher("/WEB-INF/error_page.jsp").forward(req, resp);
+                e.printStackTrace();
+            }
+
+            //mise a zero des parametres
             req.removeAttribute("_nouvelle_voie_");
             req.removeAttribute("nom");
             req.removeAttribute("difficulte");
@@ -118,12 +132,40 @@ public class SecteurServlet extends HttpServlet {
             id_secteur = 0;
             id_secteur = Integer.valueOf(req.getParameter("id_secteur"));
             vSecteur = vSecteurResource.getSecteur(id_secteur);
-            System.out.println("lien secteur : " +vSecteur.getVoies().toString());
-            String vCreateur = vSpotResource.getSpot(vSecteur.getId_spot()).getCreateur().getPseudo();
-            req.setAttribute("vCreateur", vCreateur);
-            req.setAttribute("vSecteur", vSecteur);
+            vCreateur = null;
+            try {
+                vCreateur = vSpotResource.getSpot(vSecteur.getId_spot()).getCreateur().getPseudo();
+            } catch (TechnicalException e) {
+                req.setAttribute("erreur", e.getMessage());
+                this.getServletContext().getRequestDispatcher("/WEB-INF/error_page.jsp").forward(req, resp);
+                e.printStackTrace();
+            }
+
         }
 
+        initPage(req);
+
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/secteur.jsp").forward(req, resp);
+    }
+
+    /**
+     * Initialisation de la servlet et transmission des données à la jsp
+     * @param req la requete
+     */
+    private void initPage(HttpServletRequest req){
+
+        vListDifficultes = vDifficulteResource.getListDifficulte();
+
+        vSecteur = vSecteurResource.getSecteur(id_secteur);
+        try {
+            vSpot = vSpotResource.getSpot(vSecteur.getId_spot());
+        } catch (TechnicalException e) {
+            e.printStackTrace();
+        }
+
+        req.setAttribute("vListDifficultes", vListDifficultes);
+        req.setAttribute("vCreateur", vCreateur);
+        req.setAttribute("vSecteur", vSecteur);
+        req.setAttribute("vSpot", vSpot);
     }
 }

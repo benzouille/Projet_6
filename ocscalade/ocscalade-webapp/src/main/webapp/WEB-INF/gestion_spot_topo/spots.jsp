@@ -26,7 +26,7 @@
 <%@ include file="/WEB-INF/header_footer/header.jsp" %>
 
 <div class="container cardTab">
-    <div class="jumbotron" style="margin-top: 10px;">
+    <div class="jumbotron">
         <h1 class="display-4"><strong>Spots</strong></h1>
         <p class="lead">Voici la liste des différents spots répertoriés par la communauté.</p>
     </div>
@@ -78,19 +78,6 @@
                                             <label for="description">Description</label>
                                             <textarea class="form-control" id="description" name="description" rows="6" placeholder="400 caractères maxi."></textarea>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Photos</label>
-                                            <p><small>3 photos maximum, de format *.jpg et de taille A TESTER px max.</small></p>
-                                            <div class="form-group">
-                                                <input type="file" class="form-control-file" name="photo1" id="photo1">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="file" class="form-control-file" name="photo2" id="photo2">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="file" class="form-control-file" name="photo3" id="photo3">
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -113,12 +100,12 @@
             <div class="col-lg-3 col-md-4 col-sm-6" >
                 <div class="card">
                     <div class="div_image">
-                        <img href="/ocscalade/spots/spot" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                        <img src="<%=request.getContextPath()%>${spot.images[0].titre}" class="card-img-top card-seize" style="height: 151px" alt="...">
                     </div>
                     <div class="card-body">
                         <form action="spots/spot" method="post">
                             <h5 class="card-title">${spot.nom}</h5>
-                            <p class="card-text">${spot.description}</p>
+                            <p class="card-text" style="height: 48px">${spot.description}</p>
                             <input type="hidden" name="idSpot" value="${spot.id}"/>
                             <input type="submit" name="_spot_" id="${spot.id}" class="btn btn-primary stretched-link" value="plus d'information"/>
                         </form>
@@ -126,27 +113,6 @@
                 </div>
             </div>
         </c:forEach>
-    </div>
-    <div class="row marginBottom">
-        <div class="col">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
     </div>
 </div>
 

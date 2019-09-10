@@ -79,11 +79,8 @@ public class DaoTopoImpl extends AbstractDao implements DaoTopo {
 
     @Override
     public List<Topo> readAllByDepartementSpot(int id_dep) {
-        //TODO A verifier le fonctionnement.
-        //recuperer les spots du dep
         List<Spot> vListSpot = daoSpotImpl.getListSpotByDepartement(id_dep);
 
-        //verifier les topos aillant les spots de la liste en spot
         ArrayList<Topo> vListTopos = new ArrayList<Topo>();
         for(Spot spot : vListSpot){
             String vSQL = "SELECT * FROM topo WHERE id_spot="+ spot.getId();
@@ -149,8 +146,6 @@ public class DaoTopoImpl extends AbstractDao implements DaoTopo {
         for (String string : requeteList){
             vSQL.append(string);
         }
-
-        System.out.println(vSQL);
 
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Topo> vListTopo = vJdbcTemplate.query(vSQL.toString(), topoRM);

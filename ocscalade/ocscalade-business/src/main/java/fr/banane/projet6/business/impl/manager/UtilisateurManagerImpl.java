@@ -4,6 +4,7 @@ import fr.banane.projet6.business.contract.manager.UtilisateurManager;
 import fr.banane.projet6.model.bean.Utilisateur;
 import fr.banane.projet6.model.exception.DuplicateException;
 import fr.banane.projet6.model.exception.NotFoundException;
+import fr.banane.projet6.model.exception.TechnicalException;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -12,6 +13,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
+/**
+ * Implémentation de l'interface manager "UtilisateurManager".
+ *
+ * @author Banane
+ */
 @Named
 public class UtilisateurManagerImpl extends AbstractManager implements UtilisateurManager {
 
@@ -21,7 +27,6 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
 
     @Override
     public void newUtilisateur(Utilisateur vUtilisateur) {
-        //TODO ajouter les exceptions NotFoundException et DuplicateException
         TransactionStatus vTransactionStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
         try{
             getDaoFactory().getDaoUtilisateur().create(vUtilisateur);
@@ -42,21 +47,18 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
     }
 
     @Override
-    public Utilisateur getUtilisateur(Integer pId) {
-        //TODO ajouter le throws pour l'exceptions NotFoundException
+    public Utilisateur getUtilisateur(Integer pId) throws TechnicalException {
         return getDaoFactory().getDaoUtilisateur().read(pId);
     }
 
     @Override
-    public Utilisateur getUtilisateur(String pseudo) throws NotFoundException{
-
+    public Utilisateur getUtilisateur(String pseudo) throws TechnicalException {
         return getDaoFactory().getDaoUtilisateur().read(pseudo);
 
     }
 
     @Override
     public void updateUtilisateur(Utilisateur vUtilisateur) {
-        //TODO ajouter le throws pour l'exceptions NotFoundException
         TransactionStatus vTransactionStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
         try{
             getDaoFactory().getDaoUtilisateur().update(vUtilisateur);
@@ -74,7 +76,6 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
 
     @Override
     public void deleteUtilisateur(Utilisateur vUtilisateur) {
-        //TODO ajouter le throws pour l'exceptions NotFoundException
         TransactionStatus vTransactionStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
         try{
             getDaoFactory().getDaoUtilisateur().delete(vUtilisateur);

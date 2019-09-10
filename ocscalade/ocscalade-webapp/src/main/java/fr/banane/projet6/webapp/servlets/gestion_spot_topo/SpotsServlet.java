@@ -4,16 +4,16 @@ import fr.banane.projet6.model.bean.*;
 import fr.banane.projet6.webapp.resource.DepartementResource;
 import fr.banane.projet6.webapp.resource.SpotResource;
 import fr.banane.projet6.webapp.technical.SubStringDescription;
-import fr.banane.projet6.webapp.technical.TransfertImage;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Servlet de la liste de spots liée à la jsp spots corespondante, permet le choix de consulter un spot.
+ */
 public class SpotsServlet extends HttpServlet {
 
     private SpotResource vSpotResource = new SpotResource();
@@ -24,20 +24,15 @@ public class SpotsServlet extends HttpServlet {
 
     private SubStringDescription subStringDescription = new SubStringDescription();
 
+    private static final String cheminImage = "/static/";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        //--INIT
-        HttpSession session = req.getSession();
-
-        vListSpots = subStringDescription.cutDescription(vSpotResource.getListSpot());
-        vListDepartements = vDepartementResource.getListDepartement();
-
-        req.setAttribute("vListDepartements", vListDepartements);
-        req.setAttribute("vListSpots", vListSpots);
+        initPage(req);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/spots.jsp").forward(req, resp);
     }
@@ -48,11 +43,40 @@ public class SpotsServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
+        initPage(req);
+
+        this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/spot.jsp").forward(req, resp);
+    }
+
+    /**
+     * Initialisation de la servlet et transmission des données à la jsp
+     * @param req la requete
+     */
+    private void initPage(HttpServletRequest req){
+
         HttpSession session = req.getSession();
         Utilisateur  vUtilisateur = (Utilisateur)session.getAttribute("utilisateur");
 
+        vListDepartements = vDepartementResource.getListDepartement();
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/spot.jsp").forward(req, resp);
+        vListSpots = subStringDescription.cutDescription(vSpotResource.getListSpot());
+        for(Spot vSpot : vListSpots) {
+            if(vSpot.getImages().size() != 0){
+                for (Image image : vSpot.getImages()){
+                    image.setTitre(cheminImage + image.getTitre());
+                }
+            }
+            else {
+                Image vImage = new Image();
+                vImage.setTitre(cheminImage + "default.jpg");
+                List<Image> images = new ArrayList<>();
+                images.add(vImage);
+                vSpot.setImages(images);
+            }
+        }
+
+        req.setAttribute("vListDepartements", vListDepartements);
+        req.setAttribute("vListSpots", vListSpots);
     }
 }
 

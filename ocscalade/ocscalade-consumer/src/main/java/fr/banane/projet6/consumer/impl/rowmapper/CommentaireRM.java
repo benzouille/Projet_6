@@ -6,6 +6,7 @@ import fr.banane.projet6.model.bean.Commentaire;
 
 import fr.banane.projet6.model.bean.Spot;
 import fr.banane.projet6.model.bean.Utilisateur;
+import fr.banane.projet6.model.exception.TechnicalException;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
@@ -28,8 +29,12 @@ public class CommentaireRM implements RowMapper<Commentaire> {
     public Commentaire mapRow(ResultSet rs, int rowNum) throws SQLException {
 
         //Le créateur
-        Utilisateur utilisateur =daoUtilisateurImpl.read(rs.getInt("id_user"));
-
+        Utilisateur utilisateur = null;
+        try {
+            utilisateur = daoUtilisateurImpl.read(rs.getInt("id_user"));
+        } catch (TechnicalException e) {
+            e.printStackTrace();
+        }
         Commentaire vCommentaire = new Commentaire();
         vCommentaire.setId(rs.getInt("id"));
         vCommentaire.setUtilisateur(utilisateur);

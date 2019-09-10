@@ -2,6 +2,7 @@ package fr.banane.projet6.business.impl.manager;
 
 import fr.banane.projet6.business.contract.manager.CommentaireManager;
 import fr.banane.projet6.model.bean.Commentaire;
+import fr.banane.projet6.model.exception.TechnicalException;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -19,15 +20,18 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
 
 
     @Override
-    public void newCommentaire(Commentaire vCommentaire) {
-        //TODO ajouter les exceptions NotFoundException et DuplicateException
+    public void newCommentaire(Commentaire vCommentaire) throws TechnicalException {
+        //NotFoundException
         TransactionStatus vTransactionStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
-        try{
+        try {
             getDaoFactory().getDaoCommentaire().create(vCommentaire);
 
             TransactionStatus vTScommit = vTransactionStatus;
             vTransactionStatus = null;
             platformTransactionManager.commit(vTScommit);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new TechnicalException("Service indisponible pour le moment veuillez réessyer plus tard");
         }finally {
             if(vTransactionStatus != null) {
                 platformTransactionManager.rollback(vTransactionStatus);
@@ -36,12 +40,12 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
     }
 
     @Override
-    public Commentaire getCommentaire(Integer pId) {
+    public Commentaire getCommentaire(Integer pId) throws TechnicalException {
         return getDaoFactory().getDaoCommentaire().read(pId);
     }
 
     @Override
-    public List<Commentaire> getListCommentaire() {
+    public List<Commentaire> getListCommentaire() throws TechnicalException {
         return getDaoFactory().getDaoCommentaire().readAll();
     }
 
@@ -57,7 +61,6 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
 
     @Override
     public void updateCommentaire(Commentaire vCommentaire) {
-        //TODO ajouter les exceptions NotFoundException et DuplicateException
         TransactionStatus vTransactionStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
         try{
             getDaoFactory().getDaoCommentaire().update(vCommentaire);
@@ -80,10 +83,5 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
     @Override
     public void deleteAllByIdSpot(int id_spot) {
         getDaoFactory().getDaoCommentaire().deleteAllBySpot(id_spot);
-    }
-
-    @Override
-    public int getCountCommentaire() {
-        return 0;
     }
 }

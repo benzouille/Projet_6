@@ -4,6 +4,7 @@ import fr.banane.projet6.consumer.contract.dao.DaoDepartement;
 import fr.banane.projet6.consumer.contract.dao.DaoPrivilege;
 import fr.banane.projet6.consumer.contract.dao.DaoSexe;
 import fr.banane.projet6.model.bean.Utilisateur;
+import fr.banane.projet6.model.exception.StringSetException;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
@@ -33,7 +34,11 @@ public class UtilisateurRM implements RowMapper<Utilisateur> {
 
         vUtilisateur.setId(rs.getInt("id"));
         vUtilisateur.setSexe(daoSexeImpl.read(rs.getInt("id_sexe")));
-        vUtilisateur.setPseudo(rs.getString("pseudo"));
+        try {
+            vUtilisateur.setPseudo(rs.getString("pseudo"));
+        } catch (StringSetException e) {
+            e.printStackTrace();
+        }
         vUtilisateur.setEmail(rs.getString("email"));
         vUtilisateur.setPassword(rs.getString("password"));
         vUtilisateur.setDepartement(daoDepartementImpl.read(rs.getInt("id_departement")));

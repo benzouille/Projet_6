@@ -81,11 +81,11 @@ public class TopoResource extends AbstractResource {
 
     /**
      * Retourne une list d'objet Topo selon une recherche multicritère
-     * @param departement
-     * @param spot
-     * @param createur
-     * @param date
-     * @param disponible
+     * @param departement string id_departement
+     * @param spot String id_spot
+     * @param createur String id_utilisateur
+     * @param date Timestamp
+     * @param disponible boolean
      * @return vListTopoRecherche
      */
     public List<Topo> getListTopoByQuery(String departement, String spot, String createur, Timestamp date, boolean disponible) {
@@ -94,7 +94,7 @@ public class TopoResource extends AbstractResource {
 
     /**
      * Met à jour un Topo.
-     * @param vTopo
+     * @param vTopo objet Topo
      */
     public void updateTopo(Topo vTopo){
         getManagerFactory().getTopoManager().updateTopo(vTopo);
@@ -102,7 +102,7 @@ public class TopoResource extends AbstractResource {
 
     /**
      * Supprime un Topo
-     * @param vTopo
+     * @param vTopo objet Topo
      */
     public void deleteTopo(Topo vTopo){
         getManagerFactory().getTopoManager().deleteTopo(vTopo);

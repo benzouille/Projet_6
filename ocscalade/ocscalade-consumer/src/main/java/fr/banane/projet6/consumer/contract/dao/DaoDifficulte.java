@@ -4,6 +4,12 @@ import fr.banane.projet6.model.bean.Difficulte;
 
 import java.util.List;
 
+/**
+ * Les méthodes CRUD nécessaires pour manipuler le bean "Difficulte" / La table "Difficulte"
+ *
+ * @author Banane
+ *
+ */
 public interface DaoDifficulte {
     /**
      * Méthode de recherche des informations

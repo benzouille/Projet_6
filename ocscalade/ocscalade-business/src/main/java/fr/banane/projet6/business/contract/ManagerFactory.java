@@ -2,6 +2,9 @@ package fr.banane.projet6.business.contract;
 
 import fr.banane.projet6.business.contract.manager.*;
 
+/**
+ * Factory servant à la mise en relation entre la couche webapp et business
+ */
 public interface ManagerFactory {
 
     //-- Commentaire
@@ -19,10 +22,6 @@ public interface ManagerFactory {
     //-- Image
     ImageManager getImageManager();
     void setImageManager(ImageManager pVersionManager);
-
-    //-- Privilege
-    PrivilegeManager getPrivilegeManager();
-    void setPrivilegeManager(PrivilegeManager pVersionManager);
 
     //-- Reservation
     ReservationManager getReservationManager();

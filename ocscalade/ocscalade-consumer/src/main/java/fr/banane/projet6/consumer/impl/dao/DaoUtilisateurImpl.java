@@ -3,6 +3,8 @@ package fr.banane.projet6.consumer.impl.dao;
 import fr.banane.projet6.consumer.contract.dao.*;
 import fr.banane.projet6.consumer.impl.rowmapper.UtilisateurRM;
 import fr.banane.projet6.model.bean.Utilisateur;
+import fr.banane.projet6.model.exception.TechnicalException;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -45,23 +47,34 @@ public class DaoUtilisateurImpl extends AbstractDao implements DaoUtilisateur {
     }
 
     @Override
-    public Utilisateur read(int id) {
+    public Utilisateur read(int id) throws TechnicalException {
             String vSQL = "SELECT * FROM utilisateur WHERE id="+id;
             JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-            List<Utilisateur> vListUtilisateur = vJdbcTemplate.query(vSQL, utilisateurRM);
+        List<Utilisateur> vListUtilisateur = null;
+            try {
+                vListUtilisateur = vJdbcTemplate.query(vSQL, utilisateurRM);
+            }catch (CannotGetJdbcConnectionException e){
+                e.printStackTrace();
+                throw new TechnicalException("Pas de connection à la base de donnée, veuillez réessayer plus tard");
+            }
         Utilisateur vUtilisateur = vListUtilisateur.get(0);
             return vUtilisateur;
     }
 
     @Override
-    public Utilisateur read(String pseudo) {
+    public Utilisateur read(String pseudo) throws TechnicalException {
 
         Utilisateur vUtilisateur = null;
 
         String vSQL = "SELECT * FROM utilisateur WHERE pseudo='"+pseudo+"'";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Utilisateur> vListUtilisateur = null;
-        vListUtilisateur = vJdbcTemplate.query(vSQL, utilisateurRM);
+        try {
+            vListUtilisateur = vJdbcTemplate.query(vSQL, utilisateurRM);
+        }catch (CannotGetJdbcConnectionException e){
+            e.printStackTrace();
+            throw new TechnicalException("Pas de connection à la base de donnée, veuillez réessayer plus tard");
+        }
         if(vListUtilisateur.size() != 0) {
             vUtilisateur = vListUtilisateur.get(0);
         }

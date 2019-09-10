@@ -28,7 +28,7 @@
 <%-- BODY --%>
 
 <div class="container">
-    <div class="jumbotron" style="margin-top: 10px;">
+    <div class="jumbotron">
         <h1 class="display-4"><strong>Gestion des spots</strong></h1>
     </div>
 

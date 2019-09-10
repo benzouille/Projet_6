@@ -20,7 +20,6 @@ public class ImageRM implements RowMapper<Image> {
         vImage.setId(rs.getInt("id"));
         vImage.setId_spot(rs.getInt("id_spot"));
         vImage.setTitre(rs.getString("titre"));
-        vImage.setPath(rs.getString("path"));
 
         return vImage;
     }

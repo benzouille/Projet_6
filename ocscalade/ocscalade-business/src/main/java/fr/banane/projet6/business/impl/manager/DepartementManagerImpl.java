@@ -8,7 +8,7 @@ import javax.inject.Named;
 import java.util.List;
 
 /**
- * Implémentation de l'interface manager "DifficulteManager".
+ * Implémentation de l'interface manager "DepartementManager".
  *
  * @author Banane
  */
@@ -21,9 +21,7 @@ public class DepartementManagerImpl extends AbstractManager implements Departeme
 
     @Override
     public Departement getDepartement(Integer pId) {
-        Departement dep = null;
-          dep = getDaoFactory().getDaoDepartement().read(pId);
-        return dep;
+        return getDaoFactory().getDaoDepartement().read(pId);
     }
 
     @Override

@@ -13,12 +13,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Servlet de de la jsp topo permet d'envoyer les données d'un objet topo sélectionné la création d'un nouveau topo et d'une réservation à la jsp.
+ */
 public class TopoServlet extends HttpServlet {
 
     private int id_topo;
@@ -26,7 +28,6 @@ public class TopoServlet extends HttpServlet {
     private TopoResource vTopoResource = new TopoResource();
 
     private SpotResource vSpotResource = new SpotResource();
-    private List<Spot> vListSpots;
 
     private Reservation vReservation;
     private ReservationResource vReservationResource = new ReservationResource();
@@ -39,11 +40,10 @@ public class TopoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        vListSpots = vSpotResource.getListSpot();
-        req.setAttribute("vListSpots", vListSpots);
-
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
+
+        initPage(req);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/topo.jsp").forward(req, resp);
     }
@@ -54,9 +54,10 @@ public class TopoServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
+        vUtilisateur = (Utilisateur) req.getSession().getAttribute("utilisateur");
+
         //--NOUVEAU TOPO
         if(req.getParameter("_nouveau_topo_") != null) {
-            System.out.println("je passe par NOUVEAU TOPO de TopoServlet");
 
             vTopo = new Topo();
             vTopo.setNom(req.getParameter("nom"));
@@ -70,7 +71,8 @@ public class TopoServlet extends HttpServlet {
             vTopo.setDate_creation(timestamp);
 
             //mise en bdd
-            vTopoResource .newTopo(vTopo);
+            System.out.println("topo : " + vTopo);
+            vTopoResource.newTopo(vTopo);
             //appel de l'objet crée
             vTopo = vTopoResource.getTopoByName(req.getParameter("nom"));
             id_topo = vTopo.getId();
@@ -113,13 +115,16 @@ public class TopoServlet extends HttpServlet {
             id_topo = Integer.valueOf(req.getParameter("idTopo"));
         }
 
-        intiPage(req);
+        initPage(req);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/topo.jsp").forward(req, resp);
     }
 
-    private void intiPage(HttpServletRequest req) {
-        vUtilisateur = (Utilisateur) req.getSession().getAttribute("utilisateur");
+    /**
+     * Initialisation de la servlet et transmission des données à la jsp
+     * @param req la requete
+     */
+    private void initPage(HttpServletRequest req) {
 
         List<Reservation> vListReservationsFull = vReservationResource.getListReservationByTopo(id_topo);
         for (Reservation reservation : vListReservationsFull) {
@@ -127,7 +132,6 @@ public class TopoServlet extends HttpServlet {
                 vListReservations.add(reservation);
             }
         }
-
         vTopo = vTopoResource.getTopo(id_topo);
 
         //renvoi à la vue

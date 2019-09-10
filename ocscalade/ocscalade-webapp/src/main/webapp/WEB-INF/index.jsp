@@ -28,23 +28,23 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://zupimages.net/up/19/26/4gkm.jpg" class="d-block img-fluid" alt="...">
+                <img src="<%=request.getContextPath()%>${images[0]}" class="d-block img-fluid" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>La faille du Sud <span class="badge badge-success">Officiel</span></h3>
                     <p>Spot officiel.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="https://zupimages.net/up/19/26/buy6.jpg" class="d-block img-fluid" alt="...">
+                <img src="<%=request.getContextPath()%>${images[1]}" class="d-block img-fluid" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>La faille verte <span class="badge badge-success">Officiel</span></h3>
                     <p>Spot officiel.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="https://zupimages.net/up/19/26/p9te.jpg" class="d-block img-fluid" alt="...">
+                <img src="<%=request.getContextPath()%>${images[2]}" class="d-block img-fluid" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h3>Le pic  <span class="badge badge-success">Officiel</span></h3>
+                    <h3>Ailefroide <span class="badge badge-success">Officiel</span></h3>
                     <p>Spot officiel.</p>
                 </div>
             </div>
@@ -70,12 +70,12 @@
             <div class="col-lg-3 col-md-4 col-sm-6" >
                 <div class="card">
                     <div class="div_image">
-                        <img href="/ocscalade/spots/spot" src="https://zupimages.net/up/19/27/76vx.jpg" class="card-img-top" alt="...">
+                        <img src="<%=request.getContextPath()%>${spot.images[0].titre}" class="card-img-top" style="height: 151px" alt="...">
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" >
                         <form action="spots/spot" method="post">
                             <h5 class="card-title">${spot.nom}</h5>
-                            <p class="card-text">${spot.description}</p>
+                            <p class="card-text" style="height: 48px">${spot.description}</p>
                             <input type="hidden" name="idSpot" value="${spot.id}"/>
                             <input type="submit" name="_spot_" id="${spot.id}" class="btn btn-primary stretched-link" value="plus d'information"/>
                         </form>

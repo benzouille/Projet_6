@@ -11,12 +11,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.sql.ResultSet;
 import java.sql.Types;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -113,12 +109,10 @@ public class DaoSecteurImpl extends AbstractDao implements DaoSecteur {
     }
 
     @Override
-    public boolean deleteAll(int id_spot) {
+    public void deleteAll(int id_spot) {
         String vSQL = "DELETE FROM secteur WHERE id_spot = ?";
-        //TODO à tester
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         vJdbcTemplate.update(vSQL, id_spot);
-        return false;
     }
 
     @Override

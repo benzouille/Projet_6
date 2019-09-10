@@ -5,6 +5,7 @@ import fr.banane.projet6.consumer.contract.dao.DaoUtilisateur;
 import fr.banane.projet6.model.bean.Reservation;
 import fr.banane.projet6.model.bean.Topo;
 import fr.banane.projet6.model.bean.Utilisateur;
+import fr.banane.projet6.model.exception.TechnicalException;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
@@ -19,7 +20,7 @@ import java.sql.SQLException;
  */
 @Named
 public class ReservationRM implements RowMapper<Reservation> {
-    //TODO a terminer apres le Topo
+
     @Inject
     DaoUtilisateur daoUtilisateurImpl;
     @Inject
@@ -29,7 +30,12 @@ public class ReservationRM implements RowMapper<Reservation> {
     public Reservation mapRow(ResultSet rs, int rowNum) throws SQLException {
 
         //Le locataire
-        Utilisateur vutilisateur =daoUtilisateurImpl.read(rs.getInt("id_utilisateur_locataire"));
+        Utilisateur vutilisateur = null;
+        try {
+            vutilisateur = daoUtilisateurImpl.read(rs.getInt("id_utilisateur_locataire"));
+        } catch (TechnicalException e) {
+            e.printStackTrace();
+        }
 
         // Le topo
         Topo vtopo = daoTopoImpl.read(rs.getInt("id_topo"));

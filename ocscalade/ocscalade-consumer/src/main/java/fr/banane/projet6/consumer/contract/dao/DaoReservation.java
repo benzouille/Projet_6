@@ -14,14 +14,14 @@ public interface DaoReservation {
 
     /**
      * Méthode de création
-     * @param obj
+     * @param obj Reservation
      * @return boolean
      */
     boolean create(Reservation obj);
 
     /**
      * Méthodes de recherche des informations
-     * @param id
+     * @param id int
      * @return T
      */
     Reservation read(int id);
@@ -32,14 +32,14 @@ public interface DaoReservation {
 
     /**
      * Méthode de mise à jour
-     * @param obj
+     * @param obj Reservation
      * @return boolean
      */
     boolean update(Reservation obj);
 
     /**
      * Méthode pour effacer
-     * @param obj
+     * @param obj Reservation
      * @return boolean
      */
     boolean delete(Reservation obj);

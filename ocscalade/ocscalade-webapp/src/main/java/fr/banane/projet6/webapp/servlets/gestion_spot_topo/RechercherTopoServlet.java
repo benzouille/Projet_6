@@ -1,9 +1,8 @@
 package fr.banane.projet6.webapp.servlets.gestion_spot_topo;
 
 import fr.banane.projet6.model.bean.Departement;
-import fr.banane.projet6.model.bean.Difficulte;
-import fr.banane.projet6.model.bean.Spot;
 import fr.banane.projet6.model.bean.Topo;
+import fr.banane.projet6.model.exception.TechnicalException;
 import fr.banane.projet6.webapp.resource.DepartementResource;
 import fr.banane.projet6.webapp.resource.SpotResource;
 import fr.banane.projet6.webapp.resource.TopoResource;
@@ -20,6 +19,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Classe Servlet de la jsp rechercher_spot permettant d'effectuer des recherche de spot selon plusieurs critère.
+ */
 public class RechercherTopoServlet extends HttpServlet {
 
     private DepartementResource vDepartementResource = new DepartementResource();
@@ -38,7 +40,7 @@ public class RechercherTopoServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        intiPage(req);
+        initPage(req);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/rechercher_topo.jsp").forward(req, resp);
     }
@@ -55,7 +57,7 @@ public class RechercherTopoServlet extends HttpServlet {
             String departement = null,
                     spot = null,
                     createur = null,
-                    date = null;
+                    date;
             boolean disponible = false;
 
             if (!req.getParameter("departement").equals("Séléctionnez")) {
@@ -66,10 +68,15 @@ public class RechercherTopoServlet extends HttpServlet {
                 spot = String.valueOf(vSpotResource.getSpotByName(req.getParameter("spot")).getId());
             }
             if (!req.getParameter("createur").equals("Séléctionnez")) {
-                createur = String.valueOf(vUtilisateurResource.getUtilisateurByPseudo(req.getParameter("createur")).getId());
+                try {
+                    createur = String.valueOf(vUtilisateurResource.getUtilisateurByPseudo(req.getParameter("createur")).getId());
+                } catch (TechnicalException e) {
+                    req.setAttribute("erreur", e.getMessage());
+                    this.getServletContext().getRequestDispatcher("/WEB-INF/error_page.jsp").forward(req, resp);
+                    e.printStackTrace();
+                }
             }
             if (!req.getParameter("date").equals("")) {
-                System.out.println("la date : "+req.getParameter("date"));
                 date = req.getParameter("date");
             }
             else{
@@ -86,7 +93,11 @@ public class RechercherTopoServlet extends HttpServlet {
             }
             else {
                 List<Topo> vListTopoRecherche = vTopoResource.getListTopoByQuery( departement, spot, createur, formatDate.stringToTimestamp(date), disponible);
-                System.out.println(vListTopoRecherche.toString());
+
+                if(vListTopoRecherche.size() == 0) {
+                    String vide = "Aucun topo n'a été trouvé avec vos critères de recherche.";
+                    req.setAttribute("vide", vide);
+                }
                 req.setAttribute("vListTopoRecherche", vListTopoRecherche);
             }
 
@@ -95,19 +106,21 @@ public class RechercherTopoServlet extends HttpServlet {
             req.removeAttribute("createur");
             req.removeAttribute("date");
             req.removeAttribute("disponible");
-
         }
 
-        intiPage(req);
+        initPage(req);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/rechercher_topo.jsp").forward(req, resp);
     }
 
-    private void intiPage(HttpServletRequest req){
+    /**
+     * Initialisation de la servlet et transmission des données à la jsp
+     * @param req la requete
+     */
+    private void initPage(HttpServletRequest req){
 
         List<Departement> vListDepartements = vDepartementResource.getListDepartement();
         req.setAttribute("vListDepartements", vListDepartements);
-
 
         List<Topo> vListTopos = vTopoResource.getListTopo();
         req.setAttribute("vListTopos", vListTopos);

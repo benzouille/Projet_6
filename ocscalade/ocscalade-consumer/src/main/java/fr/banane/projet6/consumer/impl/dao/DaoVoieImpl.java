@@ -106,12 +106,11 @@ public class DaoVoieImpl extends AbstractDao implements DaoVoie {
     }
 
     @Override
-    public boolean deleteAll(int id_secteur) {
+    public void deleteAll(int id_secteur) {
         String vSQL = "DELETE FROM voie WHERE id_secteur = ?";
         //TODO à tester
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         vJdbcTemplate.update(vSQL, id_secteur);
-        return false;
     }
 
     @Override

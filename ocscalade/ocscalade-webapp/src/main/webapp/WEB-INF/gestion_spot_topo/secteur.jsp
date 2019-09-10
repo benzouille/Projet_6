@@ -25,12 +25,12 @@
 <%@ include file="/WEB-INF/header_footer/header.jsp" %>
 
 <div class="container">
-    <div class="jumbotron" style="margin-top: 10px;">
+    <div class="jumbotron">
         <div>
-            <%--TODO ajouter condition d'apparition du tag officiel--%>
             <h1 class="display-4"><strong>${vSecteur.nom} </strong></h1>
         </div>
     </div>
+
     <blockquote class="blockquote text-right">
         <p class="mb-0">Crée par : ${vCreateur}</p>
     </blockquote>
@@ -51,28 +51,31 @@
                     <h3 class="text-center"><strong>Voies</strong></h3>
                     <hr class="my-4">
 
-                    <div class="accordion" id="accordionExample">
+                    <div class="accordion" id="accordion">
                         <c:forEach items="${vSecteur.voies}" var="voie">
                             <div class="card">
                                 <div class="card-header" id="heading${voie.id}">
                                     <h2 class="mb-0">
-                                        <button class="btn btn-link turquoise" type="button" data-toggle="collapse" data-target="#collapse${voie.id}" aria-controls="collapse${voie.id}">
+                                        <button class="btn btn-link turquoise <c:if test="${!vs.first}">collapsed</c:if>"
+                                                type="button" data-toggle="collapse" data-target="#collapse${voie.id}"
+                                                aria-expanded="<c:choose><c:when test="${vs.first}">true</c:when><c:otherwise>false</c:otherwise></c:choose>"
+                                                aria-controls="collapse${voie.id}">
                                                 ${voie.nom}
                                         </button>
                                     </h2>
                                 </div>
 
-                                <div id="collapse${voie.id}" class="collapse show" aria-labelledby="heading${voie.id}" data-parent="#accordionExample">
+                                <div id="collapse${voie.id}" class="collapse <c:if test="${vs.first}">show</c:if>" aria-labelledby="heading${voie.id}" data-parent="#accordion">
                                     <div class="card-body padding-0">
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">Difficulté : ${voie.difficulte.difficulte}</li>
                                             <c:choose>
                                                 <c:when test="${voie.equipement}">
-                                                    <li class="list-group-item ">Equipé : <i class="fa fa-check-square" style="color: green; font-size:25px;"></i> </li>
+                                                    <li class="list-group-item ">Equipé : <i class="fa fa-check-square green font25"></i> </li>
                                                     <li class="list-group-item ">Nombre de point : ${voie.nb_point}</li>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <li class="list-group-item ">Equipé : <i class="fa fa-window-close" style="color: red; font-size:25px;"> </i> </li>
+                                                    <li class="list-group-item ">Equipé : <i class="fa fa-window-close red font25"> </i> </li>
                                                 </c:otherwise>
                                             </c:choose>
                                             <li class="list-group-item">Nombre de longueur : ${voie.nb_longueur}</li>
@@ -83,10 +86,9 @@
                             </div>
                         </c:forEach>
                         <div class="voie">
-                            <%--TODO à modifier pour l'apparition du bouton--%>
-                            <c:if test="${ !empty sessionScope.utilisateur && sessionScope.utilisateur.pseudo == spot.utilisateur.pseudo}">
+                            <c:if test="${ !empty sessionScope.utilisateur && sessionScope.utilisateur.pseudo == vSpot.createur.pseudo}">
                                 <div class="form-inline pull-right">
-                                    <a href="#" class="btn btn-outline-success" role="button" style="margin-top: 10px" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Nouvelle voie</a>
+                                    <a href="#" class="btn btn-outline-success margin-10t" role="button" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Nouvelle voie</a>
                                 </div>
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -109,14 +111,13 @@
                                                             <div class="form-group col-md-3">
                                                                 <label for="difficulte">Difficulté</label>
                                                                 <select id="difficulte" name="difficulte" class="form-control">
-                                                                    <option selected>Séléctionnez</option>
                                                                     <c:forEach items="${vListDifficultes}" var="difficulte">
                                                                         <option><c:out value="${difficulte.difficulte}"/></option>
                                                                     </c:forEach>
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <label class="form-check-label" style="margin-bottom: 8px">Equipement</label>
+                                                        <label class="form-check-label margin-8b">Equipement</label>
                                                         <div class="input-group mb-3 ">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text">

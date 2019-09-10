@@ -11,6 +11,11 @@ import javax.inject.Named;
 import java.sql.Timestamp;
 import java.util.List;
 
+/**
+ * Implémentation de l'interface manager "TopoManager".
+ *
+ * @author Banane
+ */
 @Named
 public class TopoManagerImpl extends AbstractManager implements TopoManager {
 
@@ -20,7 +25,6 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager {
 
     @Override
     public void newTopo(Topo vTopo) {
-        //TODO ajouter les exceptions NotFoundException et DuplicateException
         TransactionStatus vTransactionStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
         try{
             getDaoFactory().getDaoTopo().create(vTopo);
@@ -72,7 +76,6 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager {
 
     @Override
     public void updateTopo(Topo vTopo) {
-        //TODO ajouter les exceptions NotFoundException et DuplicateException
         TransactionStatus vTransactionStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
         try{
             getDaoFactory().getDaoTopo().update(vTopo);

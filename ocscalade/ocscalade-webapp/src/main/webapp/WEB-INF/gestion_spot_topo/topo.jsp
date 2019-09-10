@@ -24,7 +24,7 @@
 <%@ include file="/WEB-INF/header_footer/header.jsp" %>
 
 <div class="container">
-    <div class="jumbotron" style="margin-top: 10px;">
+    <div class="jumbotron">
         <h1 class="display-4"><strong><c:out value="${topo.nom}"/></strong></h1>
     </div>
     <blockquote class="blockquote text-right">
@@ -43,14 +43,14 @@
                     <ul class="list-group">
                         <c:choose>
                             <c:when test="${topo.reservable}">
-                                <li class="list-group-item list-group-item-success" style="text-align: center">DISPONIBLE</li>
+                                <li class="list-group-item list-group-item-success text-center">DISPONIBLE</li>
                             </c:when>
                             <c:otherwise>
-                                <li class="list-group-item list-group-item-danger" style="text-align: center">NON DISPONIBLE</li>
+                                <li class="list-group-item list-group-item-danger text-center">NON DISPONIBLE</li>
                             </c:otherwise>
                         </c:choose>
-                        <li class="list-group-item list-group-item-action" style="text-align: center">
-                            <form class="link-td-btn" action="../spots/spot" method="post" style="margin-bottom: 0px">
+                        <li class="list-group-item list-group-item-action text-center">
+                            <form class="link-td-btn no-bottom-margin" action="../spots/spot" method="post">
                                 <input type="hidden" name="idSpot" value="${topo.spot.id}"/>
                                 <input class="link link-btn" type="submit" value="${topo.spot.nom}"/>
                             </form>

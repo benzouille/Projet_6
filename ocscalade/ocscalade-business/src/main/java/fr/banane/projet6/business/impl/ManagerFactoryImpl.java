@@ -23,6 +23,8 @@ public class ManagerFactoryImpl implements ManagerFactory {
     @Inject
     private DifficulteManager difficulteManager;
     @Inject
+    private ImageManager imageManager;
+    @Inject
     private UtilisateurManager utilisateurManager;
     @Inject
     private SexeManager sexeManager;
@@ -70,22 +72,12 @@ public class ManagerFactoryImpl implements ManagerFactory {
 
     @Override
     public ImageManager getImageManager() {
-        return null;
+        return imageManager;
     }
 
     @Override
     public void setImageManager(ImageManager pManager) {
-        //TODO a remplir
-    }
-
-    @Override
-    public PrivilegeManager getPrivilegeManager() {
-        return null;
-    }
-
-    @Override
-    public void setPrivilegeManager(PrivilegeManager pManager) {
-
+        this.imageManager = pManager;
     }
 
     @Override

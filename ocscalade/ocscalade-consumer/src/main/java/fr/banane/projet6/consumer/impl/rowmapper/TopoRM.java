@@ -5,6 +5,7 @@ import fr.banane.projet6.consumer.contract.dao.DaoUtilisateur;
 import fr.banane.projet6.model.bean.Spot;
 import fr.banane.projet6.model.bean.Topo;
 import fr.banane.projet6.model.bean.Utilisateur;
+import fr.banane.projet6.model.exception.TechnicalException;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
@@ -29,8 +30,13 @@ public class TopoRM implements RowMapper<Topo> {
     public Topo mapRow(ResultSet rs, int rowNum) throws SQLException {
 
         //Le créateur
-        Utilisateur utilisateur =daoUtilisateurImpl.read(rs.getInt("id_utilisateur"));
-        
+        Utilisateur utilisateur = null;
+        try {
+            utilisateur = daoUtilisateurImpl.read(rs.getInt("id_utilisateur"));
+        } catch (TechnicalException e) {
+            e.printStackTrace();
+        }
+
         // Le spot
         Spot spot = daoSpotImpl.read(rs.getInt("id_spot"));
 

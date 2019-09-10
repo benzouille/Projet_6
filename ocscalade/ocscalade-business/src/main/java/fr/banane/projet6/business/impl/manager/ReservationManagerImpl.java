@@ -10,6 +10,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
+/**
+ * Implémentation de l'interface manager "ReservationManager".
+ *
+ * @author Banane
+ */
 @Named
 public class ReservationManagerImpl extends AbstractManager implements ReservationManager {
 

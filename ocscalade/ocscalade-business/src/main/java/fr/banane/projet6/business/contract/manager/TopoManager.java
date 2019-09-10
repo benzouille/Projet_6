@@ -20,7 +20,6 @@ public interface TopoManager {
      * @param vTopo objet à envoyer en bdd
      */
     void newTopo(Topo vTopo);
-    //TODO ajouter les exceptions NotFoundException et DuplicateException
 
     /**
      * Retourne la liste des Topo.
@@ -55,7 +54,7 @@ public interface TopoManager {
      *
      * @param pId L'identifiant du Topo
      * @return L'objet Topo correspondant à l'identifiant.
-     * @throws NotFoundException
+     * @throws NotFoundException ne trouve pas la ressource demandée
      */
     Topo getTopo(Integer pId);
 
@@ -64,33 +63,31 @@ public interface TopoManager {
      *
      * @param name nom du Topo
      * @return L'objet Topo correspondant à son nom.
-     * @throws NotFoundException
+     * @throws NotFoundException ne trouve pas la ressource demandée
      */
     Topo getTopoByName(String name);
 
     /**
      * Retourne une liste d'objet Topo en fonction de multiple critere
-     * @param departement
-     * @param spot
-     * @param createur
-     * @param date
-     * @param disponible
+     * @param departement String id_departement
+     * @param spot String id_spot
+     * @param createur String id_utilisateur
+     * @param date Timestamp date
+     * @param disponible boolean
      * @return vListTopoRecherche
      */
     List<Topo> getListTopoByQuery(String departement, String spot, String createur, Timestamp date, boolean disponible);
 
     /**
      * Met à jour un Topo.
-     * @param vTopo
+     * @param vTopo objet topo
      */
-    public void updateTopo(Topo vTopo);
-    //TODO ajouter le throws pour l'exceptions NotFoundException
+    void updateTopo(Topo vTopo);
 
     /**
      * Supprime un Topo
-     * @param vTopo
+     * @param vTopo objet Topo
      */
-    public void deleteTopo(Topo vTopo);
-    //TODO ajouter le throws pour l'exceptions NotFoundException
+    void deleteTopo(Topo vTopo);
 
 }

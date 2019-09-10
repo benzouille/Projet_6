@@ -1,8 +1,8 @@
 package fr.banane.projet6.business.contract.manager;
 
 import fr.banane.projet6.model.bean.Utilisateur;
-import fr.banane.projet6.model.exception.DuplicateException;
 import fr.banane.projet6.model.exception.NotFoundException;
+import fr.banane.projet6.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -18,55 +18,50 @@ public interface UtilisateurManager {
     /**
      * Crée un utilisateur.
      */
-    public void newUtilisateur(Utilisateur vUtilisateur);
-    //TODO ajouter les exceptions NotFoundException et DuplicateException
+    void newUtilisateur(Utilisateur vUtilisateur);
 
     /**
      * Retourne la liste d'utilisateurs.
      *
      * @return Une liste d'utilisateurs.
      */
-    public List<Utilisateur> getListUtilisateur();
+    List<Utilisateur> getListUtilisateur();
 
     /**
      * Retourne un objet Utilisateur en particulier selon son 'id'.
      *
      * @param pId L'identifiant du Bug
      * @return L'objet Bug correspondant à l'identifiant.
-     * @throws NotFoundException
+     * @throws NotFoundException ne trouve pas la ressource demandée
      */
-    public Utilisateur getUtilisateur(Integer pId);
-    //TODO ajouter le throws pour l'exceptions NotFoundException
+    public Utilisateur getUtilisateur(Integer pId) throws TechnicalException;
 
     /**
      * Retourne un objet Utilisateur en particulier selon son 'pseudo'.
      *
      * @param pseudo Pseudo de Utilisateur
      * @return L'objet Utilisateur correspondant au pseudo.
-     * @throws NotFoundException
+     * @throws TechnicalException ne trouve pas la ressource demandée
      */
-    public Utilisateur getUtilisateur(String pseudo) throws NotFoundException;
+    Utilisateur getUtilisateur(String pseudo) throws TechnicalException;
 
     /**
      * Met à jour un utilisateur.
-     * @param vUtilisateur
+     * @param vUtilisateur objet utilisateur
      */
-    public void updateUtilisateur(Utilisateur vUtilisateur);
-    //TODO ajouter le throws pour l'exceptions NotFoundException
+    void updateUtilisateur(Utilisateur vUtilisateur);
 
     /**
      * Supprime un utilisateur
-     * @param vUtilisateur
+     * @param vUtilisateur objet Utilisateur
      */
-    public void deleteUtilisateur(Utilisateur vUtilisateur);
-    //TODO ajouter le throws pour l'exceptions NotFoundException
+    void deleteUtilisateur(Utilisateur vUtilisateur);
 
     /**
      * Retourne le nombre d'utilisateurs dans la base de données.
      *
      * @return Le nombre d'utilisateurs en base de données
      */
-    public Integer getNbUtilisateur();
-
+    Integer getNbUtilisateur();
 }
 

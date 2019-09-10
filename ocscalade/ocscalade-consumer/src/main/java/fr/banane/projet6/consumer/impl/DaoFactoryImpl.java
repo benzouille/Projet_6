@@ -2,11 +2,13 @@ package fr.banane.projet6.consumer.impl;
 
 import fr.banane.projet6.consumer.contract.DaoFactory;
 import fr.banane.projet6.consumer.contract.dao.*;
-import fr.banane.projet6.consumer.impl.dao.DaoCommentaireImpl;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
+/**
+ * Objet permettant l'injections des DAO
+ */
 @Named("daoFactory")
 public class DaoFactoryImpl implements DaoFactory {
 

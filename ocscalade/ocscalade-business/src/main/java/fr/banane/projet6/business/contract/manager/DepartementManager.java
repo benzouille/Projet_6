@@ -25,7 +25,6 @@ public interface DepartementManager {
      *
      * @param pId L'identifiant du Departement
      * @return L'objet Departement correspondant à l'identifiant.
-     * @throws NotFoundException
      */
     Departement getDepartement(Integer pId);
 
@@ -34,7 +33,6 @@ public interface DepartementManager {
      *
      * @param num numéro du Departement
      * @return L'objet Departement correspondant à son numéro.
-     * @throws NotFoundException
      */
     Departement getDepartementByNum(String num);
 }

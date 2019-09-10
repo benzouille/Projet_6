@@ -26,7 +26,7 @@
 <%@ include file="/WEB-INF/header_footer/header.jsp" %>
 
 <div class="container">
-    <div class="jumbotron" style="margin-top: 10px;">
+    <div class="jumbotron">
         <h1 class="display-4"><strong>Topos</strong></h1>
         <p class="lead">Voici la liste des différents topos crées par la communauté.</p>
     </div>

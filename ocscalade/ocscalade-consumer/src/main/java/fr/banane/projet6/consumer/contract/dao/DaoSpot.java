@@ -14,22 +14,21 @@ public interface DaoSpot {
 
     /**
      * Méthode de création
-     * @param obj
+     * @param obj spot
      * @return boolean
      */
     boolean create(Spot obj);
 
     /**
      * Méthode de recherche des informations
-     * @param id
+     * @param id int
      * @return T
      */
     Spot read(int id);
     Spot readByName(String name);
     List<Spot> readAll();
-    List<Spot> readAllByIdCreateur(int id);
+    List<Spot> readAllForIndex();
     List<Spot> getListSpotByDepartement(int id_dep);
-    List<Spot> getListSpotByOfficiel();
 
     /**
      * Methode de recherche en fonction de critère
@@ -44,17 +43,16 @@ public interface DaoSpot {
 
     /**
      * Méthode de mise à jour
-     * @param obj
+     * @param obj spot
      * @return boolean
      */
     boolean update(Spot obj);
 
     /**
      * Méthode pour effacer
-     * @param obj
-     * @return boolean
+     * @param obj spot
      */
-    boolean delete(Spot obj);
+    void delete(Spot obj);
 
     /**
      * Retourne le nombre de spot

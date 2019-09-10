@@ -1,10 +1,11 @@
 package fr.banane.projet6.webapp.servlets.gestion_spot_topo;
 
 import fr.banane.projet6.model.bean.*;
+import fr.banane.projet6.model.exception.TechnicalException;
 import fr.banane.projet6.webapp.resource.CommentaireResource;
 import fr.banane.projet6.webapp.resource.DepartementResource;
+import fr.banane.projet6.webapp.resource.ImageResource;
 import fr.banane.projet6.webapp.resource.SpotResource;
-import fr.banane.projet6.webapp.technical.FormatDate;
 import fr.banane.projet6.webapp.technical.TransfertImage;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Servlet d'un spot liée à la jsp spot corespondante, permet la consultation d'un spot, la création de nouveaux spot, commentaires, ajout d'image.
@@ -27,10 +29,9 @@ public class SpotServlet extends HttpServlet {
     private Commentaire vCommentaire;
     private CommentaireResource vCommentaireResource = new CommentaireResource();
 
-    private ArrayList<Image> vImages;
-    private TransfertImage transfertImage = new TransfertImage();
+    private ImageResource vImageResource = new ImageResource();
 
-    private FormatDate formatDate = new FormatDate();
+    private static final String cheminImage = "/static/";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,7 +39,7 @@ public class SpotServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        HttpSession session = req.getSession();
+        initPage(req, resp);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/spot.jsp").forward(req, resp);
     }
@@ -68,8 +69,6 @@ public class SpotServlet extends HttpServlet {
             //appel de l'objet crée
             vSpot = vSpotResource.getSpotByName(req.getParameter("nom"));
             id_spot = vSpot.getId();
-            //renvoi à la vue
-            req.setAttribute("spot", vSpot);
 
             //mise a null de l'objet et des parametres
             vSpot = null;
@@ -80,40 +79,38 @@ public class SpotServlet extends HttpServlet {
             req.removeAttribute("description");
         }
 
-        //--IMAGE
+        //--NOUVELLE IMAGE
         if(req.getParameter("_image_") != null) {
-
-            System.out.println("je passe par IMAGE de SpotServlet");
 
             ArrayList<Part> parts = new ArrayList<>();
 
             // On récupère le champ du fichier
-            if (req.getPart("image1") != null) {
-                parts.add(req.getPart("image1"));
+            if (req.getPart("image1").getSize() > 0) {
+                parts.add(req.getPart("image1"));;
             }
-            if (req.getPart("image2") != null) {
+            if (req.getPart("image2").getSize() > 0) {
                 parts.add(req.getPart("image2"));
             }
-            if (req.getPart("image3") != null) {
+            if (req.getPart("image3").getSize() > 0) {
                 parts.add(req.getPart("image3"));
             }
 
-            for (int i = 0; i < parts.size(); i++) {
+            for (Part part : parts) {
                 // On vérifie qu'on a bien reçu un fichier
-                String nomImage = transfertImage.getNomFichier(parts.get(i));
+                String nomImage = TransfertImage.getNomFichier(part);
 
                 // Si on a bien un fichier
                 if (nomImage != null && !nomImage.isEmpty()) {
-                    String nomChamp = parts.get(i).getName();
                     // Corrige un bug du fonctionnement d'Internet Explorer
                     nomImage = nomImage.substring(nomImage.lastIndexOf('/') + 1)
                             .substring(nomImage.lastIndexOf('\\') + 1);
 
                     // On écrit définitivement le fichier sur le disque
-                    transfertImage.transfert(parts.get(i), nomImage);
+                    TransfertImage.transfert(part, nomImage);
                     Image vImage = new Image();
                     vImage.setId_spot(vSpot.getId());
                     vImage.setTitre(nomImage);
+                    vImageResource.newImage(vImage);
                 }
             }
         }
@@ -131,12 +128,13 @@ public class SpotServlet extends HttpServlet {
             vCommentaire.setDate(timestamp);
 
             //mise en bdd
-            vCommentaireResource.newCommentaire(vCommentaire);
-            //appel de l'objet crée
-            vSpot = vSpotResource.getSpot(id_spot);
-            //renvoi à la vue
-            req.setAttribute("spot", vSpot);
-            req.setAttribute("Temps", formatDate.changeFormatDateHeure(vSpot));
+            try {
+                vCommentaireResource.newCommentaire(vCommentaire);
+            } catch (TechnicalException e) {
+                req.setAttribute("erreur", e.getMessage());
+                this.getServletContext().getRequestDispatcher("/WEB-INF/error_page.jsp").forward(req, resp);
+                e.printStackTrace();
+            }
 
             //mise a null de l'objet et des parametres
             vCommentaire = null;
@@ -148,14 +146,14 @@ public class SpotServlet extends HttpServlet {
         if(req.getParameter("_supprimer_commentaire_") != null) {
 
             //appel à la bdd
-            vCommentaire = vCommentaireResource.getCommentaire(Integer.valueOf(req.getParameter("id_commentaire")));
+            try {
+                vCommentaire = vCommentaireResource.getCommentaire(Integer.valueOf(req.getParameter("id_commentaire")));
+            } catch (TechnicalException e) {
+                req.setAttribute("erreur", e.getMessage());
+                this.getServletContext().getRequestDispatcher("/WEB-INF/error_page.jsp").forward(req, resp);
+                e.printStackTrace();
+            }
             vCommentaireResource.deleteCommentaire(vCommentaire);
-
-            //appel de l'objet modifié
-            vSpot = vSpotResource.getSpot(id_spot);
-            //renvoi à la vue
-            req.setAttribute("spot", vSpot);
-            req.setAttribute("Temps", formatDate.changeFormatDateHeure(vSpot));
 
             //mise a null de l'objet et des parametres
             vCommentaire = null;
@@ -165,17 +163,17 @@ public class SpotServlet extends HttpServlet {
 
         //--MODIFIER COMMENTAIRE
         if(req.getParameter("_modifier_commentaire_") != null) {
-            System.out.println("id commentaire : "+req.getParameter("id_modifier_commentaire"));
+
             //appel à la bdd
-            vCommentaire = vCommentaireResource.getCommentaire(Integer.valueOf(req.getParameter("id_modifier_commentaire")));
+            try {
+                vCommentaire = vCommentaireResource.getCommentaire(Integer.valueOf(req.getParameter("id_modifier_commentaire")));
+            } catch (TechnicalException e) {
+                req.setAttribute("erreur", e.getMessage());
+                this.getServletContext().getRequestDispatcher("/WEB-INF/error_page.jsp").forward(req, resp);
+                e.printStackTrace();
+            }
             vCommentaire.setCommentaire(req.getParameter("modifier_commentaire"));
             vCommentaireResource.updateCommentaire(vCommentaire);
-
-            //appel de l'objet modifié
-            vSpot = vSpotResource.getSpot(id_spot);
-            //renvoi à la vue
-            req.setAttribute("spot", vSpot);
-            req.setAttribute("Temps", formatDate.changeFormatDateHeure(vSpot));
 
             //mise a null de l'objet et des parametres
             vCommentaire = null;
@@ -186,17 +184,46 @@ public class SpotServlet extends HttpServlet {
 
         //--CONSULTATION D'UN SPOT
         if(req.getParameter("idSpot") != null) {
-            id_spot = 0;
             id_spot = Integer.valueOf(req.getParameter("idSpot"));
-            vSpot = vSpotResource.getSpot(id_spot);
-
-            req.setAttribute("spot", vSpot);
-            req.setAttribute("Temps", formatDate.changeFormatDateHeure(vSpot));
         }
 
-
+        initPage(req, resp);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_spot_topo/spot.jsp").forward(req, resp);
     }
 
+    /**
+     * Initialisation de la servlet et transmission des données à la jsp
+     * @param req la requete
+     */
+    private void initPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        try {
+            vSpot = vSpotResource.getSpot(id_spot);
+        } catch (TechnicalException e) {
+            req.setAttribute("erreur", e.getMessage());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/error_page.jsp").forward(req, resp);
+            e.printStackTrace();
+        }
+
+        List<String> vListImagesPath = new ArrayList<>();
+        if(vSpot.getImages().size() != 0){
+            for (Image image : vSpot.getImages()){
+                vListImagesPath.add(cheminImage + image.getTitre());
+            }
+        }
+        else{
+            vListImagesPath.add(cheminImage + "default.jpg");
+        }
+
+        boolean imageFull = false;
+
+        if(vSpot.getImages().size() == 3){
+            imageFull = true;
+        }
+
+        req.setAttribute("spot", vSpot);
+        req.setAttribute("vListImagesPath", vListImagesPath);
+        req.setAttribute("imageFull", imageFull);
+    }
 }

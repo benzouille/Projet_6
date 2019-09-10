@@ -2,6 +2,7 @@ package fr.banane.projet6.consumer.impl.rowmapper;
 
 import fr.banane.projet6.consumer.contract.dao.*;
 import fr.banane.projet6.model.bean.*;
+import fr.banane.projet6.model.exception.TechnicalException;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
@@ -36,10 +37,15 @@ public class SpotRM implements RowMapper<Spot> {
         ArrayList<Secteur> secteurs = (ArrayList<Secteur>) daoSecteurImpl.readAllByIdSpot(rs.getInt("id"));
 
         //Liste d'image
-        ArrayList<Image> images = (ArrayList<Image>) daoImageImpl.readAll(rs.getInt("id"));
+        ArrayList<Image> images = (ArrayList<Image>) daoImageImpl.readAllByIdSpot(rs.getInt("id"));
 
         //Le créateur
-        Utilisateur createur =daoUtilisateurImpl.read(rs.getInt("id_createur"));
+        Utilisateur createur = null;
+        try {
+            createur = daoUtilisateurImpl.read(rs.getInt("id_createur"));
+        } catch (TechnicalException e) {
+            e.printStackTrace();
+        }
 
         //Departement
         Departement departement = daoDepartementImpl.read(rs.getInt("id_departement"));
@@ -57,6 +63,5 @@ public class SpotRM implements RowMapper<Spot> {
                 rs.getString("adresse"),
                 rs.getString("description"),
                 commentaires);
-
     }
 }

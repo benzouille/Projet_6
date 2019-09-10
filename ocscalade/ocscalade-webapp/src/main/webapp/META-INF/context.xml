@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Context>
-    <!-- A MODIFIER -->
+    <!-- possibilité de modifier l'username en ligne 10 et le password en ligne 11 et creer un autre role dans postgresql -->
     <Resource name="jdbc/OCscalade"
               auth="Container"
               type="javax.sql.DataSource"

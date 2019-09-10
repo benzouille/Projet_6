@@ -2,6 +2,7 @@ package fr.banane.projet6.business.contract.manager;
 
 import fr.banane.projet6.model.bean.Spot;
 import fr.banane.projet6.model.exception.NotFoundException;
+import fr.banane.projet6.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -19,7 +20,6 @@ public interface SpotManager {
      * @param vSpot objet à envoyer en bdd
      */
     void newSpot(Spot vSpot);
-    //TODO ajouter les exceptions NotFoundException et DuplicateException
 
     /**
      * Retourne la liste des Spot.
@@ -29,29 +29,14 @@ public interface SpotManager {
     List<Spot> getListSpot();
 
     /**
-     * Retourne la liste des Spot crée par un utilisateur.
+     * Retourne une liste des 8 derniers Spots.
      *
      * @return Une liste de Spot.
      */
-    List<Spot> getListSpotByUser(int id_user);
+    List<Spot> getListSpotForIndex();
 
     /**
-     * Retourne la liste des Spot d'un département.
-     *
-     * @return Une liste de Spot.
-     */
-    List<Spot> getListSpotByDepartement(int id_dep);
-
-    /**
-     * Retourne la liste des Spot officiel.
-     *
-     * @return Une liste de Spot.
-     */
-    List<Spot> getListSpotByOfficiel();
-
-
-    /**
-     * Retourne une liste de spote en fonction des critères entrés
+     * Retourne une liste de spot en fonction des critères entrés
      * @param departement le departement
      * @param difficulte la difficulte
      * @param nbreSecteur le nombre de secteurs
@@ -66,31 +51,29 @@ public interface SpotManager {
      *
      * @param pId L'identifiant du Spot
      * @return L'objet Spot correspondant à l'identifiant.
-     * @throws NotFoundException
+     * @throws NotFoundException ne trouve pas la ressource demandée
      */
-    Spot getSpot(Integer pId);
+    Spot getSpot(Integer pId) throws TechnicalException;
 
     /**
      * Retourne un objet Spot en particulier selon son 'nom'.
      *
      * @param name nom du Spot
      * @return L'objet Spot correspondant à son nom.
-     * @throws NotFoundException
+     * @throws NotFoundException ne trouve pas la ressource demandée
      */
     Spot getSpotByName(String name);
 
     /**
      * Met à jour un spot.
-     * @param vSpot
+     * @param vSpot objet spot
      */
-    public void updateSpot(Spot vSpot);
-    //TODO ajouter le throws pour l'exceptions NotFoundException
+    void updateSpot(Spot vSpot);
 
     /**
      * Supprime un spot
-     * @param vSpot
+     * @param vSpot objet spot
      */
-    public void deleteSpot(Spot vSpot);
-    //TODO ajouter le throws pour l'exceptions NotFoundException
+    void deleteSpot(Spot vSpot);
 
 }

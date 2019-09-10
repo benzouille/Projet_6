@@ -6,6 +6,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+/**
+ * Classe abstraite parmettant d'obtenir le PlatformTransactionManager ainsi que les DAOFactory.
+ */
 public abstract class AbstractManager {
 
     @Inject

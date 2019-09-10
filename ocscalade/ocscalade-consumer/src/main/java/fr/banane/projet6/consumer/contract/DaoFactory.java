@@ -2,6 +2,9 @@ package fr.banane.projet6.consumer.contract;
 
 import fr.banane.projet6.consumer.contract.dao.*;
 
+/**
+ * Interface permetant de faire le lien entre le module business et consumer .
+ */
 public interface DaoFactory {
 
     //------ COMMENTAIRE ------

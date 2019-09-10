@@ -18,26 +18,6 @@
     <context:component-scan base-package="fr.banane.projet6.business"/>
 
     <!-- ==== AbstractResource ===== -->
-
-    <!-- //TODO resoudre ces erreurs :
-
-    -_-_-_-Lancé par le batch :
-    Unsatisfied dependency expressed through field 'dataSource';
-    nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException:
-    No qualifying bean of type 'javax.sql.DataSource' available:
-    expected at least 1 bean which qualifies as autowire candidate.
-    Dependency annotations: {@javax.inject.Inject(), @javax.inject.Named(value=dataSourceOCscalade)}
-
-    -_-_-_-Lancé par tomcat :
-    Error creating bean with name 'org.springframework.beans.factory.config.MethodInvokingFactoryBean#0'
-    defined in class path resource [fr/banane/projet6/business/businessContext.xml]:
-    Invocation of init method failed; nested exception is java.lang.IllegalArgumentException:
-    Target method must not be non-static without a target
-
-    c'est un probleme de path ?
-    c'est les beans dataSourceOCscalade contenu dans les webappContext et batchContext qui ne sont pas bon ? ou non lié ?
-    -->
-
     <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
         <property name="targetClass" value="fr.banane.projet6.business.impl.manager.AbstractManager" />
         <property name="targetMethod" value="setDaoFactory" />

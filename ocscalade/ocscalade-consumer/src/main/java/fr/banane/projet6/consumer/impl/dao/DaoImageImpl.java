@@ -26,7 +26,7 @@ public class DaoImageImpl extends AbstractDao implements DaoImage {
     @Override
     public boolean create(Image obj) {
 
-        String vSQL = "INSERT INTO image (id_spot, titre, path) VALUES (:id_spot, :titre, :path)";
+        String vSQL = "INSERT INTO image (id_spot, titre) VALUES (:id_spot, :titre)";
 
         BeanPropertySqlParameterSource vParam = new BeanPropertySqlParameterSource(obj);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
@@ -60,7 +60,7 @@ public class DaoImageImpl extends AbstractDao implements DaoImage {
     }
 
     @Override
-    public List<Image> readAll(int id) {
+    public List<Image> readAllByIdSpot(int id) {
         String vSQL = "SELECT * FROM image WHERE id_spot="+id;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Image> vListImages = vJdbcTemplate.query(vSQL, imageRM);
@@ -76,7 +76,6 @@ public class DaoImageImpl extends AbstractDao implements DaoImage {
         vParams.registerSqlType("id", Types.INTEGER);
         vParams.registerSqlType("id_spot", Types.INTEGER);
         vParams.registerSqlType("titre", Types.VARCHAR);
-        vParams.registerSqlType("path", Types.VARCHAR);
 
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         vJdbcTemplate.update(vSQL, vParams);

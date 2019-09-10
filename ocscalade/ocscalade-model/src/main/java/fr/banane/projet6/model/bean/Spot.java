@@ -1,6 +1,7 @@
 package fr.banane.projet6.model.bean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Objet metier représentant un Spot
@@ -13,7 +14,7 @@ public class Spot {
     private Utilisateur createur;
     private ArrayList<Secteur> secteurs;
     private int nbreSecteurs;
-    private ArrayList<Image> images;
+    private List<Image> images;
     private boolean officiel;
     private String nom;
     private Departement departement;
@@ -27,7 +28,6 @@ public class Spot {
      * Constructeur par défaut
      */
     public Spot(){
-
     }
 
     /**
@@ -90,11 +90,11 @@ public class Spot {
         this.nbreSecteurs = nbreSecteurs;
     }
 
-    public ArrayList<Image> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<Image> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
 

@@ -26,7 +26,7 @@ public interface ReservationManager {
      *
      * @param pId L'identifiant du Reservation
      * @return L'objet Reservation correspondant à l'identifiant.
-     * @throws NotFoundException
+     * @throws NotFoundException ne trouve pas la ressource demandée
      */
     Reservation getReservation(Integer pId);
 
@@ -61,14 +61,14 @@ public interface ReservationManager {
 
     /**
      * Met à jour une Reservation.
-     * @param vReservation
+     * @param vReservation objet Reservation
      */
     void updateReservation(Reservation vReservation);
     //TODO ajouter le throws pour l'exceptions NotFoundException
 
     /**
      * Supprime une Reservation
-     * @param vReservation
+     * @param vReservation objet Reservation
      */
     void deleteReservation(Reservation vReservation);
     //TODO ajouter le throws pour l'exceptions NotFoundException

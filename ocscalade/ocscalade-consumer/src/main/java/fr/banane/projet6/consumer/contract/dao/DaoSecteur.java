@@ -3,7 +3,6 @@ package fr.banane.projet6.consumer.contract.dao;
 import fr.banane.projet6.model.bean.Secteur;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Les méthodes CRUD nécessaires pour manipuler le bean "Secteur" / La table "secteur"
@@ -15,14 +14,14 @@ public interface DaoSecteur {
 
     /**
      * Méthode de création
-     * @param obj
+     * @param obj secteur
      * @return boolean
      */
     boolean create(Secteur obj);
 
     /**
      * Méthode de recherche des informations
-     * @param id
+     * @param id int
      * @return T
      */
     Secteur read(int id);
@@ -31,24 +30,24 @@ public interface DaoSecteur {
     List<Secteur> readAllByIdSpot(int id_spot);
     /**
      * Méthode de mise à jour
-     * @param obj
+     * @param obj secteur
      * @return boolean
      */
     boolean update(Secteur obj);
 
     /**
      * Méthode pour effacer
-     * @param obj
+     * @param obj secteur
      * @return boolean
      */
     boolean delete(Secteur obj);
 
     /**
      * Méthode pour effacer
-     * @param id_spot
+     * @param id_spot int
      * @return boolean
      */
-    boolean deleteAll(int id_spot);
+    void deleteAll(int id_spot);
 
     /**
      * Retourne le nombre de secteur

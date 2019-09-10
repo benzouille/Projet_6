@@ -15,14 +15,14 @@ public interface DaoTopo {
 
     /**
      * Méthode de création
-     * @param obj
+     * @param obj Topo
      * @return boolean
      */
     boolean create(Topo obj);
 
     /**
      * Méthode de recherche des informations
-     * @param id
+     * @param id int
      * @return T
      */
     Topo read(int id);
@@ -34,25 +34,25 @@ public interface DaoTopo {
 
     /**
      * Methode de recherche par criteres multiples
-     * @param departement
-     * @param spot
-     * @param createur
-     * @param date
-     * @param disponible
+     * @param departement String id_departement
+     * @param spot String id_spot
+     * @param createur String id_utilisateur
+     * @param date TimeStamp
+     * @param disponible boolean
      * @return vListTopoRecherche
      */
     List<Topo> getListTopoByQuery(String departement, String spot, String createur, Timestamp date, boolean disponible);
 
     /**
      * Méthode de mise à jour
-     * @param obj
+     * @param obj Topo
      * @return boolean
      */
     boolean update(Topo obj);
 
     /**
      * Méthode pour effacer
-     * @param obj
+     * @param obj Topo
      * @return boolean
      */
     boolean delete(Topo obj);

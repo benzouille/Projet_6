@@ -1,7 +1,7 @@
 package fr.banane.projet6.business.contract.manager;
 
 import fr.banane.projet6.model.bean.Difficulte;
-import fr.banane.projet6.model.exception.NotFoundException;
+import fr.banane.projet6.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -17,23 +17,23 @@ public interface DifficulteManager {
      *
      * @return Une liste de Difficulte.
      */
-    public List<Difficulte> getListDifficulte();
+    List<Difficulte> getListDifficulte();
 
     /**
      * Retourne un objet Difficulte en particulier selon son 'id'.
      *
      * @param pId L'identifiant de la Difficulte
      * @return L'objet Difficulte correspondant à l'identifiant.
-     * @throws NotFoundException
+     * @throws TechnicalException  ne trouve pas la ressource demandée
      */
-    public Difficulte getDifficulteById(Integer pId) throws NotFoundException;
+    Difficulte getDifficulteById(Integer pId) throws TechnicalException;
 
     /**
      * Retourne un objet Difficulte en particulier selon sa 'difficulte'.
      *
      * @param difficulte L'identifiant de la Difficulte
      * @return L'objet Difficulte correspondant à la difficulte.
-     * @throws NotFoundException
+     * @throws TechnicalException  ne trouve pas la ressource demandée
      */
-    public Difficulte getDifficulte(String difficulte);
+    Difficulte getDifficulte(String difficulte) throws TechnicalException;
 }
