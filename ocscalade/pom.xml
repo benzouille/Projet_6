@@ -9,15 +9,13 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <!-- ===== Informations Maven ===== -->
     <groupId>fr.banane.projet6</groupId>
     <artifactId>ocscalade</artifactId>
-    <version>1.0-SNAPSHOT</version>gi
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <!-- ===== Informations générales ===== -->
     <name>${projectName}</name>
     <url>http://example.org</url>
-    <description>
-        Projet de site de gestion et partage de topos d'escalade.
-    </description>
+    <description>Projet de site de gestion et partage de topos d'escalade.</description>
 
     <organization>
         <name>La banane</name>
