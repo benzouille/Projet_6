@@ -32,7 +32,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <jersey.version>2.26</jersey.version>
-        <spring.version>5.0.6.RELEASE</spring.version>
+        <spring.version>5.0.19.RELEASE</spring.version>
 		
 		<sonar.projectKey>benzouille_Projet_6</sonar.projectKey>
 		<sonar.organization>benzouille</sonar.organization>
